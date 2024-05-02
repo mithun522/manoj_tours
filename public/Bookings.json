@@ -1,0 +1,99 @@
+[
+    {
+      "id": 1,
+      "customerName": "John Doe",
+      "customerId": "C12345",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": true
+      },
+      "duration": "2024-05-02",
+      "numberOfPeople": 2,
+      "fleet": "Standard",
+      "paid": "$500",
+      "unpaid": "$0",
+      "raidType": "alive"
+    },
+    {
+      "id": 2,
+      "customerName": "Jane Smith",
+      "customerId": "C67890",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": false
+      },
+      "duration": "2024-05-05",
+      "numberOfPeople": 4,
+      "fleet": "Premium",
+      "paid": "$1000",
+      "unpaid": "$200",
+      "raidType": "cancelled"
+    },
+    {
+      "id": 3,
+      "customerName": "John Doe",
+      "customerId": "C12345",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": false
+      },
+      "duration": "2024-04-02",
+      "numberOfPeople": 2,
+      "fleet": "Standard",
+      "paid": "$500",
+      "unpaid": "$0",
+      "raidType": "alive"
+    },
+    {
+      "id": 4,
+      "customerName": "John Doe",
+      "customerId": "C12345",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": false
+      },
+      "duration": "2024-05-08",
+      "numberOfPeople": 2,
+      "fleet": "Standard",
+      "paid": "$500",
+      "unpaid": "$0",
+      "raidType": "alive"
+    },
+    {
+      "id": 5,
+      "customerName": "John Doe",
+      "customerId": "C12345",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": true
+      },
+      "duration": "2024-04-15",
+      "numberOfPeople": 2,
+      "fleet": "Standard",
+      "paid": "$500",
+      "unpaid": "$0",
+      "raidType": "alive"
+    },
+    {
+      "id": 6,
+      "customerName": "John Doe",
+      "customerId": "C12345",
+      "location": {
+        "from": "coimbatore",
+        "to": "ooty",
+        "twoWay": true
+      },
+      "duration": "2024-03-30",
+      "numberOfPeople": 2,
+      "fleet": "Standard",
+      "paid": "$500",
+      "unpaid": "$0",
+      "raidType": "cacelled"
+    }
+  ]
+  
