@@ -2,6 +2,7 @@
     {
       "id": 1,
       "fleet": "Standard",
+      "fleetName": "Maruti Ertiga",
       "fleetNumber": "F123",
       "customerId": "C12345",
       "fleetLocation": {
@@ -11,11 +12,13 @@
       },
       "routine": "Daily",
       "date": "2024-05-02",
-      "status": "Active"
+      "status": "Active",
+      "numberOfSeats": "05"
     },
     {
       "id": 2,
       "fleet": "Premium",
+      "fleetName": "Honda City",
       "fleetNumber": "F456",
       "customerId": "C67890",
       "fleetLocation": {
@@ -25,11 +28,13 @@
       },
       "routine": "Weekly",
       "date": "2024-05-03",
-      "status": "Inactive"
+      "status": "Inactive",
+      "numberOfSeats": "05"
     },
     {
       "id": 3,
       "fleet": "Economy",
+      "fleetName": "Toyot Innova",
       "fleetNumber": "F789",
       "customerId": "C24680",
       "fleetLocation":{
@@ -39,7 +44,8 @@
       },
       "routine": "Monthly",
       "date": "2024-05-04",
-      "status": "Active"
+      "status": "Active",
+      "numberOfSeats": "05"
     }
   ]
   

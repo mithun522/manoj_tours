@@ -19,6 +19,10 @@ import CompanyNewQuotationPreview from './components/Quotes/CompanyNewQuotationP
 import Enquiries from './components/Enquiries/Enquiries';
 import ShareLinks from './components/ShareLinks/ShareLinks';
 import Settings from './components/Settings/Settings';
+import FleetsInformation from './components/Settings/FleetsInformation';
+import EditFleet from './components/Settings/EditFleet';
+import DriversInformation from './components/Settings/DriversInformation';
+import EditDriverInformation from './components/Settings/EditDriverInformation';
 
 function App() {
   return (
@@ -44,6 +48,10 @@ function App() {
           <Route path= '/enquiries' element={<Enquiries />} />
           <Route path='/share-links' element={<ShareLinks />} />
           <Route path='/settings' element={<Settings />} />
+          <Route path='/settings/fleets-information' element={<FleetsInformation />} />
+          <Route path='/settings/edit-fleet' element={<EditFleet />} />
+          <Route path='/settings/drivers-information' element={<DriversInformation />} />
+          <Route path='/settings/edit-driver' element={<EditDriverInformation />} />
         </Routes>
       </div>
     </Router>

@@ -15,10 +15,10 @@ const Layout = ({ children }) => {
   return (
     <div className="flex h-screen">
       <VerticalNavbar />
-      <div className="flex flex-col w-full relative">
+      <div className="flex flex-col w-full relative overflow-y-auto">
         <HorizontalNavbar />
         <p className="absolute mt-28 ml-6">{formattedRoute}</p>
-        <div className="mt-16 bg-white h-screen rounded-xl mr-10 mb-10 ml-4">
+        <div className="mt-16 bg-white rounded-xl mr-10 mb-10 ml-4">
           {children}
         </div>
       </div>

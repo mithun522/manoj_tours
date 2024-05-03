@@ -1,0 +1,23 @@
+[
+    {
+      "name": "John Doe",
+      "mobile_number": "+1234567890",
+      "address": "123 Main Street, City, Country"
+    },
+    {
+      "name": "Jane Smith",
+      "mobile_number": "+1987654321",
+      "address": "456 Elm Street, Town, Country"
+    },
+    {
+      "name": "Alice Johnson",
+      "mobile_number": "+1122334455",
+      "address": "789 Oak Street, Village, Country"
+    },
+    {
+      "name": "Bob Williams",
+      "mobile_number": "+1555666777",
+      "address": "321 Pine Street, Suburb, Country"
+    }
+  ]
+  

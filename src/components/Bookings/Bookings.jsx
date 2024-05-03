@@ -31,7 +31,7 @@ const Bookings = () => {
                 <div className="flex flex-col">
                     <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
                         <TopLayer
-                            title={selectedOption}                                
+                            title={'Bookings'}                                
                             options={options}
                             selectedOption={selectedOption}
                             setSelectedOption={setSelectedOption}

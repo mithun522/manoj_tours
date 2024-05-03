@@ -12,8 +12,8 @@ const DashBoard = () => {
     <Layout>
       <div className="max-w-screen w-full p-8">
         <h1 className="text-2xl font-black text-left mb-6">OVERVIEW</h1>
-        <div className="flex gap-4">
-          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer " onClick={() => navigate("bookings")}>
+        <div className="flex flex-col xl:flex-row 2xl:flex-row gap-4">
+          <div className="w-1/2 md:w-[630px] h-auto md:h-60 shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer " onClick={() => navigate("bookings")}>
             <img
               src={calender}
               alt=""
@@ -43,7 +43,7 @@ const DashBoard = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer" onClick={() => navigate("fleets")}>
+          <div className="w-[630-px] lg:w-[630px]  h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer" onClick={() => navigate("fleets")}>
             <img
               src={fleetImage}
               alt=""

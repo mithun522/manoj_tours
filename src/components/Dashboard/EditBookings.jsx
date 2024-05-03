@@ -39,7 +39,7 @@ const EditBookings = () => {
   }, [showAlert]);
   
 
-  // TODO: use thie when the actual api is available
+  // TODO: use thie when the actual API is available
 //   useEffect(() => {
 //     const fetchBookingsData = async () => {
 //       try {

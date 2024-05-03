@@ -1,7 +1,11 @@
 import React from "react";
 import profile from "../../assets/profile.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const HorizontalNavbar = () => {
+
+  const navigate = useNavigate();
+
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end">
       <div className="max-w-screen-xl p-4 mr-4">
@@ -35,6 +39,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
+                onClick={() => navigate('/quotes')}
               >
                 New Quotation
               </button>
@@ -43,6 +48,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
+                onClick={() => navigate('/bookings')}
               >
                 New Bookings
               </button>

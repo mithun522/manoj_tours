@@ -11,14 +11,16 @@ import logoutIcon from "../../assets/logout-icon.svg";
 import shareLinksIcon from "../../assets/share-links-icon.svg";
 
 const VerticalNavbar = () => {
-  const [submenuOpen, setSubmenuOpen] = useState(false);
+  const [submenuOpen, setSubmenuOpen] = useState(
+    localStorage.getItem("submenuOpen") === "true" || false
+  );
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const navigate = useNavigate();
 
   const dropdown = () => {
-    navigate('/settings');
     setSubmenuOpen(!submenuOpen);
+    localStorage.setItem("submenuOpen", !submenuOpen);
   };
 
   const openSidebar = () => {
@@ -28,7 +30,7 @@ const VerticalNavbar = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      const smallScreen = window.innerWidth <= 640;
+      const smallScreen = window.innerWidth <= 768;
       setIsSmallScreen(smallScreen);
       setIsSidebarOpen(!smallScreen); // Sidebar open by default if not a small screen
     };
@@ -40,7 +42,7 @@ const VerticalNavbar = () => {
   }, []);
 
   return (
-    <section className="bg-gray-500 mr-80">
+    <section className="bg-gray-500 md:mr-80 relative z-10">
       {isSmallScreen ? (
         <img
           src={burgerMenu}
@@ -196,14 +198,14 @@ const VerticalNavbar = () => {
           }`}
           id="submenu"
         >
-          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1">
-            Social
+          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1" onClick={() => navigate('/settings/fleets-information')}>
+            Account
           </h1>
-          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1">
-            Personal
+          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1" onClick={() => navigate('/settings/fleets-information')}>
+            Fleets Info
           </h1>
-          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1">
-            Friends
+          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1" onClick={() => navigate('/settings/drivers-information')}>
+            Drivers Info
           </h1>
         </div>
         <NavLink
