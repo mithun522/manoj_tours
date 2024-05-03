@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import burgerMenu from "../../assets/burger-menu-icon.svg";
 import logo from "../../assets/logo.png";
 import dashBoardIcon from "../../assets/dashboard-icon.svg";
@@ -14,8 +14,10 @@ const VerticalNavbar = () => {
   const [submenuOpen, setSubmenuOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const navigate = useNavigate();
 
   const dropdown = () => {
+    navigate('/settings');
     setSubmenuOpen(!submenuOpen);
   };
 
@@ -43,7 +45,7 @@ const VerticalNavbar = () => {
         <img
           src={burgerMenu}
           alt="Burger Menu"
-          className={`absolute top-5 left-4 cursor-pointer w-10 ${
+          className={`absolute top-5 left-4 cursor-pointer w-10 h-10 ${
             isSidebarOpen ? "hidden" : ""
           }`}
           onClick={openSidebar}
@@ -51,13 +53,13 @@ const VerticalNavbar = () => {
       ) : null}
 
       <div
-        className={`sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900 ${
+        className={`sidebar fixed top-0 bottom-0 lg:left-0 p-2 overflow-y-auto text-center bg-gray-900 ${
           !isSmallScreen && isSidebarOpen ? "" : "hidden"
         }`}
       >
         <div className="text-gray-100 text-xl">
           <div className="p-2.5 mt-1 flex items-center">
-            <img src={logo} alt="logo" className="h-18" />
+            <img src={logo} alt="logo" className="h-24 w-60" />
             {isSmallScreen && (
               <img
                 src={burgerMenu}
@@ -118,6 +120,17 @@ const VerticalNavbar = () => {
             style={{ filter: "invert(100%)" }}
           />
           <span className="ml-4 text-gray-200 font-bold">Quotes</span>
+        </NavLink>
+
+        <NavLink
+          to="/enquiries"
+          className={`p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer text-white ${
+            window.location.pathname === "/enquiries"
+              ? "bg-gray-500"
+              : "hover:bg-gray-500"
+          }`}
+        >
+          <span className="ml-4 text-gray-200 font-bold">Enquiries</span>
         </NavLink>
 
         <NavLink

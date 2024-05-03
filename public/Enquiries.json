@@ -1,0 +1,23 @@
+[
+    {
+      "customerName": "John Doe",
+      "mobileNumber": "123-456-7890",
+      "numberOfPassengers": "04"      
+    },
+    {
+      "customerName": "Jane Smith",
+      "mobileNumber": "987-654-3210",
+      "numberOfPassengers": "02"
+    },
+    {
+      "customerName": "Alice Johnson",
+      "mobileNumber": "555-555-5555",
+      "numberOfPassengers": "03"
+    },
+    {
+      "customerName": "Bob Brown",
+      "mobileNumber": "111-222-3333",
+      "numberOfPassengers": "05"
+    }
+  ]
+  

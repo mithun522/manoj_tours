@@ -1,15 +1,19 @@
 import React from "react";
-import calender from "../assets/calender.png"; // Replace with your image paths
-import fleetImage from "../assets/fleet.png"; // Replace with your image paths
-import Layout from "./Layout/Main";
+import calender from "../../assets/calender.png"; // Replace with your image paths
+import fleetImage from "../../assets/fleet.png"; // Replace with your image paths
+import Layout from "../Layout/Layout";
+import { useNavigate } from "react-router-dom";
 
 const DashBoard = () => {
+
+  const navigate = useNavigate();
+
   return (
     <Layout>
-      <div class="max-w-screen w-full p-8">
+      <div className="max-w-screen w-full p-8">
         <h1 className="text-2xl font-black text-left mb-6">OVERVIEW</h1>
         <div className="flex gap-4">
-          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start">
+          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer " onClick={() => navigate("bookings")}>
             <img
               src={calender}
               alt=""
@@ -39,7 +43,7 @@ const DashBoard = () => {
               </div>
             </div>
           </div>
-          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start">
+          <div className="w-full md:w-[630px] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer" onClick={() => navigate("fleets")}>
             <img
               src={fleetImage}
               alt=""

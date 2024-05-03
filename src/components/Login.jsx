@@ -22,7 +22,7 @@ const Login = () => {
         //     return;
         // }
 
-        navigate('/home');
+        navigate('/dashboard');
     }
 
     // const validateEmail = (email) => {

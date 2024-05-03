@@ -7,8 +7,10 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   const formattedRoute =
-    location.pathname.replace("/", "").charAt(0).toUpperCase() +
-    location.pathname.slice(2);
+    location.pathname
+      .split("/")
+      .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+      .join(" > ");
 
   return (
     <div className="flex h-screen">
