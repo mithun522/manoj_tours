@@ -35,8 +35,7 @@ const Quotes = () => {
                             options={options}
                             selectedOption={selectedOption}
                             setSelectedOption={setSelectedOption}
-                            showButton={true}
-                            buttonTitle='New Quotation'
+                            showButton={false}
                             routeForButton={'/quotes/customer-new-quotations'}
                             icon={filterIcon}
                         />

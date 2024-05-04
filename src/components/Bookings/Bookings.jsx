@@ -35,8 +35,7 @@ const Bookings = () => {
                             options={options}
                             selectedOption={selectedOption}
                             setSelectedOption={setSelectedOption}
-                            showButton={true}
-                            buttonTitle='New Bookings'
+                            showButton={false}
                             routeForButton={'new-bookings'}
                             icon={filterIcon}
                         />
