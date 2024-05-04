@@ -1,8 +1,18 @@
 import React from "react";
 import Layout from "../Layout/Layout";
 import innovaImage from "../../assets/innova.png";
+import Swal from "sweetalert2";
 
 const NewBookingPreview = () => {
+
+  const handleProceed = () => {
+    Swal.fire({
+      title: "Booking!",
+      text: "Quotation Send Successfully",
+      icon: "success"
+    });
+  }
+
   return (
     <>
       <Layout>
@@ -84,6 +94,7 @@ const NewBookingPreview = () => {
                       <button
                         className="text-white font-bold bg-green-600 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                         aria-current="page"
+                        onClick={() => handleProceed()}
                       >
                         Proceed & Send
                       </button>

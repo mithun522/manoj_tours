@@ -4,26 +4,40 @@ import { useNavigate } from "react-router-dom";
 const PaymentDetails = () => {
 
     const navigate = useNavigate();
+    const paymentDetails = {
+      totalAmount: 45000,
+      advanceAmount: 8000,
+      paymentMode: ['Cash', 'Cheque', 'Credit Card','Debit Card', 'Net Banking', 'UPI'],
+    }
 
   return (
     <div className="flex flex-col items-center text-start relative">
       <div className="mb-4 flex flex-col w-96">
         <span className="mb-2">Total Amount</span>
-        <span className="bg-slate-100 w-96 px-2 py-1.5">45000</span>
+        <input
+          type="number"
+          className="text-gray-600 mb-5 bg-slate-200 w-96 px-5 py-1 rounded-md font-medium"
+          value={paymentDetails.totalAmount}
+        />
       </div>
       <div className="mb-4 flex flex-col w-96">
         <span className="mb-2">Advance Amount</span>
-        <span className="bg-slate-100 w-96 px-2 py-1.5">45000</span>
+        <input
+          type="number"
+          className="text-gray-600 mb-5 bg-slate-200 w-96 px-5 py-1 rounded-md font-medium"
+          value={paymentDetails.advanceAmount}
+        />
       </div>
       <div className="mb-4 flex flex-col w-96">
         <span className="mb-2">Payment Mode</span>
         <select name="" id="" className="py-1.5 bg-slate-100">
-            <option value="Cash">Cash</option>
-            <option value="Cheque">Cheque</option>
-            <option value="Credit Card">Credit Card</option>
-            <option value="Debit Card">Debit Card</option>
-            <option value="Net Banking">Net Banking</option>
-            <option value="UPI">UPI</option>
+          {
+            paymentDetails.paymentMode.map((paymentMode) => {
+              return (
+                <option className="py-1.5" value={paymentMode}>{paymentMode}</option>
+              );
+            })
+          }
         </select>
       </div>
       <div className="flex">

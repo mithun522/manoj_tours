@@ -13,7 +13,7 @@ const DashBoard = () => {
       <div className="max-w-screen w-full p-8">
         <h1 className="text-2xl font-black text-left mb-6">OVERVIEW</h1>
         <div className="flex flex-col xl:flex-row 2xl:flex-row gap-4">
-          <div className="w-1/2 md:w-[630px] h-auto md:h-60 shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer " onClick={() => navigate("bookings")}>
+          <div className="w-1/2 h-auto md:h-60 shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer " onClick={() => navigate("bookings")}>
             <img
               src={calender}
               alt=""
@@ -21,7 +21,7 @@ const DashBoard = () => {
               style={{ position: "absolute" }}
             />
             <div className="mt-10 md:mt-0 ml-40 flex flex-col items-center">
-              <p className="text-white font-medium text-xl md:text-xl">
+              <p className="text-white font-medium text-xl md:text-xl whitespace-nowrap">
                 TOTAL BOOKING
               </p>
               <p className="text-white font-black text-3xl md:text-4xl mr-24">

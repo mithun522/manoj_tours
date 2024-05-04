@@ -2,7 +2,7 @@ import React from "react";
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import Layout from "../Layout/Layout";
 
-const CustomerNewQuotationPreview = () => {
+const NewQuotationPreview = () => {
   return (
     <>
       <Layout>
@@ -81,7 +81,7 @@ const CustomerNewQuotationPreview = () => {
                               Coimbatore
                               <img
                                 src={rightLeftIcon}
-                                alt="Calendar"
+                                alt="calender"
                                 className="w-4 h-4 ml-2"
                               />
                               Theni
@@ -185,4 +185,4 @@ const CustomerNewQuotationPreview = () => {
   );
 };
 
-export default CustomerNewQuotationPreview;
+export default NewQuotationPreview;

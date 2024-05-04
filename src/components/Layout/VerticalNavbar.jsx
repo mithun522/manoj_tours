@@ -198,7 +198,7 @@ const VerticalNavbar = () => {
           }`}
           id="submenu"
         >
-          <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1" onClick={() => navigate('/settings/fleets-information')}>
+          <h1 className="disabled p-2 text-gray-500 rounded-md mt-1">
             Account
           </h1>
           <h1 className="cursor-pointer p-2 hover:bg-gray-500 rounded-md mt-1" onClick={() => navigate('/settings/fleets-information')}>

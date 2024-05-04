@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../Layout/Layout";
-import toyota from '../../assets/toyota.png';
-import editIcon from '../../assets/edit-icon-gray.svg';
 import fileUploadIcon from '../../assets/file-upload-icon.svg';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const EditFleet = () => {
-  const [isEditing, setIsEditing] = useState(false);
+const AddFleets = () => {
 
-  const handleEditClick = () => {
-    setIsEditing(true);
-  };
+  const navigate = useNavigate();
+
+  const handleAddDriver = () => {
+    Swal.fire({
+        title: "Fleet Info!",
+        text: "Fleet Added Successfully",
+        icon: "success"
+      });
+  }
 
   return (
     <>
@@ -19,14 +23,13 @@ const EditFleet = () => {
           <div className="flex flex-col">
             <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
               <div className="flex justify-start px-10 py-6">
-                <h1 className="text-lg font-bold" style={{ fontSize: '30px' }} >Edit Fleets</h1>
+                <h1 className="text-lg font-bold" style={{ fontSize: '30px' }} >Add New Fleets</h1>
               </div>
               <div className="flex justify-center mb-4">
                 <div
-                  className="cursor-pointer mr-4 font-semibold w-56 py-2 bg-black text-white rounded-lg"
-                  onClick={handleEditClick}
+                  className=" mr-4 font-semibold w-56 py-2 bg-black text-white rounded-lg"
                 >
-                  Edit Fleet
+                  Fleet Details
                 </div>
               </div>
               <div className="flex justify-center">
@@ -34,7 +37,6 @@ const EditFleet = () => {
                   className="rounded-lg p-4 h-96 relative" // Add relative positioning
                   style={{ width: "427px" }}
                 >
-                  {isEditing ? (
                     <>
                         <div className="flex flex-col p-4 text-start">
                             <div className="flex justify-between">
@@ -71,70 +73,19 @@ const EditFleet = () => {
                             <button
                             className="text-white font-bold bg-red-600 rounded-xl px-16 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
                             aria-current="page"
-                            onClick={() => setIsEditing(false)}
+                            onClick={() => navigate('/settings/fleets-information')}
                             >
-                            Cancel
+                            Back
                             </button>
                             <button
                             className="text-white font-bold bg-green-600 rounded-xl px-16 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                             aria-current="page"
+                            onClick={() => handleAddDriver()}
                             >
-                            Update
+                            Add
                             </button>
                         </div>
-                    </>
-                  ) : (
-                    <>
-                      <div className="flex justify-between items-center p-6">
-                        <img src={toyota} alt="" className="w-60 h-32" />
-                        <div className="flex flex-col items-center">
-                          <div className="text-blue-400 flex whitespace-nowrap underline">
-                            <img src={editIcon} alt="" className="w-4 h-4 mr-2 mt-1" />
-                            Change Image
-                          </div>
-                          <div className="text-red-600 flex whitespace-nowrap underline">
-                            <img src={editIcon} alt="" className="w-4 h-4 mr-2 mt-1" />
-                            Remove Image
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex-col" >
-                        <div className="flex justify-between py-3" >
-                          <span className="text-md text-gray-700" >Fleet Name</span>
-                          <span className="flex text-md text-gray-700" >Toyota Etios
-                            <img src={editIcon} alt="" className="w-4 h-4 ml-6 mt-1" />
-                          </span>
-                        </div>
-                        <div className="flex justify-between py-3" >
-                          <span className="text-md text-gray-700" >Fleet Name</span>
-                          <span className="flex text-md text-gray-700" >Toyota Etios
-                            <img src={editIcon} alt="" className="w-4 h-4 ml-6 mt-1" />
-                          </span>
-                        </div>
-                        <div className="flex justify-between py-3" >
-                          <span className="text-md text-gray-700" >Fleet Name</span>
-                          <span className="flex text-md text-gray-700" >Toyota Etios
-                            <img src={editIcon} alt="" className="w-4 h-4 ml-6 mt-1" />
-                          </span>
-                        </div>
-                        <div className="flex justify-end mt-10">
-                            <Link
-                            to='/settings/fleets-information'
-                            className="text-white font-bold bg-gray-500 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
-                            aria-current="page"
-                            >
-                            Back
-                            </Link>
-                            <button
-                            className="text-white font-bold bg-green-600 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
-                            aria-current="page"
-                            >
-                            Apply Changes
-                            </button>
-                        </div>
-                      </div>
-                    </>
-                  )}
+                    </>                  
                 </div>
               </div>
             </div>
@@ -145,4 +96,4 @@ const EditFleet = () => {
   );
 };
 
-export default EditFleet;
+export default AddFleets;

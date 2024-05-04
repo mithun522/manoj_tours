@@ -5,9 +5,16 @@
       "travelTime": "8-03-2024 9:30 Pm - 12-03-2024 11:00 Am",
       "vehicleType": "Sedan",
       "vehicleNumber": "TN37 CX3456",
-      "distance": "100",
+      "distance": "100 kms",
       "numberOfDays": "03",
-      "amount": "420000"
+      "amount": "420000",
+      "mobileNumber": "1234567890",
+      "startDate": "15 FEB 2024",
+      "endDate": "15-FEB 2024",
+      "pickupLocation": "Coimbatore",
+      "dropLocation": "Theni",
+      "noOfPassengers": "06",
+      "timing": "5 hrs"
     },
     {
       "customerName": "Alice Smith",

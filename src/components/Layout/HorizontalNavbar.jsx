@@ -39,7 +39,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
-                onClick={() => navigate('/quotes')}
+                onClick={() => navigate('/quotes/customer-new-quotations')}
               >
                 New Quotation
               </button>
@@ -48,7 +48,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
-                onClick={() => navigate('/bookings')}
+                onClick={() => navigate('/bookings/new-bookings')}
               >
                 New Bookings
               </button>

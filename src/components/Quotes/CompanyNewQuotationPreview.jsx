@@ -1,8 +1,18 @@
 import React from 'react';
 import Layout from '../Layout/Layout';
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
+import Swal from 'sweetalert2';
 
 const CompanyNewQuotationPreview = () => {
+
+  const handleProceed = () => {
+    Swal.fire({
+      title: "Quotation!",
+      text: "Quotation Send Successfully",
+      icon: "success"
+    });
+  }
+
     return (
         <>
           <Layout>
@@ -13,12 +23,9 @@ const CompanyNewQuotationPreview = () => {
                     <h1 className="text-lg font-bold" style={{ fontSize: "30px" }}>
                       New Quotations
                     </h1>
-                    <div className="flex">
-                      <span>Customer ID: #MT234</span>
-                    </div>
                   </div>
                   <span className="text-center font-bold text-2xl">
-                    New Quotation Preview
+                    Company New Quotation Preview
                   </span>
                   <div className="flex justify-center bg-white mt-3 relative">
                     <div
@@ -81,7 +88,7 @@ const CompanyNewQuotationPreview = () => {
                                   Coimbatore
                                   <img
                                     src={rightLeftIcon}
-                                    alt="Calendar"
+                                    alt="calender"
                                     className="w-4 h-4 ml-2"
                                   />
                                   Theni
@@ -170,6 +177,7 @@ const CompanyNewQuotationPreview = () => {
                           <button
                             className="text-white font-bold mt-14 ml-5 whitespace-nowrap bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                             aria-current="page"
+                            onClick={() => handleProceed()}
                           >
                             Proceed & Send
                           </button>

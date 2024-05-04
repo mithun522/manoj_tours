@@ -4,7 +4,7 @@ import Layout from '../Layout/Layout';
 import TopLayer from '../shared/TopLayer';
 
 const Quotes = () => {
-    const [bookingsData, setBookingsData] = useState([]);
+    const [quotesData, setQuotesData] = useState([]);
     const [selectedOption, setSelectedOption] = useState('Filter By');
     const options = ['Customer', 'Companies'];
   
@@ -16,7 +16,7 @@ const Quotes = () => {
                     throw new Error("Failed to fetch data");
                 }
                 const data = await response.json();
-                setBookingsData(data);
+                setQuotesData(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
@@ -36,12 +36,12 @@ const Quotes = () => {
                             selectedOption={selectedOption}
                             setSelectedOption={setSelectedOption}
                             showButton={true}
-                            buttonTitle='New Quotations'
-                            routeForButton={'new-quotations'}
+                            buttonTitle='New Quotation'
+                            routeForButton={'/quotes/customer-new-quotations'}
                             icon={filterIcon}
                         />
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                            {bookingsData.map((booking, index) => (
+                            {quotesData.map((booking, index) => (
                                 <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-100">
                                     <div className='flex justify-between' >
                                         <h2 className="font-medium text-xl mb-0.5">{booking.customerName}</h2>

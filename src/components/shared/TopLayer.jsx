@@ -1,8 +1,9 @@
 import React from 'react';
 import CustomDropdown from './CustomDropdown';
 import { useNavigate } from 'react-router-dom';
+import plusIcon from '../../assets/plus-circle-icon.svg';
 
-const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSelectedOption, showButton = true, buttonTitle = "", routeForButton, icon }) => {
+const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSelectedOption, showButton = true, buttonTitle = "", routeForButton, icon, isAddButton=false, addButtonRoute = '' }) => {
 
     const navigate = useNavigate();
 
@@ -18,11 +19,9 @@ const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSele
                             id="search"
                             placeholder="Search something.." /> 
                         <div className="grid place-items-center h-full w-12 text-gray-900 bg-gray-100">
-                            {icon && (
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
-                            )}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -36,6 +35,14 @@ const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSele
                     </button>
                 )}
                 {showDropdown && <CustomDropdown options={options} selectedOption={selectedOption} onSelect={setSelectedOption} icon={icon} />}
+                {isAddButton && (
+                    <div className="flex cursor-pointer" onClick={() => navigate(addButtonRoute)} >
+                        <span className="ml-5 flex underline mt-2" style={{ fontSize: "14px" }}>
+                            <img src={plusIcon} alt="Add Driver" className="w-5 h-5 mr-1" />
+                            Add
+                        </span>
+                    </div>
+                )}
             </div>
         </div>
     );

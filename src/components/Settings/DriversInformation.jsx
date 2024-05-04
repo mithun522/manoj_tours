@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import filterIcon from '../../assets/filter-icon.svg';
 import Layout from '../Layout/Layout';
 import TopLayer from '../shared/TopLayer';
 import profile from '../../assets/drivers-profile.png';
@@ -36,6 +35,8 @@ const DriversInformation = () => {
                             title={'Drivers Information'}                                
                             showDropdown={false}
                             showButton={false}
+                            isAddButton={true}
+                            addButtonRoute='/settings/add-driver'
                         />
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
                             {driversData.map((driver, index) => (
