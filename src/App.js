@@ -1,28 +1,29 @@
 import React from 'react';
 import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import Login from './components/Login';
-import DashBoard from './components/Dashboard/Dashboard';
-import EditBookings from './components/Dashboard/EditBookings';
-import DashboardBookings from './components/Dashboard/DashboardBookings';
-import Fleets from './components/Dashboard/Fleets';
 import Bookings from './components/Bookings/Bookings';
+import NewBookingPreview from './components/Bookings/NewBookingPreview';
 import NewBookings from './components/Bookings/NewBookings';
 import PaymentDetails from './components/Bookings/PaymentDetails';
-import NewBookingPreview from './components/Bookings/NewBookingPreview';
-import Quotes from './components/Quotes/Quotes';
-import CustomerNewQuotationPreview from './components/Quotes/CustomerNewQuotationPreview';
-import CompanyNewQuotationPreview from './components/Quotes/CompanyNewQuotationPreview';
+import Calender from './components/Calendar/Calendar';
+import DashBoard from './components/Dashboard/Dashboard';
+import DashboardBookings from './components/Dashboard/DashboardBookings';
+import EditBookings from './components/Dashboard/EditBookings';
+import Fleets from './components/Dashboard/Fleets';
 import Enquiries from './components/Enquiries/Enquiries';
-import FleetsInformation from './components/Settings/FleetsInformation';
-import EditFleet from './components/Settings/EditFleet';
+import Login from './components/Login';
+import CompaniesNewQuotation from './components/Quotes/CompaniesNewQuotation';
+import CompanyNewQuotationPreview from './components/Quotes/CompanyNewQuotationPreview';
+import CustomerNewQuotation from './components/Quotes/CustomerNewQuotation';
+import CustomerNewQuotationPreview from './components/Quotes/CustomerNewQuotationPreview';
+import Quotes from './components/Quotes/Quotes';
+import AddDriver from './components/Settings/AddDriver';
+import AddFleets from './components/Settings/AddFleets';
 import DriversInformation from './components/Settings/DriversInformation';
 import EditDriverInformation from './components/Settings/EditDriverInformation';
-import AddFleets from './components/Settings/AddFleets';
-import CustomerNewQuotation from './components/Quotes/CustomerNewQuotation';
-import CompaniesNewQuotation from './components/Quotes/CompaniesNewQuotation';
-import AddDriver from './components/Settings/AddDriver';
-import Calender from './components/Calendar/Calendar';
+import EditFleet from './components/Settings/EditFleet';
+import FleetsInformation from './components/Settings/FleetsInformation';
+import ShareLinks from './components/ShareLinks/ShareLinks';
 import ShareLinksInfo from './components/ShareLinks/ShareLinksInfo';
 
 function App() {
@@ -46,7 +47,8 @@ function App() {
           <Route path='/quotes/customer-new-quotation-preview' element={<CustomerNewQuotationPreview />} />
           <Route path= '/quotes/company-new-quotation-preview' element={<CompanyNewQuotationPreview />} />
           <Route path= '/enquiries' element={<Enquiries />} />
-          <Route path='/share-links' element={<ShareLinksInfo />} />
+          <Route path='/share-links/edit' element={<ShareLinksInfo />} />
+          <Route path='/share-links' element={<ShareLinks />} />
           <Route path='/settings/fleets-information' element={<FleetsInformation />} />
           <Route path='/settings/edit-fleet' element={<EditFleet />} />
           <Route path='/settings/add-fleets' element={<AddFleets />} />
