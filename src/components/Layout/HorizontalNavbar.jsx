@@ -1,6 +1,6 @@
 import React from "react";
-import profile from "../../assets/profile.jpeg";
 import { useNavigate } from "react-router-dom";
+import profile from "../../assets/profile.jpeg";
 
 const HorizontalNavbar = () => {
 
@@ -8,7 +8,7 @@ const HorizontalNavbar = () => {
 
   return (
     <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end">
-      <div className="max-w-screen-xl p-4 mr-4">
+      <div className="max-w-screen-xl p-4 mr-4 top-0">
         <button
           data-collapse-toggle="navbar-default"
           type="button"

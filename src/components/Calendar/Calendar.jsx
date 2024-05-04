@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Layout from '../Layout/Layout';
 import { Scheduler } from '@aldabil/react-scheduler';
-import CustomDropdown from '../shared/CustomDropdown';
+import React, { useState } from 'react';
 import filterIcon from '../../assets/filter-icon.svg';
+import Layout from '../Layout/Layout';
+import CustomDropdown from '../shared/CustomDropdown';
 
 const Calender = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -30,40 +30,43 @@ const Calender = () => {
 
 
     return (
-        <>
-            <Layout>
-                <div className='flex p-5 mb-8 justify-between' >
-                    <h1 className='text-2xl font-bold' >Calender</h1>
+        <Layout>
+            <div className='p-4'>
+                <div className='flex mb-8 justify-between'>
+                    <h1 className='text-2xl font-bold'>Calendar</h1>
                     <CustomDropdown options={options} selectedOption={selectedOption} onSelect={setSelectedOption} icon={filterIcon} />
                 </div>
-                <Scheduler
-                    view="month"
-                    // selectedDate={selectedDate}
-                    onSelectedDateChange={(date) => setSelectedDate(date)}
-                    events={[
-                        {
-                            event_id: 5,
-                            title: "Event 6",
-                            start: new Date("2024/05/27 09:30"),
-                            color: getCircleColor(new Date("2024/05/02"))
-                        },
-                        {
-                            event_id: 1,
-                            title: "Event 1",
-                            start: new Date("2024/05/02"),
-                            end: new Date("2024/05/02"),
-                            color: getCircleColor(new Date("2024/05/02"))
-                        },
-                        {
-                            event_id: 2,
-                            title: "Event 2",
-                            start: new Date("2024/05/04 10:00"),
-                            color: getCircleColor(new Date("2024/05/04"))
-                        },
-                    ]}
-                />
-            </Layout>
-        </>
+                <div className='overflow-hidden'>
+                    <Scheduler
+                        view="month"
+                        // selectedDate={selectedDate}
+                        height={400}
+                        onSelectedDateChange={(date) => setSelectedDate(date)}
+                        events={[
+                            {
+                                event_id: 5,
+                                title: "Event 6",
+                                start: new Date("2024/05/27 09:30"),
+                                color: getCircleColor(new Date("2024/05/02"))
+                            },
+                            {
+                                event_id: 1,
+                                title: "Event 1",
+                                start: new Date("2024/05/02"),
+                                end: new Date("2024/05/02"),
+                                color: getCircleColor(new Date("2024/05/02"))
+                            },
+                            {
+                                event_id: 2,
+                                title: "Event 2",
+                                start: new Date("2024/05/04 10:00"),
+                                color: getCircleColor(new Date("2024/05/04"))
+                            },
+                        ]}
+                    />
+                </div>
+            </div>
+        </Layout>
     );
 };
 

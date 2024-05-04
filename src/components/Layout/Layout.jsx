@@ -13,12 +13,12 @@ const Layout = ({ children }) => {
       .join(" > ");
 
   return (
-    <div className="flex h-screen">
+    <div className="flex">
       <VerticalNavbar />
-      <div className="flex flex-col w-full relative overflow-y-auto">
+      <div className="flex flex-col w-full relative">
         <HorizontalNavbar />
-        <p className="absolute mt-28 ml-6">{formattedRoute}</p>
-        <div className="mt-16 bg-white rounded-xl mr-10 mb-10 ml-4">
+        <p className="absolute mt-24" style={{fontWeight: 'bolder'}} >Quotes {'>'} ABCD</p>
+        <div className="mt-14 bg-white rounded-xl mr-10 mb-10 h-[80vh] overflow-hidden scrollbar-hide">
           {children}
         </div>
       </div>

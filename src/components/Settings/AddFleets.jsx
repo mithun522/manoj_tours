@@ -1,8 +1,8 @@
 import React from "react";
-import Layout from "../Layout/Layout";
-import fileUploadIcon from '../../assets/file-upload-icon.svg';
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import fileUploadIcon from '../../assets/file-upload-icon.svg';
+import Layout from "../Layout/Layout";
 
 const AddFleets = () => {
 

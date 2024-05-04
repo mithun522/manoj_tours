@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../Layout/Layout";
 import { useNavigate } from "react-router-dom";
 import calenderIcon from "../../assets/calender-icon.svg";
+import locationIcon from "../../assets/location-icon-filled.svg";
+import minusIcon from "../../assets/minus-icon.svg";
+import plusIcon from "../../assets/plus-icon.svg";
 import rightArrowIcon from "../../assets/right-arrow-icon.svg";
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
-import locationIcon from "../../assets/location-icon-filled.svg";
-import plusIcon from "../../assets/plus-icon.svg";
-import minusIcon from "../../assets/minus-icon.svg";
+import Layout from "../Layout/Layout";
 
 const CustomerNewQuotation = () => {
   const [customerData, setCustomerData] = useState([]);
@@ -55,13 +55,13 @@ const CustomerNewQuotation = () => {
                 </div>
               </div>
 
-              <div className="flex justify-center mb-20 overflow-auto md:overflow-hidden">
+              <div className="flex justify-center mb-10 overflow-auto">
                 <div className="flex flex-col w-full max-w-screen-md mx-auto">
                   <div className="border border-gray-300 rounded-lg p-4 relative">
                     {/* first row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
-                      <div className="flex flex-col text-start mb-4">
-                        <label className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <label style={{ fontSize: "14px" }}>
                           Name
                         </label>
                         <div className="flex items-center">
@@ -73,8 +73,8 @@ const CustomerNewQuotation = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <label className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <label style={{ fontSize: "14px" }}>
                           Mobile number
                         </label>
                         <div className="flex items-center">
@@ -89,8 +89,8 @@ const CustomerNewQuotation = () => {
                     </div>
                     {/* second row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Start Date
                         </span>
                         <div className="flex items-center relative">
@@ -108,8 +108,8 @@ const CustomerNewQuotation = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           End Date
                         </span>
                         <div className="flex items-center relative">
@@ -130,8 +130,8 @@ const CustomerNewQuotation = () => {
                     </div>
                     {/* third row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Pickup Location
                         </span>
                         <div className="flex items-center relative">
@@ -149,8 +149,8 @@ const CustomerNewQuotation = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Drop Location
                         </span>
                         <div className="flex items-center relative">
@@ -171,14 +171,14 @@ const CustomerNewQuotation = () => {
                     </div>
                     {/* Fourth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-2" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Trip
                         </span>
-                        <div className="bg-slate-200 px-2 py-0.5 mr-2 flex justify-between mb-1 accent-black">
+                        <div className="bg-slate-100 px-2 py-0.5 mr-2 flex justify-between  accent-black">
                           <div>
                             <input type="radio" name="trip-type" id="single" />
-                            <label className="ml-2" htmlFor="single">
+                            <label className="ml-2" htmlFor="single" style={{fontSize: '12px'}}>
                               Single
                             </label>
                           </div>
@@ -188,7 +188,7 @@ const CustomerNewQuotation = () => {
                             className="w-4 h-4 mt-1"
                           />
                         </div>
-                        <div className="bg-slate-200 px-2 py-0.5 mr-2 flex justify-between">
+                        <div className="bg-slate-100 px-2 py-0.5 mr-2 flex justify-between mt-1">
                           <div>
                             <input
                               type="radio"
@@ -196,7 +196,7 @@ const CustomerNewQuotation = () => {
                               id="rounded"
                               className="accent-black"
                             />
-                            <label className="ml-2" htmlFor="rounded">
+                            <label className="ml-2" htmlFor="rounded" style={{fontSize: '12px'}}>
                               Rounded
                             </label>
                           </div>
@@ -207,14 +207,14 @@ const CustomerNewQuotation = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-2" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Parking, Toll gate cost
                         </span>
-                        <div className="bg-slate-200 px-2 py-0.5 flex justify-between mb-1 accent-black">
+                        <div className="bg-slate-100 px-2 py-0.5 flex justify-between  accent-black">
                           <div>
                             <input type="radio" name="trip-type" id="single" />
-                            <label className="ml-2" htmlFor="single">
+                            <label className="ml-2" htmlFor="single" style={{fontSize: '12px'}}>
                               include
                             </label>
                           </div>
@@ -224,7 +224,7 @@ const CustomerNewQuotation = () => {
                             className="w-4 h-4 mt-1"
                           />
                         </div>
-                        <div className="bg-slate-200 px-2 py-0.5 flex justify-between">
+                        <div className="bg-slate-100 px-2 py-0.5 flex justify-between mt-1">
                           <div>
                             <input
                               type="radio"
@@ -232,7 +232,7 @@ const CustomerNewQuotation = () => {
                               id="rounded"
                               className="accent-black"
                             />
-                            <label className="ml-2" htmlFor="rounded">
+                            <label className="ml-2" htmlFor="rounded" style={{fontSize: '12px'}}>
                               Exclude
                             </label>
                           </div>
@@ -246,8 +246,8 @@ const CustomerNewQuotation = () => {
                     </div>
                     {/* Fifth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           No of Passengers
                         </span>
                         <div className="flex items-center relative mr-2">
@@ -271,8 +271,8 @@ const CustomerNewQuotation = () => {
                           />
                         </div>
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Timing
                         </span>
                         <input
@@ -285,8 +285,8 @@ const CustomerNewQuotation = () => {
                     </div>
                     {/* sixth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
-                      <div className="flex flex-col text-start mb-4 mr-2">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start mr-2">
+                        <span style={{ fontSize: "14px" }}>
                           Estimated Kms
                         </span>
                         <input
@@ -296,8 +296,8 @@ const CustomerNewQuotation = () => {
                           value={customerData.distance}
                         />
                       </div>
-                      <div className="flex flex-col text-start mb-4">
-                        <span className="mb-1" style={{ fontSize: "14px" }}>
+                      <div className="flex flex-col text-start">
+                        <span style={{ fontSize: "14px" }}>
                           Estimated amount in rs
                         </span>
                         <input
@@ -308,7 +308,7 @@ const CustomerNewQuotation = () => {
                         />
                       </div>
                     </div>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end mt-5">
                       <div className="flex relative">
                         <button
                           className="text-white font-bold whitespace-nowrap bottom-9 bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
