@@ -28,31 +28,6 @@ const Calender = () => {
         }
     };
 
-    // Generate events with dynamic colors
-    const generateEvents = () => {
-        return [
-            {
-                event_id: 5,
-                title: "Event 6",
-                start: new Date("2024/05/27 09:30"),
-                color: getCircleColor(new Date("2024/05/02"))
-            },
-            {
-                event_id: 1,
-                title: "Event 1",
-                start: new Date("2024/05/02 09:30"),
-                end: new Date("2024/05/02 10:30"),
-                color: getCircleColor(new Date("2024/05/02"))
-            },
-            {
-                event_id: 2,
-                title: "Event 2",
-                start: new Date("2024/05/04 10:00"),
-                end: new Date("2024/05/04 11:00"),
-                color: getCircleColor(new Date("2024/05/04"))
-            },
-        ];
-    };
 
     return (
         <>

@@ -14,7 +14,6 @@ import Quotes from './components/Quotes/Quotes';
 import CustomerNewQuotationPreview from './components/Quotes/CustomerNewQuotationPreview';
 import CompanyNewQuotationPreview from './components/Quotes/CompanyNewQuotationPreview';
 import Enquiries from './components/Enquiries/Enquiries';
-import ShareLinks from './components/ShareLinks/ShareLinks';
 import FleetsInformation from './components/Settings/FleetsInformation';
 import EditFleet from './components/Settings/EditFleet';
 import DriversInformation from './components/Settings/DriversInformation';
@@ -24,6 +23,7 @@ import CustomerNewQuotation from './components/Quotes/CustomerNewQuotation';
 import CompaniesNewQuotation from './components/Quotes/CompaniesNewQuotation';
 import AddDriver from './components/Settings/AddDriver';
 import Calender from './components/Calendar/Calendar';
+import ShareLinksInfo from './components/ShareLinks/ShareLinksInfo';
 
 function App() {
   return (
@@ -46,7 +46,7 @@ function App() {
           <Route path='/quotes/customer-new-quotation-preview' element={<CustomerNewQuotationPreview />} />
           <Route path= '/quotes/company-new-quotation-preview' element={<CompanyNewQuotationPreview />} />
           <Route path= '/enquiries' element={<Enquiries />} />
-          <Route path='/share-links' element={<ShareLinks />} />
+          <Route path='/share-links' element={<ShareLinksInfo />} />
           <Route path='/settings/fleets-information' element={<FleetsInformation />} />
           <Route path='/settings/edit-fleet' element={<EditFleet />} />
           <Route path='/settings/add-fleets' element={<AddFleets />} />
