@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
-import Layout from "../Layout/Layout";
-import rightLeftIcon from '../../assets/right-left-arrow-icon.svg';
+import React, { useEffect, useRef, useState } from "react";
 import rightArrowIcon from '../../assets/right-arrow-icon.svg';
+import rightLeftIcon from '../../assets/right-left-arrow-icon.svg';
+import Layout from "../Layout/Layout";
+import TopLayer from '../shared/TopLayer';
 
 const Fleets = () => {
     const [fleetsData, setFleetsData] = useState([]);
@@ -63,96 +64,31 @@ const Fleets = () => {
   return (
       <>
           <Layout>
-              <div className="max-w-screen mx-auto">
-                  <div className="flex flex-col">
-                      <div className="overflow-x-auto shadow-md sm:rounded-lg">
-                          <div className="inline-block min-w-full align-middle">
-                              <div className="flex justify-between items-center p-4">
-                                  <h1 className="text-lg font-bold">{selectedOption}</h1>
-                                  <div className="flex" >
-                                      <div className='max-w-xs mx-auto mr-10'>
-                                          <div className="relative flex items-center w-full h-10 rounded-2xl focus-within:shadow-lg overflow-hidden">
-                                              <input
-                                                  className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 pl-5 bg-gray-100"
-                                                  type="text"
-                                                  id="search"
-                                                  placeholder="Search something.." /> 
-                                              <div className="grid place-items-center h-full w-12 text-gray-900 bg-gray-100">
-                                                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                                  </svg>
-                                              </div>
-                                          </div>
-                                      </div>
-                                      <div className="relative inline-block text-left">
-                                          <div className="relative inline-block text-left" ref={dropdownRef}>
-                                              <div>
-                                                  <span className="rounded-md shadow-sm">
-                                                      <button
-                                                          type="button"
-                                                          className="inline-flex justify-center w-48 pl-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-transparent"
-                                                          onClick={toggleDropdown}
-                                                          aria-haspopup="listbox"
-                                                          aria-expanded={isOpen}
-                                                      >
-                                                          {selectedOption}
-                                                          <svg
-                                                              className="-mr-1 ml-2 h-5 w-5"
-                                                              xmlns="http://www.w3.org/2000/svg"
-                                                              viewBox="0 0 20 20"
-                                                              fill="currentColor"
-                                                              aria-hidden="true"
-                                                          >
-                                                              <path
-                                                                  fillRule="evenodd"
-                                                                  d="M10 12a1 1 0 01-.707-.293l-3-3a1 1 0 111.414-1.414L10 10.586l2.293-2.293a1 1 0 111.414 1.414l-3 3A1 1 0 0110 12z"
-                                                                  clipRule="evenodd"
-                                                              />
-                                                          </svg>
-                                                      </button>
-                                                  </span>
-                                              </div>
-  
-                                              {isOpen && (
-                                                  <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                                                      <ul
-                                                          tabIndex="-1"
-                                                          role="listbox"
-                                                          aria-labelledby="options-menu"
-                                                          aria-activedescendant="active-option"
-                                                          className="py-1"
-                                                      >
-                                                          {options.map((option, index) => (
-                                                              <li
-                                                                  key={index}
-                                                                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer select-none"
-                                                                  onClick={() => handleOptionSelect(option)}
-                                                              >
-                                                                  {option}
-                                                              </li>
-                                                          ))}
-                                                      </ul>
-                                                  </div>
-                                              )}
-                                          </div>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div className="overflow-hidden ">
-                                  <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                                      <thead className="bg-sky-200 dark:bg-gray-700">
-                                          <tr>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Fleet</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Fleet Number</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Customer Id</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Location</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Routine</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Date</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Status</th>
-                                              <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Edit</th>
-                                          </tr>
-                                      </thead>
-                                      <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                <div className="mx-auto">
+                    <div className="flex flex-col">
+                        <div className="overflow-x-auto shadow-md sm:rounded-lg">
+                            <TopLayer
+                                title={'Fleets'}
+                                showDropdown={true}
+                                options={options}
+                                selectedOption={selectedOption}
+                                showButton={false}
+                            />
+                                <div className="overflow-hidden w-[vh-40px]">
+                                    <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
+                                        <thead className="bg-sky-200 dark:bg-gray-700">
+                                            <tr>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Fleet</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Fleet Number</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Customer Id</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Location</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Routine</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Date</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Status</th>
+                                                <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Edit</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                             {fleetsData.map((item) => (
                                                 <tr key={item.id}>
                                                 <td className="p-4 text-gray-900 dark:text-white">{item.fleet}</td>
@@ -187,13 +123,12 @@ const Fleets = () => {
                                                 </td>
                                                 </tr>
                                             ))}
-                                      </tbody>
-                                  </table>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                    </div>
+                </div>
           </Layout>
       </>
   );

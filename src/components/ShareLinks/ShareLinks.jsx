@@ -47,7 +47,7 @@ const ShareLinks = () => {
           <div className="flex flex-col w-full max-w-screen-md mx-auto mt-12">
             <h1 className="text-xl font-bold mb-4 text-start absolute top-3 left-3">Uploaded Information</h1>
             <div className="border border-gray-300 rounded-lg mt-4 relative">
-              <div className="absolute top-5 right-5 flex flex-col cursor-pointer" onClick={() => navigate('/share-links/edit')} >
+              <div className="absolute top-5 right-5 flex flex-col cursor-pointer hover:scale-105 ease-in-out duration-300" onClick={() => navigate('/share-links/edit')} >
                 <img src={editIcon} alt="" className="w-4 h-4 ml-12" />
                 <span className="text-xs text-gray-600" >Edit Account Info</span>
               </div>
@@ -106,7 +106,7 @@ const ShareLinks = () => {
               </div>
               <div className="absolute bottom-0 right-0 p-4">
                 <button
-                  className="text-white flex font-bold bg-green-600 rounded-lg px-8 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
+                  className="text-white flex font-bold hover:scale-105 ease-in-out duration-300 bg-green-600 rounded-lg px-8 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                   aria-current="page"
                   onClick={() => openModal()}
                 >
@@ -136,8 +136,8 @@ const ShareLinks = () => {
               </div>
             </div>
             <div className='flex mt-14 justify-between px-10' >
-              <button className="bg-red-500 px-4 py-2 text-white rounded-2xl" onClick={() => closeModal()} >Cancel</button>
-              <button className="bg-green-600 px-4 py-2 text-white rounded-2xl">Send</button>
+              <button className="bg-red-500 px-4 py-2 text-white rounded-2xl hover:scale-105 ease-in-out duration-300" onClick={() => closeModal()} >Cancel</button>
+              <button className="bg-green-600 px-4 py-2 text-white rounded-2xl hover:scale-105 ease-in-out duration-300">Send</button>
             </div>
           </div>
         </div>

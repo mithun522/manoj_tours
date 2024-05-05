@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import notificationIcon from "../../assets/notification-iconsvg.svg";
 import profile from "../../assets/profile.jpeg";
 
 const HorizontalNavbar = () => {
@@ -7,7 +8,7 @@ const HorizontalNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end fixed w-[75vw]">
       <div className="max-w-screen-xl p-4 mr-4 top-0">
         <button
           data-collapse-toggle="navbar-default"
@@ -55,22 +56,7 @@ const HorizontalNavbar = () => {
             </li>
             <li>
               <div className="relative">
-                <button className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 hover:scale-105 ease-in-out duration-300 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 4v8m0 0v8m0-8h8m-8 0H4"
-                    />
-                  </svg>
-                </button>
+                <img src={notificationIcon} alt="" className="w-7 h-7" />
                 <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
                   2
                 </span>

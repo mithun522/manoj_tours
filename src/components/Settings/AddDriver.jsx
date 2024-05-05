@@ -1,19 +1,33 @@
-import React from "react";
-import Layout from "../Layout/Layout";
-import fileUploadIcon from "../../assets/file-upload-icon.svg";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import fileUploadIcon from "../../assets/file-upload-icon.svg";
+import Layout from "../Layout/Layout";
 
 const AddDriver = () => {
   const navigate = useNavigate();
 
+  const [driverData, setDriverData] = useState({
+    name: "John Doe",
+    mobile: "123456789",
+    address: "123 abcd street, Albany, New york USA",
+  });
+
   const handleAddDriver = () => {
     Swal.fire({
-        title: "Driver Info!",
-        text: "Driver Added Successfully",
-        icon: "success"
-      });
-  }
+      title: "Driver Info!",
+      text: "Driver Added Successfully",
+      icon: "success",
+    });
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDriverData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -33,65 +47,72 @@ const AddDriver = () => {
               </div>
               <div className="flex justify-center">
                 <div
-                  className="rounded-lg p-4 h-96 relative" // Add relative positioning
+                  className="rounded-lg p-4 relative" 
                   style={{ width: "427px" }}
                 >
                   <div className="flex flex-col p-4 text-start">
                     <div className="flex justify-between">
                       <div className="flex flex-col">
                         <label
-                          htmlFor="fleetName1"
+                          htmlFor="driverName"
                           className="text-gray-600 mb-1"
                         >
                           Driver Name
                         </label>
                         <input
                           type="text"
-                          id="fleetName1"
-                          value="John Doe"
-                          placeholder="Enter Fleet Name"
+                          id="driverName"
+                          name="name"
+                          value={driverData.name}
+                          placeholder="Enter Driver Name"
                           className="bg-slate-100 rounded-md mb-4 p-2"
+                          onChange={handleChange}
+                          style={{ fontSize: "12px" }}
                         />
                       </div>
                       <div className="flex flex-col ml-5">
                         <label
-                          htmlFor="fleetNumber1"
+                          htmlFor="driverMobile"
                           className="text-gray-600 mb-1"
                         >
                           Mobile Number
                         </label>
                         <input
                           type="text"
-                          id="fleetNumber1"
-                          value="123456789"
-                          placeholder="Enter Fleet Number"
+                          id="driverMobile"
+                          name="mobile"
+                          value={driverData.mobile}
+                          placeholder="Enter Mobile Number"
                           className="bg-slate-100 rounded-md mb-4 p-2"
-                        />
-                      </div>
-                    </div>
-                    <div className="flex justify-between mt-6">
-                      <div className="flex flex-col">
-                        <label
-                          htmlFor="fleetName2"
-                          className="text-gray-600 mb-1"
-                        >
-                          Address
-                        </label>
-                        <input
-                          type="text"
-                          id="fleetName2"
-                          value="123 abcd street, Albany, New york USA"
-                          placeholder="Enter Fleet Name"
-                          className="bg-slate-100 rounded-md mb-4 p-2 w-[560px] h-16"
+                          onChange={handleChange}
+                          style={{ fontSize: "12px" }}
                         />
                       </div>
                     </div>
                     <div className="flex flex-col">
                       <label
-                        htmlFor="fleetNumber2"
+                        htmlFor="driverAddress"
+                        className="text-gray-600 mb-1"
+                      >
+                        Address
+                      </label>
+                      <textarea
+                        type="text"
+                        id="driverAddress"
+                        name="address"
+                        value={driverData.address}
+                        style={{ fontSize: "12px", resize: "none" }}
+                        placeholder="Enter Address"
+                        className="bg-slate-100 rounded-md mb-4 p-2 h-16"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="flex flex-col">
+                      <label
+                        htmlFor="driverImage"
                         className="text-gray-600 mb-1 whitespace-nowrap"
                       >
-                        Upload Fleet Image
+                        Upload Driver Image
                       </label>
                       <span className="w-72 flex mt-5">
                         <img
@@ -99,20 +120,20 @@ const AddDriver = () => {
                           alt="Upload File"
                           className="w-16 h-16 cursor-pointer"
                           onClick={() =>
-                            document.getElementById("fileUpload").click()
+                            document.getElementById("driverImage").click()
                           } // Trigger click on file input
                         />
                         <span
                           className="text-blue-500 ml-4 underline mt-4 cursor-pointer"
                           onClick={() =>
-                            document.getElementById("fileUpload").click()
+                            document.getElementById("driverImage").click()
                           }
                         >
                           upload
                         </span>
                         <input
                           type="file"
-                          id="fileUpload"
+                          id="driverImage"
                           className="cursor-pointer"
                           style={{ display: "none" }}
                         />
