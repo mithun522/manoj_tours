@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import calenderIcon from "../../assets/calender-icon.svg";
 import locationIcon from "../../assets/location-icon-filled.svg";
@@ -9,25 +9,30 @@ import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import Layout from "../Layout/Layout";
 
 const CustomerNewQuotation = () => {
-  const [customerData, setCustomerData] = useState([]);
+  const [customerData, setCustomerData] = useState({
+    name: "",
+    mobileNumber: "",
+    startDate: "",
+    endDate: "",
+    pickupLocation: "",
+    dropLocation: "",
+    trip: "",
+    parkingToll: "",
+    noOfPassengers: "",
+    timing: "",
+    estimatedKms: "",
+    estimatedAmount: "",
+  });
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchBookingsData = async () => {
-      try {
-        const response = await fetch("/Quotations.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setCustomerData(data[0]);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchBookingsData();
-  }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
   return (
     <>
@@ -61,28 +66,28 @@ const CustomerNewQuotation = () => {
                     {/* first row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
                       <div className="flex flex-col text-start">
-                        <label style={{ fontSize: "14px" }}>
-                          Name
-                        </label>
+                        <label style={{ fontSize: "14px" }}>Name</label>
                         <div className="flex items-center">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="Vishnu"
+                            name="name"
+                            value={customerData.name}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
                       <div className="flex flex-col text-start">
-                        <label style={{ fontSize: "14px" }}>
-                          Mobile number
-                        </label>
+                        <label style={{ fontSize: "14px" }}>Mobile number</label>
                         <div className="flex items-center">
                           <input
                             type="number"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="123456789"
+                            name="mobileNumber"
+                            value={customerData.mobileNumber}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -90,15 +95,15 @@ const CustomerNewQuotation = () => {
                     {/* second row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          Start Date
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Start Date</span>
                         <div className="flex items-center relative">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full relative"
                             style={{ fontSize: "12px" }}
+                            name="startDate"
                             value={customerData.startDate}
+                            onChange={handleChange}
                           />
                           <img
                             src={calenderIcon}
@@ -109,15 +114,15 @@ const CustomerNewQuotation = () => {
                         </div>
                       </div>
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          End Date
-                        </span>
+                        <span style={{ fontSize: "14px" }}>End Date</span>
                         <div className="flex items-center relative">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 flex rounded-md w-full relative"
                             style={{ fontSize: "12px" }}
+                            name="endDate"
                             value={customerData.endDate}
+                            onChange={handleChange}
                           />
                           <img
                             src={calenderIcon}
@@ -131,15 +136,15 @@ const CustomerNewQuotation = () => {
                     {/* third row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          Pickup Location
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Pickup Location</span>
                         <div className="flex items-center relative">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full relative"
                             style={{ fontSize: "12px" }}
+                            name="pickupLocation"
                             value={customerData.pickupLocation}
+                            onChange={handleChange}
                           />
                           <img
                             src={locationIcon}
@@ -150,15 +155,15 @@ const CustomerNewQuotation = () => {
                         </div>
                       </div>
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          Drop Location
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Drop Location</span>
                         <div className="flex items-center relative">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 flex rounded-md w-full relative"
                             style={{ fontSize: "12px" }}
+                            name="dropLocation"
                             value={customerData.dropLocation}
+                            onChange={handleChange}
                           />
                           <img
                             src={locationIcon}
@@ -172,13 +177,21 @@ const CustomerNewQuotation = () => {
                     {/* Fourth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          Trip
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Trip</span>
                         <div className="bg-slate-100 px-2 py-0.5 mr-2 flex justify-between  accent-black">
                           <div>
-                            <input type="radio" name="trip-type" id="single" />
-                            <label className="ml-2" htmlFor="single" style={{fontSize: '12px'}}>
+                            <input
+                              type="radio"
+                              name="trip"
+                              id="single"
+                              value="single"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="ml-2"
+                              htmlFor="single"
+                              style={{ fontSize: "12px" }}
+                            >
                               Single
                             </label>
                           </div>
@@ -192,11 +205,16 @@ const CustomerNewQuotation = () => {
                           <div>
                             <input
                               type="radio"
-                              name="trip-type"
+                              name="trip"
                               id="rounded"
-                              className="accent-black"
+                              value="rounded"
+                              onChange={handleChange}
                             />
-                            <label className="ml-2" htmlFor="rounded" style={{fontSize: '12px'}}>
+                            <label
+                              className="ml-2"
+                              htmlFor="rounded"
+                              style={{ fontSize: "12px" }}
+                            >
                               Rounded
                             </label>
                           </div>
@@ -213,8 +231,18 @@ const CustomerNewQuotation = () => {
                         </span>
                         <div className="bg-slate-100 px-2 py-0.5 flex justify-between  accent-black">
                           <div>
-                            <input type="radio" name="trip-type" id="single" />
-                            <label className="ml-2" htmlFor="single" style={{fontSize: '12px'}}>
+                            <input
+                              type="radio"
+                              name="parkingToll"
+                              id="include"
+                              value="include"
+                              onChange={handleChange}
+                            />
+                            <label
+                              className="ml-2"
+                              htmlFor="include"
+                              style={{ fontSize: "12px" }}
+                            >
                               include
                             </label>
                           </div>
@@ -228,11 +256,16 @@ const CustomerNewQuotation = () => {
                           <div>
                             <input
                               type="radio"
-                              name="trip-type"
-                              id="rounded"
-                              className="accent-black"
+                              name="parkingToll"
+                              id="exclude"
+                              value="exclude"
+                              onChange={handleChange}
                             />
-                            <label className="ml-2" htmlFor="rounded" style={{fontSize: '12px'}}>
+                            <label
+                              className="ml-2"
+                              htmlFor="exclude"
+                              style={{ fontSize: "12px" }}
+                            >
                               Exclude
                             </label>
                           </div>
@@ -255,7 +288,9 @@ const CustomerNewQuotation = () => {
                             type="text"
                             className="bg-slate-100 px-2 py-2 flex rounded-md w-full relative"
                             style={{ fontSize: "12px" }}
-                            value={customerData.dropLocation}
+                            name="noOfPassengers"
+                            value={customerData.noOfPassengers}
+                            onChange={handleChange}
                           />
                           <img
                             src={plusIcon}
@@ -272,28 +307,28 @@ const CustomerNewQuotation = () => {
                         </div>
                       </div>
                       <div className="flex flex-col text-start">
-                        <span style={{ fontSize: "14px" }}>
-                          Timing
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Timing</span>
                         <input
                           type="text"
                           className="bg-slate-100 px-2 py-2 flex rounded-md w-full"
                           style={{ fontSize: "12px" }}
+                          name="timing"
                           value={customerData.timing}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
                     {/* sixth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-4">
                       <div className="flex flex-col text-start mr-2">
-                        <span style={{ fontSize: "14px" }}>
-                          Estimated Kms
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Estimated Kms</span>
                         <input
                           type="text"
                           className="bg-slate-100 px-2 py-2 flex rounded-md w-full"
                           style={{ fontSize: "12px" }}
-                          value={customerData.distance}
+                          name="estimatedKms"
+                          value={customerData.estimatedKms}
+                          onChange={handleChange}
                         />
                       </div>
                       <div className="flex flex-col text-start">
@@ -304,7 +339,9 @@ const CustomerNewQuotation = () => {
                           type="text"
                           className="bg-slate-100 px-2 py-2 flex rounded-md w-full"
                           style={{ fontSize: "12px" }}
-                          value={"Rs. " + customerData.amount}
+                          name="estimatedAmount"
+                          value={customerData.estimatedAmount}
+                          onChange={handleChange}
                         />
                       </div>
                     </div>
@@ -314,14 +351,16 @@ const CustomerNewQuotation = () => {
                           className="text-white font-bold whitespace-nowrap bottom-9 bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                           aria-current="page"
                           onClick={() =>
-                            navigate("/quotes/customer-new-quotation-preview")
+                            navigate(
+                              "/quotes/customer-new-quotation-preview"
+                            )
                           }
                         >
                           Preview & Send
                         </button>
                       </div>
                     </div>
-                  </div>                  
+                  </div>
                 </div>
               </div>
             </div>

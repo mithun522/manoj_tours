@@ -2,12 +2,25 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import calenderIcon from "../../assets/calender-icon.svg";
 import locationIcon from "../../assets/location-icon-filled.svg";
-import rightArrowIcon from "../../assets/right-arrow-icon.svg";
-import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import Layout from "../Layout/Layout";
 
 const CompaniesNewQuotation = () => {
   const navigate = useNavigate();
+
+  const [companyData, setCompanyData] = useState({
+    companyName: "Wipro",
+    personName: "Ram",
+    mobileNumber: "1234567890",
+    startDate: "12 FEB 2024",
+    endDate: "12 FEB 2024",
+    pickupLocation: "Coimbatore",
+    dropLocation: "Theni",
+    pickupTime: "9:00 : AM",
+    dropTime: "6:00 : PM",
+    estimatedAmount: "Rs. 45000 /-",
+    fleet: "Ertiga",
+  });
+
   const daysOfWeek = [
     "Monday",
     "Tuesday",
@@ -28,16 +41,24 @@ const CompaniesNewQuotation = () => {
     setCheckedDays(newCheckedDays);
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCompanyData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
       <Layout>
-      <div className="max-w-screen mx-auto text-start">
+        <div className="max-w-screen mx-auto text-start">
           <div className="flex flex-col">
             <div className="overflow-y-auto">
               <div className="flex justify-between px-2 sm:px-6 pt-2">
                 <h1
                   className="text-lg font-bold text-start"
-                  style={{ fontSize: "28px", fontWeight:'bolder' }}
+                  style={{ fontSize: "28px", fontWeight: "bolder" }}
                 >
                   New Quotations
                 </h1>
@@ -52,7 +73,7 @@ const CompaniesNewQuotation = () => {
                 <div className="cursor-pointer mr-2 sm:mr-4 font-semibold w-full sm:w-auto py-2 px-10 bg-black text-white rounded-lg text-center sm:text-left">
                   Companies
                 </div>
-            </div>
+              </div>
 
               <div className="flex justify-center mb-20 overflow-auto">
                 <div className="flex flex-col w-full max-w-screen-md mx-auto">
@@ -60,28 +81,28 @@ const CompaniesNewQuotation = () => {
                     {/* first Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
                       <div className="flex flex-col text-start">
-                        <label style={{ fontSize: "14px" }}>
-                          Company Name
-                        </label>
+                        <label style={{ fontSize: "14px" }}>Company Name</label>
                         <div className="flex items-center">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="Wipro"
+                            name="companyName"
+                            value={companyData.companyName}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
                       <div className="flex flex-col text-start">
-                        <label style={{ fontSize: "14px" }}>
-                          Person Name
-                        </label>
+                        <label style={{ fontSize: "14px" }}>Person Name</label>
                         <div className="flex items-center">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="Ram"
+                            name="personName"
+                            value={companyData.personName}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -89,15 +110,15 @@ const CompaniesNewQuotation = () => {
                     {/* second row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative mt-2">
                       <div className="flex flex-col text-start">
-                        <label style={{ fontSize: "14px" }}>
-                          Mobile Number
-                        </label>
+                        <label style={{ fontSize: "14px" }}>Mobile Number</label>
                         <div className="flex items-center">
                           <input
                             type="number"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="1234567890"
+                            name="mobileNumber"
+                            value={companyData.mobileNumber}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -106,15 +127,15 @@ const CompaniesNewQuotation = () => {
                     {/* third row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
                       <div className="flex flex-col mt-3 w-full">
-                        <span style={{ fontSize: "14px" }}>
-                          Start Date
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Start Date</span>
                         <div className="flex items-center relative">
                           <input
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="12 FEB 2024"
+                            name="startDate"
+                            value={companyData.startDate}
+                            onChange={handleChange}
                           />
                           <img
                             src={calenderIcon}
@@ -136,7 +157,9 @@ const CompaniesNewQuotation = () => {
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="14 MAY 2024"
+                            name="endDate"
+                            value={companyData.endDate}
+                            onChange={handleChange}
                           />
                           <img
                             src={calenderIcon}
@@ -146,11 +169,14 @@ const CompaniesNewQuotation = () => {
                           />
                         </div>
                       </div>
-                    </div>                    
+                    </div>
                     {/* fourth row */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 px-4 mt-2">
                       <div className="flex flex-col mt-3 w-full">
-                        <span className=" text-sm sm:text-base" style={{ fontSize: "14px" }}>
+                        <span
+                          className="text-sm sm:text-base"
+                          style={{ fontSize: "14px" }}
+                        >
                           Pickup Location
                         </span>
                         <div className="flex items-center relative">
@@ -158,7 +184,9 @@ const CompaniesNewQuotation = () => {
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="Coimbatore"
+                            name="pickupLocation"
+                            value={companyData.pickupLocation}
+                            onChange={handleChange}
                           />
                           <img
                             src={locationIcon}
@@ -169,7 +197,10 @@ const CompaniesNewQuotation = () => {
                         </div>
                       </div>
                       <div className="flex flex-col mt-3 w-full">
-                        <span className="text-sm sm:text-base" style={{ fontSize: "14px" }}>
+                        <span
+                          className="text-sm sm:text-base"
+                          style={{ fontSize: "14px" }}
+                        >
                           Drop Location
                         </span>
                         <div className="flex items-center relative">
@@ -177,7 +208,9 @@ const CompaniesNewQuotation = () => {
                             type="text"
                             className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
                             style={{ fontSize: "12px" }}
-                            value="Theni"
+                            name="dropLocation"
+                            value={companyData.dropLocation}
+                            onChange={handleChange}
                           />
                           <img
                             src={locationIcon}
@@ -195,101 +228,54 @@ const CompaniesNewQuotation = () => {
                           className="text-sm sm:text-base"
                           style={{ fontSize: "14px" }}
                         >
-                          Trip
+                          Pickup Time
                         </span>
-                        <div className="bg-slate-100 px-2 py-0.5 flex justify-between  accent-black w-full">
-                          <div>
-                            <input type="radio" name="trip-type" id="single" />
-                            <label
-                              className="ml-2"
-                              htmlFor="single"
-                              style={{ fontSize: "14px" }}
-                            >
-                              Single
-                            </label>
-                          </div>
-                          <img
-                            src={rightArrowIcon}
-                            alt=""
-                            className="w-4 h-4 mt-1"
+                        <div className="flex items-center relative">
+                          <input
+                            type="text"
+                            className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
+                            style={{ fontSize: "12px" }}
+                            name="pickupTime"
+                            value={companyData.pickupTime}
+                            onChange={handleChange}
                           />
-                        </div>
-                        <div className="bg-slate-100 px-2 py-0.5 flex justify-between w-full mt-1">
-                          <div>
-                            <input
-                              type="radio"
-                              name="trip-type"
-                              id="rounded"
-                              className="accent-black"
-                            />
-                            <label
-                              className="ml-2"
-                              htmlFor="rounded"
-                              style={{ fontSize: "14px" }}
-                            >
-                              Rounded
-                            </label>
-                          </div>
                           <img
-                            src={rightLeftIcon}
-                            alt=""
-                            className="w-4 h-4 mt-1"
+                            src={locationIcon}
+                            alt="calender"
+                            className="w-4 h-4 absolute right-5 top-1/2 transform -translate-y-1/2"
+                            style={{ pointerEvents: "none" }}
                           />
                         </div>
                       </div>
-                      <div className="flex px-2">
-                        <div className="flex flex-col mt-3 ml-0 w-1/2">
-                          <span
-                            className=" text-sm sm:text-base"
-                            style={{ fontSize: "14px" }}
-                          >
-                            Pickup Time
-                          </span>
-                          <div className="flex items-center relative">
-                            <input
-                              type="text"
-                              className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
-                              style={{ fontSize: "12px" }}
-                              value="9:00 Am"
-                            />
-                            <img
-                              src={locationIcon}
-                              alt="calender"
-                              className="w-4 h-4 absolute right-5 top-1/2 transform -translate-y-1/2"
-                              style={{ pointerEvents: "none" }}
-                            />
-                          </div>
-                        </div>
-                        <div className="flex flex-col mt-3 ml-0 w-1/2">
-                          <span
-                            className=" text-sm sm:text-base"
-                            style={{ fontSize: "14px" }}
-                          >
-                            Drop Time
-                          </span>
-                          <div className="flex items-center relative">
-                            <input
-                              type="text"
-                              className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
-                              style={{ fontSize: "12px" }}
-                              value="6:00 AM"
-                            />
-                            <img
-                              src={locationIcon}
-                              alt="calender"
-                              className="w-4 h-4 absolute right-5 top-1/2 transform -translate-y-1/2"
-                              style={{ pointerEvents: "none" }}
-                            />
-                          </div>
+                      <div className="flex flex-col mt-3 ml-0 w-full">
+                        <span
+                          className="text-sm sm:text-base"
+                          style={{ fontSize: "14px" }}
+                        >
+                          Drop Time
+                        </span>
+                        <div className="flex items-center relative">
+                          <input
+                            type="text"
+                            className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-full"
+                            style={{ fontSize: "12px" }}
+                            name="dropTime"
+                            value={companyData.dropTime}
+                            onChange={handleChange}
+                          />
+                          <img
+                            src={locationIcon}
+                            alt="calender"
+                            className="w-4 h-4 absolute right-5 top-1/2 transform -translate-y-1/2"
+                            style={{ pointerEvents: "none" }}
+                          />
                         </div>
                       </div>
                     </div>
                     {/* sixth row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
                       <div className="flex flex-col mt-3">
-                        <span style={{ fontSize: "14px" }}>
-                          Day
-                        </span>
+                        <span style={{ fontSize: "14px" }}>Day</span>
                         <div className="flex items-center">
                           {daysOfWeek.map((day, index) => (
                             <React.Fragment key={index}>
@@ -324,25 +310,22 @@ const CompaniesNewQuotation = () => {
                             type="text"
                             className="bg-slate-100 px-2 py-2 flex rounded-md w-full justify-between pr-8"
                             style={{ fontSize: "12px" }}
-                            value="Rs. 45000 /-"
-                          />
-                          <img
-                            src={locationIcon}
-                            alt="calender"
-                            className="w-4 h-4 absolute right-4 mt-2.5 transform -translate-y-2/4"
-                            style={{ pointerEvents: "none" }}
+                            name="estimatedAmount"
+                            value={companyData.estimatedAmount}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
                     </div>
                     {/* seventh row */}
                     <div className="flex flex-col text-start w-1/2 px-2">
-                      <label style={{ fontSize: "14px" }}>
-                        Fleet
-                      </label>
+                      <label style={{ fontSize: "14px" }}>Fleet</label>
                       <select
                         className="input-field bg-slate-100 px-2.5 py-1.5 w-full rounded-md"
-                        style={{fontSize: '12px'}}
+                        style={{ fontSize: "12px" }}
+                        name="fleet"
+                        value={companyData.fleet}
+                        onChange={handleChange}
                       >
                         <option value="innova">Innova</option>
                         <option value="creta">Creta</option>

@@ -1,9 +1,30 @@
 import React from 'react';
-import Layout from '../Layout/Layout';
-import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import Swal from 'sweetalert2';
+import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
+import Layout from '../Layout/Layout';
 
 const CompanyNewQuotationPreview = () => {
+
+  const companyName = 'Wipro';
+  const personName = "Ram";
+  const mobileNumber = "1234567890";
+  const startDate = '12 FEB 2024';
+  const endDate = '12 FEB 2024';
+  const pickupLocation = 'Coimbatore';
+  const dropLocation = 'Theni';
+  const pickupTime = '9:00 : AM';
+  const dropTime = '6:00 : PM';
+  const totalAmount = 'Rs. ' + 45000 + ' /-';
+  const fleet = 'Ertiga';
+  const tripType = 'single';
+  const startTime = '10:00 AM';
+  const endTime = '10:00 PM';
+  const days = 'Tue, Thur'
+
+//   useEffect(() => {
+//     axios.get(COMPANY_NEW_QUOTATION_PREVIEW)
+//     .then((response) => {})
+// }, []);
 
   const handleProceed = () => {
     Swal.fire({
@@ -11,7 +32,7 @@ const CompanyNewQuotationPreview = () => {
       text: "Quotation Send Successfully",
       icon: "success"
     });
-  }
+  };
 
     return (
         <>
@@ -44,7 +65,7 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex rounded-md w-72"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  Wipro
+                                  {companyName}
                                 </span>
                               </div>
                             </div>
@@ -57,7 +78,7 @@ const CompanyNewQuotationPreview = () => {
                                   className=""
                                   style={{ fontSize: "12px" }}
                                 >
-                                  Ram
+                                  {personName}
                                 </span>
                               </div>
                             </div>
@@ -72,7 +93,7 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex w-72 justify-between"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  1234567890
+                                  {mobileNumber}
                                 </span>
                               </div>
                             </div>
@@ -85,13 +106,13 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex rounded-md w-72"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  Coimbatore
+                                  {pickupLocation}
                                   <img
                                     src={rightLeftIcon}
                                     alt="calender"
                                     className="w-4 h-4 ml-2"
                                   />
-                                  Theni
+                                  {dropLocation}
                                 </span>
                               </div>
                             </div>
@@ -106,7 +127,7 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex w-72"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  10th March @2:00 AM to 12th March @3 PM
+                                  {startDate} @ {pickupTime} to {endDate} @ {dropTime}
                                 </span>
                               </div>
                             </div>
@@ -119,7 +140,7 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  Round
+                                  {tripType}
                                 </span>
                               </div>
                             </div>
@@ -131,7 +152,7 @@ const CompanyNewQuotationPreview = () => {
                               </span>
                               <div className="flex w-72">
                                 <span className="mb-2" style={{ fontSize: "12px" }}>
-                                    Tue, Thur
+                                    {days}
                                 </span>       
                               </div>
                             </div>
@@ -141,7 +162,7 @@ const CompanyNewQuotationPreview = () => {
                               </span>
                               <div className="flex w-72">
                                 <span style={{ fontSize: "12px" }}>
-                                3:00 AM to 8:00 PM
+                                {startTime} to {endTime}
                                 </span>
                               </div>
                             </div>
@@ -156,7 +177,7 @@ const CompanyNewQuotationPreview = () => {
                                   className="flex w-72"
                                   style={{ fontSize: "12px" }}
                                 >
-                                  Ertiga TN99 S2395
+                                  {fleet}
                                 </span>
                               </div>
                             </div>
@@ -164,7 +185,7 @@ const CompanyNewQuotationPreview = () => {
                         </div>
                         <div className="mt-10">
                           <span className="font-bold text-2xl text-green-600 px-4 py-2 border rounded-xl border-gray-400 shadow-lg shadow-slate-900/20">
-                            TOTAL AMOUNT Rs. 45000 /-
+                            TOTAL AMOUNT Rs. {totalAmount} /-
                           </span>
                         </div>
                         <div className="flex ml-60">
