@@ -42,13 +42,13 @@ const PaymentDetails = () => {
       </div>
       <div className="flex">
         <button
-          className="text-white font-bold mt-8 bg-gray-500 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
+          className="text-white font-bold mt-8 bg-gray-500 hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
           aria-current="page"
         >
           Previous
         </button>
         <button
-          className="text-white font-bold mt-8 bg-green-600 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
+          className="text-white font-bold mt-8 bg-green-600 hover:scale-105 ease-in-out duration-300 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
           aria-current="page"
           onClick={() => navigate("/bookings/new-booking-preview")}
         >

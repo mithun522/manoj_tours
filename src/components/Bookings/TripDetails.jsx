@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import calenderIcon from "../../assets/calender-icon.svg";
 import rightArrowIcon from "../../assets/right-arrow-icon.svg";
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 
 const TripDetails = () => {
+  const [customerData, setCustomerData] = useState({
+    startDate: "",
+    endDate: "",
+    pickupLocation: "",
+    dropLocation: "",
+    trip: "",
+    parkingToll: "",
+    noOfPassengers: "",
+    timing: "",
+    estimatedKms: "",
+    estimatedAmount: "",
+  });
 
-  const tripDetails = {
-    startDate: "15 FEB 2024",
-    endDate: "15 FEB 2024",
-    pickupLocation: "Coimbatore",
-    dropLocation: "Theni",
-    totalKmLimit: "106",
-    time: "9:00 AM",
-    fleetName: "Ertiga",
-    fleetNumber: "TN37 CD4567 AC",
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
   return (
@@ -27,9 +36,12 @@ const TripDetails = () => {
             <div className="flex items-center relative">
               <input
                 type="text"
-                className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md relative w-32"
+                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
                 style={{ fontSize: "12px" }}
-                value={tripDetails.startDate}
+                name="startDate"
+                value={customerData.startDate}
+                onChange={handleChange}
+                placeholder="Start Date"
               />
               <img
                 src={calenderIcon}
@@ -43,17 +55,20 @@ const TripDetails = () => {
             <span className="mb-1" style={{ fontSize: "14px" }}>
               End Date
             </span>
-            <div className="flex items-center ">
-            <input
+            <div className="flex items-center relative">
+              <input
                 type="text"
-                className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md relative w-32"
+                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
                 style={{ fontSize: "12px" }}
-                value={tripDetails.endDate}
+                name="endDate"
+                value={customerData.endDate}
+                onChange={handleChange}
+                placeholder="End Date"
               />
               <img
                 src={calenderIcon}
                 alt="calender"
-                className="w-4 h-4 absolute right-2 top-1/2 transform -translate-y-1/2"
+                className="w-4 h-4 absolute right-4 top-1/2 transform -translate-y-1/2"
                 style={{ pointerEvents: "none" }}
               />
             </div>
@@ -61,7 +76,7 @@ const TripDetails = () => {
         </div>
 
         <div className="flex flex-col text-start">
-          <div className="flex mb-6 flex-1">
+          <div className="flex mb-3 flex-1">
             <div className="flex flex-col mr-12">
               <span className="mb-1" style={{ fontSize: "14px" }}>
                 Pickup Location
@@ -69,9 +84,12 @@ const TripDetails = () => {
               <div className="flex items-center">
                 <input
                   type="text"
-                  className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md w-28"
+                  className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
                   style={{ fontSize: "12px" }}
-                  value={tripDetails.pickupLocation}
+                  name="pickupLocation"
+                  value={customerData.pickupLocation}
+                  onChange={handleChange}
+                  placeholder="Pickup Location"
                 />
               </div>
             </div>
@@ -85,9 +103,12 @@ const TripDetails = () => {
               <div className="flex items-center">
                 <input
                   type="text"
-                  className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md w-28"
+                  className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
                   style={{ fontSize: "12px" }}
-                  value={tripDetails.dropLocation}
+                  name="dropLocation"
+                  value={customerData.dropLocation}
+                  onChange={handleChange}
+                  placeholder="Drop Location"
                 />
               </div>
             </div>
@@ -133,22 +154,28 @@ const TripDetails = () => {
             <div className="flex items-center">
               <input
                 type="text"
-                className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md w-28"
+                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
                 style={{ fontSize: "12px" }}
-                value={tripDetails.totalKmLimit}
+                name="estimatedKms"
+                value={customerData.estimatedKms}
+                onChange={handleChange}
+                placeholder="Total KM Limit"
               />
             </div>
           </div>
           <div className="flex flex-col">
-            <span className="mb-2" style={{ fontSize: "14px" }}>
+            <span style={{ fontSize: "14px" }}>
               TIME
             </span>
             <div className="flex items-center">
               <input
                 type="text"
-                className="bg-slate-100 px-2 py-0.5 mr-2 flex rounded-md w-28"
+                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
                 style={{ fontSize: "12px" }}
-                value={tripDetails.time}
+                name="timing"
+                value={customerData.timing}
+                onChange={handleChange}
+                placeholder="Time"
               />
             </div>
           </div>
@@ -164,7 +191,10 @@ const TripDetails = () => {
               type="text"
               className="bg-slate-100 px-2 mr-2 flex rounded-md w-96 py-2"
               style={{ fontSize: "14px" }}
-              value={tripDetails.fleetName}
+              name="fleetName"
+              value={customerData.fleetName}
+              onChange={handleChange}
+              placeholder="Fleet Name"
             />
           </div>
         </div>
@@ -177,20 +207,23 @@ const TripDetails = () => {
               type="text"
               className="bg-slate-100 px-2 mr-2 flex rounded-md w-96 py-2"
               style={{ fontSize: "14px" }}
-              value={tripDetails.fleetNumber}
+              name="fleetNumber"
+              value={customerData.fleetNumber}
+              onChange={handleChange}
+              placeholder="Fleet Number"
             />
           </div>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex absolute bottom-8 right-0">
         <button
-          className="text-white font-bold absolute bottom-4 right-0 bg-sky-400 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
+          className="text-white font-bold bg-sky-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-2"
           aria-current="page"
         >
           Next
         </button>
         <button
-          className="text-white font-bold absolute bottom-4 right-32 bg-gray-400 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
+          className="text-white font-bold bg-gray-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
           aria-current="page"
         >
           Previous

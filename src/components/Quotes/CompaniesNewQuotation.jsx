@@ -8,17 +8,17 @@ const CompaniesNewQuotation = () => {
   const navigate = useNavigate();
 
   const [companyData, setCompanyData] = useState({
-    companyName: "Wipro",
-    personName: "Ram",
-    mobileNumber: "1234567890",
-    startDate: "12 FEB 2024",
-    endDate: "12 FEB 2024",
-    pickupLocation: "Coimbatore",
-    dropLocation: "Theni",
-    pickupTime: "9:00 : AM",
-    dropTime: "6:00 : PM",
-    estimatedAmount: "Rs. 45000 /-",
-    fleet: "Ertiga",
+    companyName: "",
+    personName: "",
+    mobileNumber: "",
+    startDate: "",
+    endDate: "",
+    pickupLocation: "",
+    dropLocation: "",
+    pickupTime: "",
+    dropTime: "",
+    estimatedAmount: "",
+    fleet: "",
   });
 
   const daysOfWeek = [

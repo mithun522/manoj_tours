@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Layout from "../Layout/Layout";
+import PaymentDetails from "./PaymentDetails";
 import PersonalInformation from "./PersonalInformation";
 import TripDetails from "./TripDetails";
-import PaymentDetails from "./PaymentDetails";
 
 const NewBookings = () => {
   const [activeTab, setActiveTab] = useState("personal"); // State to track active tab
@@ -26,24 +26,24 @@ const NewBookings = () => {
               <div className="flex justify-center mb-4">
                 <div
                   onClick={() => handleTabChange("personal")}
-                  className={`cursor-pointer mr-4 font-semibold w-56 py-2 ${
-                    activeTab === "personal" ? "bg-black text-white rounded-lg" : "text-gray-500"
+                  className={`cursor-pointer font-semibold w-56 py-2  ${
+                    activeTab === "personal" ? "bg-black text-white rounded-lg" : "text-gray-500 shadow-lg border border-gray-100 rounded-lg hover:scale-105 ease-in-out duration-300"
                   }`}
                 >
                   Personal Information
                 </div>
                 <div
                   onClick={() => handleTabChange("fleet")}
-                  className={`cursor-pointer font-semibold ml-10 w-56 py-2 ${
-                    activeTab === "fleet" ? "bg-black text-white rounded-lg" : "text-gray-500"
+                  className={`cursor-pointer font-semibold ml-2 w-56 py-2 ${
+                    activeTab === "fleet" ? "bg-black text-white rounded-lg" : "text-gray-500 shadow-lg border border-gray-100 rounded-lg hover:scale-105 ease-in-out duration-300"
                   }`}
                 >
                   Fleet/Trip Details
                 </div>
                 <div
                   onClick={() => handleTabChange("payment")}
-                  className={`cursor-pointer font-semibold ml-10 w-56 py-2 ${
-                    activeTab === "payment" ? "bg-black text-white rounded-lg" : "text-gray-500"
+                  className={`cursor-pointer font-semibold ml-2 w-56 py-2 ${
+                    activeTab === "payment" ? "bg-black text-white rounded-lg" : "text-gray-500 shadow-lg border border-gray-100 rounded-lg hover:scale-105 ease-in-out duration-300"
                   }`}
                 >
                   Payment Details
