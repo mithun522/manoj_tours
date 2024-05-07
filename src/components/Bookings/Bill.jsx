@@ -28,7 +28,8 @@ const Bill = () => {
   }, [ref])
 
   return (
-    <div ref={ref} className="bg-white rounded-lg shadow-lg max-w-md mx-auto mt-8 relative overflow-x-hidden">
+    <div className="max-w-md justify-center items-center" > 
+    <div ref={ref} className="bg-white rounded-lg shadow-lg mx-auto overflow-x-hidden relative">
       <div className="flex flex-col text-center mb-6"  >
         <div className="flex" >
           <img src={leftSideImage} alt="" className="h-28 w-28 absolute" />
@@ -84,7 +85,8 @@ const Bill = () => {
           <li className="list-disc mt-2 text-sm">The company is not responsible for any Road diversion</li>
         </ul>
       </div>
-      <button onClick={onButtonClick}>click me</button>
+      <button  onClick={() => onButtonClick()}>click me</button>
+    </div>
     </div>
   );
 };
