@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import FleetsCustomAlert from '../shared/FleetsCustomAlert';
 
 const UnavailableFleets = ({ fleetsData, moveToAvailable }) => {
+    const [showAlert, setShowAlert] = useState(false); // State variable to manage alert visibility
+
+    // Function to handle moving fleet to available and show alert
+    const handleMoveToAvailable = (id) => {
+        // moveToAvailable(id);
+        setShowAlert(true); // Show alert
+    };
+
     return (
         <div className="overflow-hidden w-[vh-40px] mt-4">
             <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
@@ -19,7 +28,7 @@ const UnavailableFleets = ({ fleetsData, moveToAvailable }) => {
                             <td className="p-4 text-gray-900 dark:text-white">
                                 <button 
                                     className="px-4 py-2 rounded-full text-white font-medium bg-sky-400 hover:bg-sky-500 focus:outline-none focus:bg-sky-500"
-                                    onClick={() => moveToAvailable(item.id)}
+                                    onClick={() => handleMoveToAvailable(item.id)}
                                 >
                                     Move to Available
                                 </button>
@@ -28,6 +37,8 @@ const UnavailableFleets = ({ fleetsData, moveToAvailable }) => {
                     ))}
                 </tbody>
             </table>
+            {/* Render the CustomAlert component conditionally based on showAlert state */}
+            {showAlert && <FleetsCustomAlert close={() => setShowAlert(false)} />}
         </div>
     );
 }

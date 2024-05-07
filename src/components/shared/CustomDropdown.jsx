@@ -29,7 +29,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect, icon }) => {
   return (
     <div className="relative inline-block text-left">
       <div
-        className="relative inline-block text-left z-50" // Adjust z-index here
+        className="relative inline-block text-left z-2" // Adjust z-index here
         ref={dropdownRef}
       >
         <div>

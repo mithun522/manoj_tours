@@ -52,7 +52,7 @@ const CompaniesNewQuotation = () => {
   return (
     <>
       <Layout>
-        <div className="max-w-screen mx-auto text-start">
+        <div className="max-w-screen mx-auto px-4 sm:px-8 text-start">
           <div className="flex flex-col">
             <div className="overflow-y-auto">
               <div className="flex justify-between px-2 sm:px-6 pt-2">

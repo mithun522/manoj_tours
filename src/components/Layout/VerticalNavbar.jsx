@@ -209,7 +209,7 @@ const VerticalNavbar = () => {
           </h1>
         </div>
         <NavLink
-          to="/logout"
+          to="/login"
           activeClassName="text-blue-500"
           className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-500 text-white"
         >

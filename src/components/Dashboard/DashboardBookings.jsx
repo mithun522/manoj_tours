@@ -5,6 +5,8 @@ import rightLeftIcon from '../../assets/right-left-arrow-icon.svg';
 import rightArrowIcon from '../../assets/right-arrow-icon.svg';
 import editIcon from '../../assets/edit-icon.svg';
 import TopLayer from "../shared/TopLayer";
+import cancelledIcon from "../../assets/cancel-icon.svg";
+import checkmarkCircle from "../../assets/checkmark-circle.svg";
 
 const DashboardBookings = () => {
   const [bookingsData, setBookingsData] = useState([]);
@@ -68,10 +70,10 @@ return (
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                         {bookingsData.map((booking) => (
-                                            <tr key={booking.id} className={booking.raidType === 'cancelled' ? 'text-gray-100' : ''}>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>{booking.customerName}</td>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>{booking.customerId}</td>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>
+                                            <tr key={booking.id} className={` dark:text-white ${booking.duration > today ? 'text-green-600 dark:text-green-700' : ''} ${booking.raidType === 'cancelled' ? 'text-gray-400' : ''}`}>
+                                                <td className="p-4 text-sm font-medium">{booking.customerName}</td>
+                                                <td className="p-4 text-sm font-medium">{booking.customerId}</td>
+                                                <td className="p-4 text-sm font-medium">
                                                     {booking.location.twoWay ? (
                                                         <>
                                                             {booking.location.from} <img src={rightLeftIcon} alt="right-left-icon" className="inline-block w-4 h-4" /> {booking.location.to}
@@ -82,36 +84,39 @@ return (
                                                         </>
                                                     )}
                                                 </td>
-                                                <td className="p-4 text-sm font-medium dark:text-white">
-                                                    <span className={`${booking.duration === today ? 'text-red-500' : (booking.duration > today ? 'text-green-500' : 'text-gray-900')}`}>
-                                                        {booking.duration === today ? "Today" : booking.duration}
-                                                    </span>
-                                                    {booking.duration !== today ? null : <div className="text-xs font-medium text-gray-600">{booking.duration}</div>}
-                                                </td>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>{booking.numberOfPeople}</td>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>{booking.fleet}</td>
-                                                <td className={`${booking.duration > today ? 'text-green-500 text-sm font-medium p-4' : 'p-4 text-sm font-medium text-green-500 dark:text-green-500'}`}>
-                                                {booking.paid === '0' ? (
-                                                        '-'
+                                                <td className="p-4 text-sm font-medium">
+                                                    {booking.duration === today && booking.raidType !== 'cancelled' ? (
+                                                        <span className="text-red-500">Today</span>
                                                     ) : (
-                                                        booking.paid
+                                                        <span className={`${booking.duration > today ? 'text-green-500' : ''}`}>
+                                                            {booking.duration}
+                                                        </span>
+                                                    )}
+                                                    {booking.duration === today && booking.raidType !== 'cancelled' && (
+                                                        <div className="text-xs font-medium text-gray-600">{booking.duration}</div>
                                                     )}
                                                 </td>
-                                                <td className={`${booking.duration > today ? 'text-red-500 text-sm font-medium p-4' : 'p-4 text-sm font-medium text-red-600 dark:text-red-600'}`}>
-                                                    {booking.unpaid === '0' ? (
-                                                        '-'
-                                                    ) : (
-                                                        booking.unpaid
-                                                    )}
+                                                <td className="p-4 text-sm font-medium">{booking.numberOfPeople}</td>
+                                                <td className="p-4 text-sm font-medium">{booking.fleet}</td>
+                                                <td className={`p-4 text-sm font-medium ${booking.duration > today ? 'text-green-500' : ''}`}>
+                                                    {booking.paid === '0' ? '-' : booking.paid}
                                                 </td>
-                                                <td className={`${booking.duration > today ? 'text-green-500' : 'p-4 text-sm font-medium text-gray-900 dark:text-white'}`}>
-                                                    <button onClick={() => handleEditClick(booking.id)} className="text-blue-600 dark:text-blue-500 hover:underline">
-                                                        <img src={editIcon} alt="" className="w-5 cursor-pointer" />
-                                                    </button>
+                                                <td className={`p-4 text-sm font-medium ${booking.duration > today ? 'text-red-500' : ''}`}>
+                                                    {booking.unpaid === '0' ? '-' : booking.unpaid}
+                                                </td>
+                                                <td className={`p-4 text-sm font-medium ${booking.raidType === 'cancelled' ? 'text-gray-300' : ''}`}>
+                                                    {booking.raidType === 'today' ? (
+                                                        <img src={checkmarkCircle} alt="" className="w-6 cursor-pointer ml-10" />
+                                                    ) : (
+                                                        <button onClick={() => handleEditClick(booking.id)} className="text-blue-600 dark:text-blue-500 hover:underline">
+                                                            <img src={booking.raidType === 'cancelled' ? cancelledIcon : editIcon} alt="" className="w-5 cursor-pointer" />
+                                                        </button>
+                                                    )}
                                                 </td>
                                             </tr>
                                         ))}
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

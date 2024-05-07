@@ -42,8 +42,8 @@ const CustomerNewQuotation = () => {
             <div className="overflow-y-auto">
               <div className="flex justify-between px-2 sm:px-6 pt-2">
                 <h1
-                  className="text-lg font-bold text-center sm:text-left"
-                  style={{ fontSize: "1.875rem" }}
+                  className="text-lg font-bold text-start"
+                  style={{ fontSize: "28px", fontWeight: "bolder" }}
                 >
                   New Quotations
                 </h1>

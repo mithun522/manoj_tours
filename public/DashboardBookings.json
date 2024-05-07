@@ -13,7 +13,7 @@
       "fleet": "Standard",
       "paid": "500",
       "unpaid": "0",
-      "raidType": "alive"
+      "raidType": "today"
     },
     {
       "id": 2,
@@ -24,7 +24,7 @@
         "to": "ooty",
         "twoWay": false
       },
-      "duration": "2024-05-05",
+      "duration": "2024-05-07",
       "numberOfPeople": 4,
       "fleet": "Premium",
       "paid": "0",
@@ -40,7 +40,7 @@
         "to": "ooty",
         "twoWay": false
       },
-      "duration": "2024-04-02",
+      "duration": "2024-05-07",
       "numberOfPeople": 2,
       "fleet": "Standard",
       "paid": "500",
@@ -93,7 +93,7 @@
       "fleet": "Standard",
       "paid": "1500",
       "unpaid": "0",
-      "raidType": "cacelled"
+      "raidType": "cancelled"
     }
   ]
   

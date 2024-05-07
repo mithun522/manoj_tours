@@ -218,7 +218,7 @@ const Fleets = () => {
             )}
             {selectedOption === "Engaged" && (
               <EngagedFleets
-                fleetsData={fleetsData.filter((item) => item.status === "Live")}
+                engagedFleetsData={fleetsData.filter((item) => item.status === "Live")}
               />
             )}
           </div>
