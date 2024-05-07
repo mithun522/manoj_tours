@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../Layout/Layout";
 import innovaImage from "../../assets/innova.png";
 import Swal from "sweetalert2";
+import * as htmlToImage from 'html-to-image'
 
 const NewBookingPreview = () => {
 
@@ -11,6 +12,18 @@ const NewBookingPreview = () => {
       text: "Quotation Send Successfully",
       icon: "success"
     });
+
+    const billNode = document.getElementById('bill-container');
+  
+    htmlToImage.toPng(billNode)
+      .then(function (dataUrl) {
+        const img = new Image();
+        img.src = dataUrl;
+        document.body.appendChild(img);
+      })
+      .catch(function (error) {
+        console.error('Image generation error:', error);
+      });
   }
 
   return (
@@ -86,13 +99,13 @@ const NewBookingPreview = () => {
                     </div>
                     <div className="flex justify-end mt-16">
                       <button
-                        className="text-white font-bold bg-gray-500 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-4"
+                        className="text-white font-bold bg-gray-500 hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-4"
                         aria-current="page"
                       >
                         Edit
                       </button>
                       <button
-                        className="text-white font-bold bg-green-600 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
+                        className="text-white font-bold bg-green-600 hover:scale-105 ease-in-out duration-300 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                         aria-current="page"
                         onClick={() => handleProceed()}
                       >

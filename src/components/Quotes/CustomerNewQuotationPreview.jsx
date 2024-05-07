@@ -162,13 +162,13 @@ const NewQuotationPreview = () => {
                     </div>
                     <div className="flex ml-60">
                       <button
-                        className="text-white font-bold mt-14 ml-20 whitespace-nowrap bg-gray-500 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
+                        className="text-white hover:scale-105 ease-in-out duration-300 font-bold mt-14 ml-20 whitespace-nowrap bg-gray-500 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                         aria-current="page"
                       >
                         Edit
                       </button>
                       <button
-                        className="text-white font-bold mt-14 ml-5 whitespace-nowrap bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
+                        className="text-white hover:scale-105 ease-in-out duration-300 font-bold mt-14 ml-5 whitespace-nowrap bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                         aria-current="page"
                       >
                         Preview & Send

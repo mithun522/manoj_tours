@@ -4,7 +4,7 @@ import bookingsIcon from "../../assets/bookings-icon.svg";
 import burgerMenu from "../../assets/burger-menu-icon.svg";
 import calenderIcon from "../../assets/calender-icon.svg";
 import dashBoardIcon from "../../assets/dashboard-icon.svg";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo-nav.png";
 import logoutIcon from "../../assets/logout-icon.svg";
 import quotesIcon from "../../assets/quotes-icon.svg";
 import settingsIcon from "../../assets/settings-icon.svg";

@@ -76,7 +76,7 @@ const CompaniesNewQuotation = () => {
               </div>
 
               <div className="flex justify-center mb-20 overflow-auto">
-                <div className="flex flex-col w-full max-w-screen-md mx-auto">
+                <div className="flex flex-col w-full max-w-screen-lg max-h-screen-lg mx-auto">
                   <div className="border border-gray-300 rounded-lg p-4 relative">
                     {/* first Row */}
                     <div className="grid grid-cols-1 md:grid-cols-2 px-4 relative">
@@ -336,7 +336,7 @@ const CompaniesNewQuotation = () => {
                     <div className="flex justify-end">
                       <div className="flex relative">
                         <button
-                          className="text-white font-bold whitespace-nowrap bottom-9 bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
+                          className="text-white font-bold whitespace-nowrap bottom-9 hover:scale-105 ease-in-out duration-300 bg-green-600 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                           aria-current="page"
                           onClick={() =>
                             navigate("/quotes/company-new-quotation-preview")

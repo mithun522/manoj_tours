@@ -26,7 +26,7 @@ const TripDetails = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 divide-x p-4 relative">
+    <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x p-4 px-10 relative">
       <div className="flex flex-col text-start mt-[-10px]">
         <div className="flex mb-6 flex-1">
           <div className="flex flex-col mr-12">

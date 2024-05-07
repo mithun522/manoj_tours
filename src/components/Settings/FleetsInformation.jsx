@@ -48,7 +48,7 @@ const FleetsInformation = () => {
                             {fleetsData.map((fleet, index) => (
                                 <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-100 relative">
                                     <img src={editIcon} alt="" className='h-5 w-5 absolute top-2 right-2 cursor-pointer' onClick={() => navigate('/settings/edit-fleet')} />
-                                    <img src={toyota} alt="" className='w-72 h-40' />
+                                    <img src={toyota} alt="" className='w-72 lg:h-28 xl:h-32 2xl:h-36' />
                                     <h2 className="font-medium text-xl mb-0.5 text-start">{fleet.fleetName}</h2>
                                     <p className="text-gray-600 text-xl font-bold text-start">{fleet.fleetNumber}</p>
                                     <p className='text-start mt-6'>{fleet.numberOfSeats} seater</p>

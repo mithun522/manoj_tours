@@ -12,7 +12,7 @@
       },
       "routine": "Daily",
       "date": "2024-05-02",
-      "status": "Active",
+      "status": "Live",
       "numberOfSeats": "05"
     },
     {
@@ -28,7 +28,7 @@
       },
       "routine": "Weekly",
       "date": "2024-05-03",
-      "status": "Inactive",
+      "status": "Cancel",
       "numberOfSeats": "05"
     },
     {
@@ -44,7 +44,7 @@
       },
       "routine": "Monthly",
       "date": "2024-05-04",
-      "status": "Active",
+      "status": "Closed",
       "numberOfSeats": "05"
     }
   ]

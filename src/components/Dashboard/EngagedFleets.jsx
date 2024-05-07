@@ -1,81 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import rightArrowIcon from "../../assets/right-arrow-icon.svg";
-import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
-import Layout from "../Layout/Layout";
-import TopLayer from "../shared/TopLayer";
-import AvailableFleets from "./AvailableFleets";
-import UnavailableFleets from "./UnavailableFleets";
-import EngagedFleets from "./EngagedFleets";
+import React, { useState } from 'react';
+import rightLeftIcon from '../../assets/right-left-arrow-icon.svg';
+import rightArrowIcon from '../../assets/right-arrow-icon.svg';
 
-const Fleets = () => {
-  const [fleetsData, setFleetsData] = useState([]);
-  const [selectedOption, setSelectedOption] = useState("All Fleets");
-  const options = ["Engaged", "Available", "Unavailable", "clear"];
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
+const EngagedFleets = ({ engagedFleetsData }) => {
 
-  useEffect(() => {
-    const fetchBookingsData = async () => {
-      try {
-        const response = await fetch("/Fleets.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setFleetsData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    const [fleetsData, setFleetsData] = useState();
 
-    fetchBookingsData();
-
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setIsOpen(false);
-    }
-  };
-
-  const handleStatusChange = (id, newStatus) => {
-    setFleetsData((prevFleetsData) => {
-      return prevFleetsData.map((item) => {
-        if (item.id === id) {
-          return { ...item, status: newStatus };
-        }
-        return item;
-      });
-    });
-  };
-
-  const handleDropdownChange = (option) => {
-    setSelectedOption(option);
-    if (option === "clear") {
-      setSelectedOption("All Fleets");
-    }
-  };
-
-  return (
-    <>
-      <Layout>
-        <div className="mx-auto">
-          <div className="flex flex-col">
-            <div className="overflow-x-auto shadow-md sm:rounded-lg">
-              <TopLayer
-                title={"Fleets"}
-                showDropdown={true}
-                options={options}
-                selectedOption={selectedOption}
-                setSelectedOption={handleDropdownChange}
-                showButton={false}
-              />
-              {selectedOption === "All Fleets" && (
-                <div className="overflow-hidden w-[vh-40px]">
+    const handleStatusChange = (id, newStatus) => {
+        setFleetsData((prevFleetsData) => {
+          return prevFleetsData.map((item) => {
+            if (item.id === id) {
+              return { ...item, status: newStatus };
+            }
+            return item;
+          });
+        });
+      };
+    
+    return (
+<div className="overflow-hidden w-[vh-40px]">
                   <table className="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
                     <thead className="bg-sky-200 dark:bg-gray-700">
                       <tr>
@@ -130,7 +73,7 @@ const Fleets = () => {
                       </tr>
                     </thead>
                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-                      {fleetsData.map((item) => (
+                      {engagedFleetsData.map((item) => (
                         <tr key={item.id}>
                           <td className="p-4 text-gray-900 dark:text-white">
                             {item.fleet}
@@ -174,7 +117,7 @@ const Fleets = () => {
                               }
                               className="border border-gray-300 rounded-md px-2 py-2 bg-white focus:outline-none focus:ring focus:ring-gray-300 w-48"
                             >
-                              {fleetsData
+                              {engagedFleetsData
                                 .reduce((statuses, item) => {
                                   if (!statuses.includes(item.status)) {
                                     statuses.push(item.status);
@@ -208,24 +151,7 @@ const Fleets = () => {
                     </tbody>
                   </table>
                 </div>
-              )}
-            </div>
-            {selectedOption === "Available" && (
-              <AvailableFleets fleetsData={fleetsData} />
-            )}
-            {selectedOption === "Unavailable" && (
-              <UnavailableFleets fleetsData={fleetsData} />
-            )}
-            {selectedOption === "Engaged" && (
-              <EngagedFleets
-                fleetsData={fleetsData.filter((item) => item.status === "Live")}
-              />
-            )}
-          </div>
-        </div>
-      </Layout>
-    </>
-  );
-};
+    );
+}
 
-export default Fleets;
+export default EngagedFleets;

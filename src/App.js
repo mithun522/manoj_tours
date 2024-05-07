@@ -25,6 +25,7 @@ import EditFleet from './components/Settings/EditFleet';
 import FleetsInformation from './components/Settings/FleetsInformation';
 import ShareLinks from './components/ShareLinks/ShareLinks';
 import ShareLinksInfo from './components/ShareLinks/ShareLinksInfo';
+import Bill from './components/Bookings/Bill';
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
           <Route path="/bookings/new-bookings" element={<NewBookings />} />
           <Route path='/bookings/payment-details' element={<PaymentDetails />} />
           <Route path="/bookings/new-booking-preview" element={<NewBookingPreview />} />
+          <Route path='/bookings/bill' element={<Bill />} />
           <Route path="/quotes" element={<Quotes />} />
           <Route path='/quotes/customer-new-quotations' element={<CustomerNewQuotation />} />
           <Route path='/quotes/company-new-quotations' element={<CompaniesNewQuotation />} />
