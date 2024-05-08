@@ -21,7 +21,7 @@ const PaymentDetails = () => {
         />
       </div>
       <div className="mb-4 flex flex-col w-96">
-        <span className="mb-2">Advance Amount</span>
+        <span className="mb-2">Paid Advance</span>
         <input
           type="number"
           className="text-gray-600 mb-5 bg-slate-200 w-96 px-5 py-1 rounded-md font-medium"

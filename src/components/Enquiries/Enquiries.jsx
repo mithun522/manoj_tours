@@ -6,7 +6,7 @@ import TopLayer from "../shared/TopLayer";
 const Enquiries = () => {
   const [enquiriesData, setEnquiriesDate] = useState([]);
   const [selectedOption, setSelectedOption] = useState("Filter By");
-  const options = ["Customer", "Companies"];
+  const options = ["Date"];
 
   useEffect(() => {
     const fetchEnquiriesData = async () => {

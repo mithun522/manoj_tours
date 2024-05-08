@@ -60,8 +60,8 @@ const VerticalNavbar = () => {
         }`}
       >
         <div className="text-gray-100 text-xl">
-          <div className="p-2.5 mt-1 flex items-center">
-            <img src={logo} alt="logo" className="h-24 w-60" />
+          <div className="p-1 mt-1 flex items-center">
+            <img src={logo} alt="logo" className="h-16 w-60" />
             {isSmallScreen && (
               <img
                 src={burgerMenu}

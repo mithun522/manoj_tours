@@ -51,7 +51,6 @@ const CompanyNewQuotationPreview = () => {
                   <div className="flex justify-center bg-white mt-3 relative">
                     <div
                       className="border border-gray-300 rounded-lg p-4"
-                      style={{ width: "770px", height: "551px" }}
                     >
                       <div className="grid grid-cols-1 divide-x p-6 relative">
                         <div className="flex flex-col text-start mt-[-10px] px-10 py-1">
@@ -182,6 +181,28 @@ const CompanyNewQuotationPreview = () => {
                               </div>
                             </div>
                           </div>
+                          <div className="flex mt-2 text-start">
+                        <div className="flex flex-col mt-5">
+                          <span className="font-bold text-gray-500" style={{ fontSize: "14px" }}>
+                            Total Amount
+                          </span>
+                          <div className="flex w-72">
+                            <span className="mb-2" style={{ fontSize: "12px" }}>
+                                Rs. 45000 /-
+                            </span>       
+                          </div>
+                        </div>
+                        <div className="flex flex-col mt-5 ml-5">
+                          <span className="font-bold text-gray-500" style={{ fontSize: "14px" }}>
+                            Advance Paid
+                          </span>
+                          <div className="flex w-72">
+                            <span style={{ fontSize: "12px" }} className="text-green-600 font-bold">
+                            Rs. 450 /-
+                            </span>
+                          </div>
+                        </div>
+                      </div>
                         </div>
                         <div className="mt-10">
                           <span className="font-bold text-2xl text-green-600 px-4 py-2 border rounded-xl border-gray-400 shadow-lg shadow-slate-900/20">

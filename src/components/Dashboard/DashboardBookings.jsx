@@ -65,15 +65,15 @@ return (
                                             <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Fleet</th>
                                             <th scope="col" className="p-4 tracking-wider text-green-500 dark:text-green-500">Paid</th>
                                             <th scope="col" className="p-4 tracking-wider text-red-600 dark:text-red-600">Unpaid</th>
-                                            <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-400">Edit</th>
+                                            <th scope="col" className="p-4 tracking-wider text-gray-700 dark:text-gray-700">Total Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                         {bookingsData.map((booking) => (
-                                            <tr key={booking.id} className={` dark:text-white ${booking.duration > today ? 'text-green-600 dark:text-green-700' : ''} ${booking.raidType === 'cancelled' ? 'text-gray-400' : ''}`}>
-                                                <td className="p-4 text-sm font-medium">{booking.customerName}</td>
-                                                <td className="p-4 text-sm font-medium">{booking.customerId}</td>
-                                                <td className="p-4 text-sm font-medium">
+                                            <tr key={booking.id} className={` dark:text-white ${booking.duration === today ? 'text-green-600 dark:text-green-700' : ''} ${booking.raidType === 'cancelled' ? 'text-gray-400' : ''}`}>
+                                                <td className="p-4 text-sm font-bold">{booking.customerName}</td>
+                                                <td className="p-4 text-sm font-bold">{booking.customerId}</td>
+                                                <td className="p-4 text-sm font-bold">
                                                     {booking.location.twoWay ? (
                                                         <>
                                                             {booking.location.from} <img src={rightLeftIcon} alt="right-left-icon" className="inline-block w-4 h-4" /> {booking.location.to}
@@ -84,7 +84,7 @@ return (
                                                         </>
                                                     )}
                                                 </td>
-                                                <td className="p-4 text-sm font-medium">
+                                                <td className="p-4 text-sm font-bold">
                                                     {booking.duration === today && booking.raidType !== 'cancelled' ? (
                                                         <span className="text-red-500">Today</span>
                                                     ) : (
@@ -93,18 +93,19 @@ return (
                                                         </span>
                                                     )}
                                                     {booking.duration === today && booking.raidType !== 'cancelled' && (
-                                                        <div className="text-xs font-medium text-gray-600">{booking.duration}</div>
+                                                        <div className="text-xs font-bold text-gray-600">{booking.duration}</div>
                                                     )}
                                                 </td>
-                                                <td className="p-4 text-sm font-medium">{booking.numberOfPeople}</td>
-                                                <td className="p-4 text-sm font-medium">{booking.fleet}</td>
-                                                <td className={`p-4 text-sm font-medium ${booking.duration > today ? 'text-green-500' : ''}`}>
+                                                <td className="p-4 text-sm font-bold">{booking.numberOfPeople}</td>
+                                                <td className="p-4 text-sm font-bold">{booking.fleet}</td>
+                                                <td className={`p-4 text-sm font-bold ${booking.duration > today ? 'text-green-500' : ''}`}>
                                                     {booking.paid === '0' ? '-' : booking.paid}
                                                 </td>
-                                                <td className={`p-4 text-sm font-medium ${booking.duration > today ? 'text-red-500' : ''}`}>
+                                                <td className='p-4 text-sm font-bold text-red-600'>
                                                     {booking.unpaid === '0' ? '-' : booking.unpaid}
                                                 </td>
-                                                <td className={`p-4 text-sm font-medium ${booking.raidType === 'cancelled' ? 'text-gray-300' : ''}`}>
+                                                <td className="p-4 text-sm font-bold">{booking.fleet}</td>
+                                                <td className={`p-4 text-sm font-bold ${booking.raidType === 'cancelled' ? 'text-gray-300' : ''}`}>
                                                     {booking.raidType === 'today' ? (
                                                         <img src={checkmarkCircle} alt="" className="w-6 cursor-pointer ml-10" />
                                                     ) : (
