@@ -42,7 +42,7 @@ const VerticalNavbar = () => {
   }, []);
 
   return (
-    <section className="bg-gray-500 md:mr-80 relative z-10">
+    <section className="bg-gray-500 md:mr-80 z-10">
       {isSmallScreen ? (
         <img
           src={burgerMenu}

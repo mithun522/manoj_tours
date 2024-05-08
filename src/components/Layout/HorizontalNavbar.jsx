@@ -4,12 +4,11 @@ import notificationIcon from "../../assets/notification-iconsvg.svg";
 import profile from "../../assets/profile.jpeg";
 
 const HorizontalNavbar = () => {
-
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end fixed md:[70vw] lg:w-[70vw] xl:w-[75vw] 2xl:w-[85vw]">
-      <div className="max-w-screen-xl p-4 mr-4 top-0">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end">
+      <div className="max-w-screen-xl p-4 mr-4 top-0 flex justify-end w-full overflow-x-auto">
         <button
           data-collapse-toggle="navbar-default"
           type="button"
@@ -34,13 +33,13 @@ const HorizontalNavbar = () => {
             />
           </svg>
         </button>
-        <div className="hidden w-full md:block md:w-auto" id="navbar-default">
+        <div className="hidden md:block md:w-auto" id="navbar-default">
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               <button
                 className="text-white bg-sky-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
-                onClick={() => navigate('/quotes/customer-new-quotations')}
+                onClick={() => navigate("/quotes/customer-new-quotations")}
               >
                 New Quotation
               </button>
@@ -49,7 +48,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
-                onClick={() => navigate('/bookings/new-bookings')}
+                onClick={() => navigate("/bookings/new-bookings")}
               >
                 New Bookings
               </button>
