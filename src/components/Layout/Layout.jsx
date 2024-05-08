@@ -17,7 +17,7 @@ const Layout = ({ children }) => {
       <VerticalNavbar />
       <div className="flex flex-col w-full relative">
         <HorizontalNavbar />
-        <p className="mt-16 text-lg text-start font-bold">{formattedRoute.substring(2,formattedRoute.length)}</p>
+        <p className="py-4 text-lg text-start font-bold">{formattedRoute.substring(2,formattedRoute.length)}</p>
         <div className="bg-white rounded-xl mr-10 mb-10 max-h-screen-lg overflow-hidden scrollbar-hide">
           {children}
         </div>
