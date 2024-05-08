@@ -185,7 +185,7 @@ const CompanyNewQuotationPreview = () => {
                         </div>
                         <div className="mt-10">
                           <span className="font-bold text-2xl text-green-600 px-4 py-2 border rounded-xl border-gray-400 shadow-lg shadow-slate-900/20">
-                            TOTAL AMOUNT Rs. {totalAmount} /-
+                            TOTAL AMOUNT Rs. {totalAmount}
                           </span>
                         </div>
                         <div className="flex ml-60">

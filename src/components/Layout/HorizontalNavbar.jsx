@@ -8,7 +8,7 @@ const HorizontalNavbar = () => {
   const navigate = useNavigate();
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end fixed md:w-[70vw] xl:w-[70vw] 2xl:w-[85vw]">
+    <nav className="bg-white border-gray-200 dark:bg-gray-900 flex justify-end fixed md:[70vw] lg:w-[70vw] xl:w-[75vw] 2xl:w-[85vw]">
       <div className="max-w-screen-xl p-4 mr-4 top-0">
         <button
           data-collapse-toggle="navbar-default"

@@ -13,7 +13,7 @@ const DashBoard = () => {
       <h1 className="text-left mb-6" style={{ fontSize:'28px', fontWeight: 900 }}>OVERVIEW</h1>
         <div className="flex flex-col xl:flex-row 2xl:flex-row gap-4">
           <div
-            className="md:w-[60vh] lg:w-[62vh] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer"
+            className="w-xl h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-fuchsia-400 to-fuchsia-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer"
             onClick={() => navigate("bookings")}
           >
             <img src={calender} alt="" className="w-24 h-32 object-cover" />
@@ -24,7 +24,7 @@ const DashBoard = () => {
               <p className="text-white font-black text-3xl md:text-4xl">05</p>
             </div>
 
-            <div className="p-4 flex flex-col justify-between h-48 ml-8">
+            <div className="p-4 flex flex-col justify-between h-48 xl:ml-2 lg:ml-8 md:ml-4 mr-10">
               <div className="flex flex-row w-36 justify-between">
                 <p className="text-lg font-normal text-white">Today</p>
                 <p className="text-xl font-extrabold text-white">10</p>
@@ -40,7 +40,7 @@ const DashBoard = () => {
             </div>
           </div>
           <div
-            className="w-[60vh] h-auto md:h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer"
+            className="w-xl h-60 overflow-hidden shadow-lg opacity-100 transition-opacity duration-500 rounded-2xl bg-gradient-to-r from-orange-400 to-orange-800 flex flex-col md:flex-row items-center justify-center md:justify-start cursor-pointer"
             onClick={() => navigate("fleets")}
           >
             <img src={fleetImage} alt="" className="w-24 h-40 object-cover -mt-5 ml-2" />
@@ -50,7 +50,7 @@ const DashBoard = () => {
               </p>
               <p className="text-white font-black text-3xl md:text-4xl">05</p>
             </div>
-            <div className="p-4 flex flex-col justify-between h-48 ml-8">
+            <div className="p-4 flex flex-col justify-between h-48 xl:ml-2 lg:ml-2 md:ml-2 mr-10">
               <div className="flex flex-row w-36 justify-between">
                 <p className="text-lg font-normal text-white">Today</p>
                 <p className="text-xl font-extrabold text-white">10</p>
