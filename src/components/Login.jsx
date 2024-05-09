@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import loginScreenBg from "../assets/login_screen_bg.png";
-import loginSkyBg from "../assets/login-bg-sky.png";
-import logo from "../assets/logo.png";
+import loginBg from "../assets/login-bg.png";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -34,12 +32,10 @@ const Login = () => {
 
     return ( 
         <section className="relative">
-            <img src={loginSkyBg} alt="Sky Background" className="absolute inset-0 w-full h-full object-cover" />
-            <img src={loginScreenBg} alt="Login Screen Background" className="absolute inset-0 w-full h-full object-cover" />
-            <img src={logo} alt="" className="h-40 max-w-2xl absolute items-center mt-[34vh] ml-[34vw]" />
+            <img src={loginBg} alt="Sky Background" className="absolute inset-0 w-full h-full object-cover" />
             <div className="flex flex-col items-end justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 lg:mr-28 z-10 relative">
-                <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div className="w-full bg-white rounded-lg border border-gray-200 shadow-2xl dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8 mt-10">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white self-start">
                             Login as an Admin User
                         </h1>

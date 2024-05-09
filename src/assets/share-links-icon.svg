@@ -1,7 +1,6 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="matrix(1, 0, 0, 1, 0, 0)">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <path d="M17 5.75882L17 16C17 20 14.6004 21 12.5 21C10.3996 21 8 20 8 16L8 5.99999C8 5 8.5 3 11 3C13.5 3 14 4.99999 14 5.99999V16.3353C14 17.1929 13.5 18 12.5 18C11.5 18 11 17.1929 11 16.3353L11 6" stroke="#323232" stroke-width="0.792" stroke-linecap="round" stroke-linejoin="round"/> </g>
-</svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<title>paperclip</title>
+<path d="M4.992 21.024q0 2.208 0.864 4.256t2.368 3.52 3.52 2.336 4.256 0.864 4.288-0.864 3.488-2.336 2.368-3.52 0.864-4.256v-19.008q0-0.832-0.608-1.408t-1.408-0.608-1.408 0.608-0.576 1.408v19.008q0 2.88-2.048 4.928t-4.96 2.048-4.928-2.048-2.080-4.928v-13.024q0-1.632 1.184-2.816t2.816-1.184 2.848 1.184 1.152 2.816v13.024q0 0.384-0.288 0.704t-0.704 0.288-0.704-0.288-0.288-0.704v-13.024q0-0.832-0.608-1.408t-1.408-0.576-1.408 0.576-0.576 1.408v13.024q0 2.080 1.44 3.52t3.552 1.472 3.552-1.472 1.44-3.52v-13.024q0-3.296-2.336-5.632t-5.664-2.368-5.632 2.368-2.368 5.632v13.024z"></path>
+</svg>

@@ -107,10 +107,14 @@ return (
                                                 <td className="p-4 text-sm font-bold">{booking.fleet}</td>
                                                 <td className={`p-4 text-sm font-bold ${booking.raidType === 'cancelled' ? 'text-gray-300' : ''}`}>
                                                     {booking.raidType === 'today' ? (
-                                                        <img src={checkmarkCircle} alt="" className="w-6 cursor-pointer ml-10" />
+                                                        <img src={checkmarkCircle} alt="" className="w-5 cursor-pointer ml-2" />
                                                     ) : (
                                                         <button onClick={() => handleEditClick(booking.id)} className="text-blue-600 dark:text-blue-500 hover:underline">
-                                                            <img src={booking.raidType === 'cancelled' ? cancelledIcon : editIcon} alt="" className="w-5 cursor-pointer" />
+                                                            <img
+                                                                src={booking.raidType === 'cancelled' ? cancelledIcon : editIcon}
+                                                                alt=""
+                                                                className={`cursor-pointer ${booking.raidType === 'cancelled' ? 'w-7' : 'w-5'}`}
+                                                                />
                                                         </button>
                                                     )}
                                                 </td>

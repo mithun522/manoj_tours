@@ -3,6 +3,20 @@ import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import Layout from "../Layout/Layout";
 
 const NewQuotationPreview = () => {
+  const personName = "John Doe";
+  const mobileNumber = "1234567890";
+  const startDate = "15th Feb 2024";
+  const endDate = "15th March 2024";
+  const pickupLocation = "Coimbatore";
+  const dropLocation = "Theni";
+  const pickupTime = "9:00 AM";
+  const tripType = "Round";
+  const parkingTollGateCost = "Exclude";
+  const numberOfPassengers = 15;
+  const estimatedKms = "500 Kms";
+  const totalAmount = "Rs. 45000 /-";
+  const advancePaid = "Rs. 450 /-";
+
   return (
     <>
       <Layout>
@@ -36,7 +50,7 @@ const NewQuotationPreview = () => {
                               className="flex rounded-md w-72"
                               style={{ fontSize: "12px" }}
                             >
-                              John Doe
+                              {personName}
                             </span>
                           </div>
                         </div>
@@ -49,7 +63,7 @@ const NewQuotationPreview = () => {
                               className=""
                               style={{ fontSize: "12px" }}
                             >
-                              1234567890
+                              {mobileNumber}
                             </span>
                           </div>
                         </div>
@@ -64,7 +78,7 @@ const NewQuotationPreview = () => {
                               className="flex w-72 justify-between"
                               style={{ fontSize: "12px" }}
                             >
-                              15th Feb 2024 to 15th March 2024
+                              {startDate} to {endDate}
                             </span>
                           </div>
                         </div>
@@ -77,13 +91,13 @@ const NewQuotationPreview = () => {
                               className="flex rounded-md w-72"
                               style={{ fontSize: "12px" }}
                             >
-                              Coimbatore
+                              {pickupLocation}
                               <img
                                 src={rightLeftIcon}
                                 alt="calender"
                                 className="w-4 h-4 ml-2"
                               />
-                              Theni
+                              {dropLocation}
                             </span>
                           </div>
                         </div>
@@ -98,7 +112,7 @@ const NewQuotationPreview = () => {
                               className="flex w-72"
                               style={{ fontSize: "12px" }}
                             >
-                              9:00 AM
+                              {pickupTime}
                             </span>
                           </div>
                         </div>
@@ -111,19 +125,19 @@ const NewQuotationPreview = () => {
                               className="flex"
                               style={{ fontSize: "12px" }}
                             >
-                              Round
+                              {tripType}
                             </span>
                           </div>
                         </div>
                       </div>
                       <div className="flex mt-2">
-                        <div className="flex flex-col mt-5">
+                        <div className="flex flex-col mt-3">
                           <span className="font-bold text-gray-500" style={{ fontSize: "14px" }}>
                             Parking, Toll gate cost
                           </span>
                           <div className="flex w-72">
                             <span className="mb-2" style={{ fontSize: "12px" }}>
-                                Exclude
+                              {parkingTollGateCost}
                             </span>       
                           </div>
                         </div>
@@ -133,7 +147,7 @@ const NewQuotationPreview = () => {
                           </span>
                           <div className="flex w-72">
                             <span style={{ fontSize: "12px" }}>
-                            15
+                              {numberOfPassengers}
                             </span>
                           </div>
                         </div>
@@ -148,7 +162,7 @@ const NewQuotationPreview = () => {
                               className="flex w-72"
                               style={{ fontSize: "12px" }}
                             >
-                              500 Kms
+                              {estimatedKms}
                             </span>
                           </div>
                         </div>
@@ -160,7 +174,7 @@ const NewQuotationPreview = () => {
                           </span>
                           <div className="flex w-72">
                             <span className="mb-2" style={{ fontSize: "12px" }}>
-                                Rs. 45000 /-
+                              {totalAmount}
                             </span>       
                           </div>
                         </div>
@@ -170,7 +184,7 @@ const NewQuotationPreview = () => {
                           </span>
                           <div className="flex w-72">
                             <span style={{ fontSize: "12px" }} className="text-green-600 font-bold">
-                            Rs. 450 /-
+                              {advancePaid}
                             </span>
                           </div>
                         </div>
@@ -178,7 +192,7 @@ const NewQuotationPreview = () => {
                     </div>
                     <div className="mt-10">
                       <span className="font-bold text-2xl text-green-600 px-4 py-2 border rounded-xl border-gray-400 shadow-lg shadow-slate-900/20">
-                        TOTAL AMOUNT Rs. 45000 /-
+                        TOTAL AMOUNT {totalAmount}
                       </span>
                     </div>
                     <div className="flex ml-60">

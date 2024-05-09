@@ -9,6 +9,7 @@ import logoutIcon from "../../assets/logout-icon.svg";
 import quotesIcon from "../../assets/quotes-icon.svg";
 import settingsIcon from "../../assets/settings-icon.svg";
 import shareLinksIcon from "../../assets/share-links-icon.svg";
+import enquiryIcon from "../../assets/enquiries-icon.svg";
 
 const VerticalNavbar = () => {
   const [submenuOpen, setSubmenuOpen] = useState(
@@ -132,6 +133,12 @@ const VerticalNavbar = () => {
               : "hover:bg-gray-500"
           }`}
         >
+           <img
+            src={enquiryIcon}
+            alt="Quotes"
+            className="w-6 h-6"
+            style={{ filter: "invert(100%)" }}
+          />
           <span className="ml-4 text-gray-200 font-bold">Enquiries</span>
         </NavLink>
 
