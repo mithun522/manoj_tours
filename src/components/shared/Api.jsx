@@ -1,3 +1,0 @@
-export const LOGIN = '';
-export const GET_COMPANY_NEW_QUOTATION_PREVIEW = '';
-export const POST_UPLOAD_COMPANY_NEW_QUOTATION_PREVIEW = '';
