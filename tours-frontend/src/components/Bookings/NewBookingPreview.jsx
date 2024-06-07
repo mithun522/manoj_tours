@@ -2,37 +2,68 @@ import React, { useEffect } from "react";
 import Layout from "../Layout/Layout";
 import innovaImage from "../../assets/innova.png";
 import Swal from "sweetalert2";
-import * as htmlToImage from 'html-to-image'
-import { useLocation } from "react-router-dom";
+import * as htmlToImage from 'html-to-image';
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { BOOKINGS } from "../shared/Api";
+import toast from "react-hot-toast";
 
 const NewBookingPreview = () => {
 
   const location = useLocation();
+  const navigate = useNavigate();
   const { customerData, tripDetailsData, paymentDetails } = location.state;
 
   useEffect(() => {
     console.log(customerData, tripDetailsData, paymentDetails);
-  }, [])
+  }, [customerData, tripDetailsData, paymentDetails]);
 
-  const handleProceed = () => {
-    Swal.fire({
-      title: "Booking!",
-      text: "Quotation Send Successfully",
-      icon: "success"
-    });
+  const handleProceed = async () => {
+    const bookingData = {
+      name: customerData.name,
+      mobileNumber: customerData.mobileNumber,
+      address: customerData.address,
+      pickupLocation: tripDetailsData.pickupLocation,
+      dropLocation: tripDetailsData.dropLocation,
+      startDate: tripDetailsData.startDate,
+      endDate: tripDetailsData.endDate,
+      timing: tripDetailsData.timing,
+      fleetName: tripDetailsData.fleetName,
+      fleetNumber: tripDetailsData.fleetNumber,
+      estimatedKms: tripDetailsData.estimatedKms,
+      estimatedAmount: tripDetailsData.estimatedAmount,
+      advanceAmount: paymentDetails.advanceAmount,
+      paymentMode: paymentDetails.paymentMode,
+      totalAmount: paymentDetails.totalAmount,
+      status: 'Pending'
+    };
 
-    const billNode = document.getElementById('bill-container');
-  
-    htmlToImage.toPng(billNode)
-      .then(function (dataUrl) {
-        const img = new Image();
-        img.src = dataUrl;
-        document.body.appendChild(img);
-      })
-      .catch(function (error) {
-        console.error('Image generation error:', error);
-      });
-  }
+    try {
+      const response = await axios.post(BOOKINGS, bookingData);
+      if (response.status === 201) {
+        toast.success("Bookings saved successfully");
+        navigate("/bookings");
+        localStorage.removeItem('customerData');
+        localStorage.removeItem('tripDetailsData');
+      }
+
+      // const billNode = document.getElementById('bill-container');
+
+      // htmlToImage.toPng(billNode)
+      //   .then(function (dataUrl) {
+      //     const img = new Image();
+      //     img.src = dataUrl;
+      //     document.body.appendChild(img);
+      //   })
+      //   .catch(function (error) {
+      //     console.error('Image generation error:', error);
+      //   });
+
+    } catch (error) {
+      toast.error("Failed to save booking");
+      console.error("Booking save error:", error);
+    }
+  };
 
   return (
     <>
@@ -53,6 +84,7 @@ const NewBookingPreview = () => {
               </span>
               <div className="flex justify-center bg-white mt-3 relative">
                 <div
+                  id="bill-container"
                   className="border border-gray-300 rounded-lg p-4 h-96"
                   style={{ width: "770px" }}
                 >
@@ -80,7 +112,7 @@ const NewBookingPreview = () => {
                           Trip Dates
                         </span>
                         <span className="font-medium text-sm text-gray-500">
-                          10th March @ 9:00AM to 15th March 9:00PM
+                          {tripDetailsData.startDate} @ {tripDetailsData.timing} to {tripDetailsData.endDate} @ {tripDetailsData.timing}
                         </span>
                       </div>
                       <div className="flex flex-col">
@@ -88,7 +120,7 @@ const NewBookingPreview = () => {
                           No. of. Days
                         </span>
                         <span className="font-medium text-sm text-gray-500">
-                          06 days
+                          {Math.ceil((new Date(tripDetailsData.endDate) - new Date(tripDetailsData.startDate)) / (1000 * 60 * 60 * 24))} days
                         </span>
                       </div>
                       <div className="flex flex-col">
@@ -96,13 +128,13 @@ const NewBookingPreview = () => {
                           Total KM limit
                         </span>
                         <span className="font-medium text-sm text-gray-500">
-                          250 kms
+                          {tripDetailsData.estimatedKms} kms
                         </span>
                       </div>
                     </div>
                     <div className="mt-10">
                       <span className="font-bold text-2xl text-green-600 px-4 py-2 border rounded-xl border-gray-400 shadow-lg shadow-slate-900/20">
-                        TOTAL AMOUNT Rs. 45000 /-
+                        TOTAL AMOUNT Rs. {paymentDetails.totalAmount} /-
                       </span>
                     </div>
                     <div className="flex justify-end mt-16">

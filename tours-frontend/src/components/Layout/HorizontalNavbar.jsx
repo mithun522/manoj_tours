@@ -47,7 +47,7 @@ const HorizontalNavbar = () => {
               <button
                 className="text-white bg-sky-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-4 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2"
                 aria-current="page"
-                onClick={() => navigate("/bookings/new-bookings")}
+                onClick={() => navigate("/bookings/new-bookings/personal-info")}
               >
                 New Bookings
               </button>

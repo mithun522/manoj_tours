@@ -43,8 +43,9 @@ exports.createFleet = (req, res) => {
         if (err) {
             return res.status(500).json({ message: 'File upload error', error: err });
         }
+
         const { fleetName, fleetNumber, numberOfSeats } = req.body;
-        const fleetImage = req.file ? `assets/${req.file.filename}` : null;
+        const fleetImage = req.file ? `assets/${req.file.filename}` : 'assets/car.png'; // Set default fleet image if none provided
 
         const newFleet = { fleetName, fleetNumber, numberOfSeats, fleetImage };
 
@@ -55,6 +56,37 @@ exports.createFleet = (req, res) => {
             res.status(201).json({ message: 'Fleet created successfully', fleet: newFleet });
         });
     });
+};
+
+exports.createMultipleFleets = (req, res) => {
+    const fleets = req.body.fleets; // Expecting an array of fleet objects
+
+    const defaultImage = 'assets/car.png';
+
+    const fleetPromises = fleets.map((fleet) => {
+        const { fleetName, fleetNumber, numberOfSeats, fleetImage } = fleet;
+        const finalFleetImage = fleetImage || defaultImage;
+
+        const newFleet = { fleetName, fleetNumber, numberOfSeats, fleetImage: finalFleetImage };
+
+        return new Promise((resolve, reject) => {
+            Fleet.create(newFleet, (err, results) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    });
+
+    Promise.all(fleetPromises)
+        .then((results) => {
+            res.status(201).json({ message: 'All fleets created successfully', fleets: results });
+        })
+        .catch((error) => {
+            res.status(500).json({ message: 'Database error', error: error });
+        });
 };
 
 exports.updateFleet = (req, res) => {
@@ -84,8 +116,8 @@ exports.updateFleet = (req, res) => {
                 if (err) {
                     return res.status(500).json({ message: 'Database error', error: err });
                 }
-                // If a new file was uploaded, delete the old file
-                if (req.file && existingFleetImage && fs.existsSync(existingFleetImage)) {
+                // If a new file was uploaded and the existing image is not the default 'car.png', delete the old file
+                if (req.file && existingFleetImage !== 'assets/car.png' && fs.existsSync(existingFleetImage)) {
                     fs.unlink(existingFleetImage, (err) => {
                         if (err) {
                             console.error('Error deleting old file:', err);

@@ -2,62 +2,85 @@ import React, { useEffect, useState } from 'react';
 import filterIcon from '../../assets/filter-icon.svg';
 import Layout from '../Layout/Layout';
 import TopLayer from '../shared/TopLayer';
+import axios from "axios";
+import { BOOKINGS } from '../shared/Api';
+import toast from 'react-hot-toast';
 
 const Bookings = () => {
     const [bookingsData, setBookingsData] = useState([]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [selectedOption, setSelectedOption] = useState('Filter By');
     const options = ['Customer', 'Companies'];
-  
+
     useEffect(() => {
         const fetchBookingsData = async () => {
             try {
-                const response = await fetch("/Bookings.json");
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
+                const response = await axios.get(BOOKINGS);
+                console.log(response.data)
+                if (response.status === 200) {
+                    setBookingsData(response.data);
+                } else {
+                    toast.error("Failed to fetch data");
                 }
-                const data = await response.json();
-                setBookingsData(data);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }
         };
-  
+
         fetchBookingsData();
     }, []);
 
+    const calculateDays = (startDate, endDate) => {
+        const start = new Date(startDate);
+        const end = new Date(endDate);
+        const diffTime = Math.abs(end - start);
+        return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    };
+
+    const filteredBookings = bookingsData.filter(booking =>
+        booking.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
         <Layout>
-            <div className="max-w-screen mx-auto flex flex-col h-full">
-                <div className="overflow-y-auto shadow-md sm:rounded-lg flex-grow">
+            <div className="max-w-screen mx-auto flex flex-col h-full p-4 sm:p-8">
+                <div className="overflow-y-auto rounded-lg flex-grow bg-white">
                     <TopLayer
-                        title={'Bookings'}                                
+                        title={'Bookings'}
                         options={options}
                         selectedOption={selectedOption}
                         setSelectedOption={setSelectedOption}
                         showButton={false}
                         routeForButton={'new-bookings'}
                         icon={filterIcon}
+                        searchQuery={searchQuery}
+                        setSearchQuery={setSearchQuery}
                     />
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-                        {bookingsData.map((booking, index) => (
-                            <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-100">
-                                <div className='flex justify-between' >
-                                    <h2 className="font-medium text-xl mb-0.5">{booking.customerName}</h2>
-                                    <p className="text-gray-600 text-xl font-bold">{booking.customerId}</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+                        {filteredBookings.map((booking, index) => (
+                            <div key={index} className="border border-gray-300 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-shadow duration-300">
+                                <div className='flex justify-between mb-4'>
+                                    <h2 className="font-semibold text-lg text-gray-900">Customer Name: {booking.name}</h2>
+                                    <p className="text-gray-500 font-medium">{booking.customerId}</p>
                                 </div>
-                                <p className="text-gray-600 text-sm text-start">{booking.travelTime}</p>
-                                <div className='justify-start py-10' >
-                                    <div className='flex mb-1' >
-                                        <p className="text-gray-600 mr-2 font-extrabold">{booking.vehicleType}</p>
-                                        <p className="text-gray-600 font-extrabold">{booking.vehicleNumber}</p>
+                                <p className="text-gray-700 text-sm mb-2 text-left">
+                                    <span className='font-bold text-black' >Days Of Trip: </span>{new Date(booking.startDate).toLocaleDateString()} to {new Date(booking.endDate).toLocaleDateString()}</p>
+                                <div className='flex flex-col justify-between items-center mb-6 text-left'>
+                                    <div className='flex flex-col'>
+                                        <span className="font-bold text-gray-900">
+                                            <span className="text-black font-bold">Fleet: </span>{booking.fleetName}</span>
+                                        <span className="text-gray-500">
+                                            <span className="text-black font-bold">Fleet Number: </span>{booking.fleetNumber}</span>
                                     </div>
-                                    <div className='flex' >
-                                        <p className="text-gray-600 flex flex-col">KM LIMIT <span className='font-bold ml-[-40px]' >{booking.distance}</span></p>
-                                        <p className="text-gray-600 flex flex-col ml-5">Days<span className='font-bold ml-[-10px]' >{booking.numberOfDays}</span></p>
+                                    <div className='flex flex-col'>
+                                        <span className="text-black font-bold">KM Limit <span className="font-bold text-gray-900">{booking.estimatedKms}</span></span>
+                                    </div>
+                                    <div className='flex flex-col'>
+                                        <span className="text-black font-bold">Days <span className="font-bold text-gray-900">{calculateDays(booking.startDate, booking.endDate)}</span></span>
                                     </div>
                                 </div>
                                 <div className='flex justify-center'>
-                                    <p className="bg-green-700 w-48 h-10 text-white rounded-lg font-bold text-xl flex items-center justify-center whitespace-nowrap">Rs. {booking.amount} /-</p>
+                                    <p className="bg-green-600 w-48 h-12 text-white rounded-lg font-bold text-xl flex items-center justify-center">Rs. {booking.estimatedAmount} /-</p>
                                 </div>
                             </div>
                         ))}

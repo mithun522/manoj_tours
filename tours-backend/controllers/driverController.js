@@ -43,16 +43,52 @@ exports.createDriver = (req, res) => {
         if (err) {
             return res.status(500).json({ message: 'File upload error', error: err });
         }
-        const { name, mobileNumber, address } = req.body; // Update key from mobileNumber to mobile
-        const profileImage = req.file ? `assets/${req.file.filename}` : null;
 
-        const newDriver = { name, mobile_number: mobileNumber, address, profileImage }; // Update key from mobileNumber to mobile_number
+        const { name, mobileNumber, address } = req.body;
+        const profileImage = req.file ? `assets/${req.file.filename}` : 'assets/profile.jpg'; // Set default profile image if none provided
+
+        const newDriver = { name, mobile_number: mobileNumber, address, profileImage };
 
         Driver.create(newDriver, (err, results) => {
             if (err) {
                 return res.status(500).json({ message: 'Database error', error: err });
             }
             res.status(201).json({ message: 'Driver created successfully', driver: newDriver });
+        });
+    });
+};
+
+exports.createMultipleDrivers = (req, res) => {
+    const drivers = req.body.drivers;
+
+    if (!Array.isArray(drivers)) {
+        return res.status(400).json({ message: 'Invalid input: drivers should be an array' });
+    }
+
+    const createdDrivers = [];
+    const errors = [];
+
+    drivers.forEach((driver, index) => {
+        const { name, mobileNumber, address, profileImage } = driver;
+        const driverProfileImage = profileImage ? profileImage : 'assets/profile.jpg'; // Set default profile image if none provided
+
+        const newDriver = { name, mobile_number: mobileNumber, address, profileImage: driverProfileImage };
+
+        Driver.create(newDriver, (err, results) => {
+            if (err) {
+                errors.push({ driverIndex: index, error: err });
+            } else {
+                createdDrivers.push(newDriver);
+            }
+
+            // Check if all drivers have been processed
+            if (createdDrivers.length + errors.length === drivers.length) {
+                if (errors.length > 0) {
+                    res.status(500).json({ message: 'Some drivers could not be created', errors });
+                } else {
+                    res.status(201).json({ message: 'All drivers created successfully', drivers: createdDrivers });
+                }
+            }
         });
     });
 };
@@ -67,7 +103,7 @@ exports.updateDriver = (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'Driver not found' });
         }
-        
+
         const existingDriver = results[0];
         const existingProfileImage = existingDriver.profileImage;
 
@@ -85,7 +121,7 @@ exports.updateDriver = (req, res) => {
                     return res.status(500).json({ message: 'Database error', error: err });
                 }
                 // If a new file was uploaded, delete the old file
-                if (req.file && existingProfileImage && fs.existsSync(existingProfileImage)) {
+                if (req.file && existingProfileImage !== 'assets/profile.jpg' && fs.existsSync(existingProfileImage)) {
                     fs.unlink(existingProfileImage, (err) => {
                         if (err) {
                             console.error('Error deleting old file:', err);

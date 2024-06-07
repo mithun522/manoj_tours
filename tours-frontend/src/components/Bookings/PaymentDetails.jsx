@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { customerData, tripDetailsData } = location.state;
+  const { customerData, tripDetailsData } = location?.state || {};
 
   const initialPaymentDetails = {
     totalAmount: '',
@@ -83,8 +83,9 @@ const PaymentDetails = () => {
       </div>
       <div className="flex">
         <button
+          onClick={() => navigate('/bookings/new-bookings/trip-details')}
           className="text-white font-bold mt-8 bg-gray-500 hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
-          aria-current="page"
+          aria-current="page"          
         >
           Previous
         </button>

@@ -2,47 +2,58 @@ import React, { useEffect, useState } from "react";
 import filterIcon from "../../assets/filter-icon.svg";
 import Layout from "../Layout/Layout";
 import TopLayer from "../shared/TopLayer";
+import AddEnquiries from "./AddEnquiries";
+import axios from "axios";
+import { ENQUIRY } from "../shared/Api";
+import toast from "react-hot-toast";
 
 const Enquiries = () => {
-  const [enquiriesData, setEnquiriesDate] = useState([]);
+  const [enquiriesData, setEnquiriesData] = useState([]);
   const [selectedOption, setSelectedOption] = useState("Filter By");
+  const [showAddEnquiryModal, setShowAddEnquiryModal] = useState(false);
   const options = ["Date"];
 
-  useEffect(() => {
-    const fetchEnquiriesData = async () => {
-      try {
-        const response = await fetch("/Enquiries.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-        setEnquiriesDate(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
+  const fetchEnquiriesData = async () => {
+    try {
+      const response = await axios.get(ENQUIRY);
+      if (response.status === 200) {
+        setEnquiriesData(response.data);
+      } else {
+        toast.error("Error while fetching Enquiries");
       }
-    };
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
+  useEffect(() => {
     fetchEnquiriesData();
   }, []);
 
+  const handleAddEnquiry = (newEnquiry) => {
+    setEnquiriesData([...enquiriesData, newEnquiry]);
+  };
+
   return (
-    <>
     <Layout>
       <div className="max-w-screen mx-auto flex flex-col h-full">
         <div className="overflow-y-auto shadow-md sm:rounded-lg flex-grow">
           <TopLayer
-            title={selectedOption}
+            title={"Enquiries"}
             options={options}
             selectedOption={selectedOption}
             setSelectedOption={setSelectedOption}
             showButton={false}
             icon={filterIcon}
+            isAddButton={true}
+            addButtonText={"Add Enquiry"}
+            onAddButtonClick={() => setShowAddEnquiryModal(true)}
           />
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 h-80">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4 h-80">
             {enquiriesData.map((enquiry, index) => (
               <div
                 key={index}
-                className="border border-gray-200 rounded-lg px-8 py-4 bg-gray-100 text-start"
+                className="border border-gray-200 rounded-lg px-8 py-4 bg-slate-100 text-start"
               >
                 <h2 className="font-bold text-xl mb-0.5">
                   {enquiry.customerName}
@@ -59,8 +70,13 @@ const Enquiries = () => {
           </div>
         </div>
       </div>
+      {showAddEnquiryModal && (
+        <AddEnquiries
+          onClose={() => setShowAddEnquiryModal(false)}
+          onAddEnquiry={handleAddEnquiry}
+        />
+      )}
     </Layout>
-    </>
   );
 };
 

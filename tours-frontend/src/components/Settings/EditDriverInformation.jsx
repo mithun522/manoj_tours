@@ -89,20 +89,26 @@ const EditDriverInformation = () => {
     formData.append('name', driverData.name);
     formData.append('mobile_number', driverData.mobile_number);
     formData.append('address', driverData.address);
-    if(selectedFile) {
-      formData.append('profileImage', selectedFile);
+    if (selectedFile) {
+        formData.append('profileImage', selectedFile);
     }
+
     try {
-      const response = await axios.put(`${DRIVER}/${driverId}`, driverData);
-      if(response.status === 200) {
-        toast.success(response.message);
-        navigate('/settings/drivers-information');
-        setEditingField(null);
-      }
+        const response = await axios.put(`${DRIVER}/${driverId}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+
+        if (response.status === 200) {
+            toast.success(response.data.message);
+            navigate('/settings/drivers-information');
+            setEditingField(null);
+        }
     } catch (error) {
-      console.error("Error updating driver data:", error);
+        console.error("Error updating driver data:", error);
     }
-  };
+};
 
   return (
     <Layout>

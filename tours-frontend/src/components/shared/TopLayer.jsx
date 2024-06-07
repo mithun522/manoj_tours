@@ -3,7 +3,7 @@ import CustomDropdown from './CustomDropdown';
 import { useNavigate } from 'react-router-dom';
 import plusIcon from '../../assets/plus-circle-icon.svg';
 
-const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSelectedOption, showButton = true, buttonTitle = "", routeForButton, icon, isAddButton = false, addButtonRoute = '', addButtonText = '', searchQuery, setSearchQuery }) => {
+const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSelectedOption, showButton = true, buttonTitle = "", routeForButton, icon, isAddButton = false, addButtonRoute = '', addButtonText = '', searchQuery, setSearchQuery, onAddButtonClick }) => {
     const navigate = useNavigate();
 
     return (
@@ -38,7 +38,7 @@ const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSele
                 )}
                 {showDropdown && <CustomDropdown options={options} selectedOption={selectedOption} onSelect={setSelectedOption} icon={icon} />}
                 {isAddButton && (
-                    <div className="flex cursor-pointer" onClick={() => navigate(addButtonRoute)} >
+                    <div className="flex cursor-pointer" onClick={onAddButtonClick || (() => navigate(addButtonRoute))} >
                         <span className="ml-5 flex underline mt-2" style={{ fontSize: "14px" }}>
                             <img src={plusIcon} alt="Add Driver" className="w-5 h-5 mr-1" />
                             {addButtonText}

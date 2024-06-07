@@ -7,6 +7,9 @@ import editIcon from '../../assets/edit-icon.svg';
 import TopLayer from "../shared/TopLayer";
 import cancelledIcon from "../../assets/cancel-icon.svg";
 import checkmarkCircle from "../../assets/checkmark-circle.svg";
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { BOOKINGS } from "../shared/Api";
 
 const DashboardBookings = () => {
   const [bookingsData, setBookingsData] = useState([]);
@@ -17,12 +20,13 @@ const DashboardBookings = () => {
   useEffect(() => {
     const fetchBookingsData = async () => {
       try {
-        const response = await fetch("/DashboardBookings.json");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
+        const response = await axios.get(BOOKINGS);
+        console.log(response)
+        if (response.status === 200) {
+            setBookingsData(response.data);
+        } else {
+            toast.error("Failed to fetch Bookings data");
         }
-        const data = await response.json();
-        setBookingsData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -71,10 +75,10 @@ return (
                                     <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
                                         {bookingsData.map((booking) => (
                                             <tr key={booking.id} className={` dark:text-white ${booking.duration === today ? 'text-green-600 dark:text-green-700' : ''} ${booking.raidType === 'cancelled' ? 'text-gray-400' : ''}`}>
-                                                <td className="p-4 text-sm font-bold">{booking.customerName}</td>
+                                                <td className="p-4 text-sm font-bold">{booking.name}</td>
                                                 <td className="p-4 text-sm font-bold">{booking.customerId}</td>
                                                 <td className="p-4 text-sm font-bold">
-                                                    {booking.location.twoWay ? (
+                                                    {/* {booking.location.twoWay ? (
                                                         <>
                                                             {booking.location.from} <img src={rightLeftIcon} alt="right-left-icon" className="inline-block w-4 h-4" /> {booking.location.to}
                                                         </>
@@ -82,7 +86,7 @@ return (
                                                         <>
                                                             {booking.location.from} <img src={rightArrowIcon} alt="right-arrow-icon" className="inline-block w-4 h-4" /> {booking.location.to}
                                                         </>
-                                                    )}
+                                                    )} */}
                                                 </td>
                                                 <td className="p-4 text-sm font-bold">
                                                     {booking.duration === today && booking.raidType !== 'cancelled' ? (

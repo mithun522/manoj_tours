@@ -1,5 +1,5 @@
 import Layout from "../Layout/Layout";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 const NewBookings = () => {
   const currentPage = useLocation().pathname;
@@ -18,36 +18,33 @@ const NewBookings = () => {
               </div>
             </div>
             <div className="flex justify-center mb-4">
-              <NavLink
-                className={`cursor-pointer font-semibold ml-2 w-full sm:w-56 py-2.5 rounded-xl ${
+              <button
+                className={`cursor-pointer font-semibold ml-2 w-full sm:w-56 py-2.5 rounded-xl disabled ${
                   currentPage === "/bookings/new-bookings/personal-info"
                     ? "bg-black text-white"
                     : ""
                 }`}
-                to="/bookings/new-bookings/personal-info"
               >
                 Personal Information
-              </NavLink>
-              <NavLink
+              </button>
+              <button
                 className={`cursor-pointer font-semibold ml-2 w-full sm:w-56 py-2.5 rounded-xl ${
                   currentPage === "/bookings/new-bookings/trip-details"
                     ? "bg-black text-white"
                     : ""
                 }`}
-                to="/bookings/new-bookings/trip-details"
               >
                 Fleet/Trip Details
-              </NavLink>
-              <NavLink
+              </button>
+              <button
                 className={`cursor-pointer font-semibold ml-2 w-full sm:w-56 py-2.5 rounded-xl ${
                   currentPage === "/bookings/new-bookings/payment-details"
                     ? "bg-black text-white"
                     : ""
                 }`}
-                to="/bookings/new-bookings/payment-details"
               >
                 Payment Details
-              </NavLink>
+              </button>
             </div>
             <div className="flex justify-center bg-white mb-20">
               <div className="border border-gray-300 rounded-lg py-10 max-w-screen-md w-full max-h-screen-xs h-full">
