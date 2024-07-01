@@ -59,7 +59,7 @@ const AddDriver = () => {
         <Layout>
             <div className="max-w-screen mx-auto">
                 <div className="flex flex-col">
-                    <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
+                    <div className="overflow-y-auto sm:rounded-lg max-h-[80vh]">
                         <div className="flex justify-start px-10 py-6">
                             <h1 className="text-lg font-bold" style={{ fontSize: '30px' }}>
                                 Add Driver Information

@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import * as htmlToImage from 'html-to-image';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BOOKINGS } from "../shared/Api";
+import { BOOKINGS, CUSTOMER } from "../shared/Api";
 import toast from "react-hot-toast";
 
 const NewBookingPreview = () => {
@@ -35,13 +35,24 @@ const NewBookingPreview = () => {
       advanceAmount: paymentDetails.advanceAmount,
       paymentMode: paymentDetails.paymentMode,
       totalAmount: paymentDetails.totalAmount,
-      status: 'Pending'
+      status: 'Pending',
+      tripType: 'Single',
     };
 
     try {
+      const response = await axios.post(CUSTOMER)
+      if(response.status === 201) {
+        toast.success("A Customer with name " + response.name + " has been added")
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+    try {
       const response = await axios.post(BOOKINGS, bookingData);
+      console.log(bookingData);
       if (response.status === 201) {
-        toast.success("Bookings saved successfully");
+        toast.success("Bookings saved successfully");        
         navigate("/bookings");
         localStorage.removeItem('customerData');
         localStorage.removeItem('tripDetailsData');

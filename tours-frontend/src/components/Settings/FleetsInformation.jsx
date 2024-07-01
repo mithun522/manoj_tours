@@ -5,10 +5,11 @@ import TopLayer from '../shared/TopLayer';
 import editIcon from '../../assets/edit-icon.svg';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { DRIVER, FLEET, SERVER } from '../shared/Api';
+import { FLEET, SERVER } from '../shared/Api';
 import deleteIcon from "../../assets/delete-icon.svg";
 import DeleteModal from '../shared/DeleteModal';
 import toast from 'react-hot-toast';
+import noData from "../../assets/no-data.png";
 
 const FleetsInformation = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const FleetsInformation = () => {
     const [showModal, setShowModal] = useState(false); // State to control modal visibility
     const [deleteFleetId, setDeleteFleetId] = useState(null); // State to store ID of fleet to delete
     const options = ['Customer', 'Companies'];
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchFleetsData = async () => {
@@ -26,6 +28,8 @@ const FleetsInformation = () => {
                 setFleetsData(response.data);
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         };
         fetchFleetsData();
@@ -60,10 +64,10 @@ const FleetsInformation = () => {
     
 
     return (
-        <Layout>
+        <Layout loading={loading}>
             <div className="max-w-screen mx-auto relative">
                 <div className="flex flex-col">
-                    <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
+                    <div className="overflow-y-auto sm:rounded-lg max-h-[80vh]">
                         <TopLayer
                             title={'Fleets Information'}
                             options={options}
@@ -77,6 +81,12 @@ const FleetsInformation = () => {
                             searchQuery={searchQuery}
                             setSearchQuery={setSearchQuery}
                         />
+                                                {fleetsData.length === 0 && !loading && (
+                            <div className="flex flex-col text-center justify-center items-center px-10 md:py-0 py-48">
+                                <img src={noData} alt="" className='flex flex-grow object-cover w-[800px]' />
+                                <h2 className="font-black text-2xl">No Drivers Found</h2>
+                            </div>
+                        )}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 p-4">
                             {filteredFleets.map((fleet, index) => (
                                 <div key={index} className="border border-gray-200 rounded-lg p-4 bg-gray-100 relative max-h-[350px] min-w-[250px] flex flex-col justify-center items-center">

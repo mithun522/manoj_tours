@@ -58,7 +58,7 @@ const DriversInformation = () => {
         <Layout loading={loading}>
             <div className="max-w-screen mx-auto relative">
                 <div className="flex flex-col">
-                    <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
+                    <div className="overflow-y-auto sm:rounded-lg max-h-[80vh]">
                         <TopLayer
                             title={'Drivers Information'}                                
                             showDropdown={false}
@@ -84,7 +84,7 @@ const DriversInformation = () => {
                                             <img src={deleteIcon} alt="" className='h-5 w-5 cursor-pointer' />
                                         </button>
                                     </div>
-                                    <img src={`${SERVER}${driver.profileImage}`} alt="" className='w-32 h-32 bg-white rounded-full' />
+                                    <img src={`${SERVER}${driver.profileImage}`} alt="" className='w-32 h-32 bg-white rounded-full flex flex-grow object-cover' />
                                     <div className='text-start mt-5' >
                                     <h2 className="font-medium text-xl mt-2 text-start">
                                     <span className='font-bold' >Name : </span>

@@ -58,7 +58,18 @@ const bookingController = {
                 res.status(200).json({ message: 'Booking deleted successfully.' });
             }
         });
-    }
+    },
+
+    getTripCounts: (req, res) => {
+        Booking.getTripCounts((err, results) => {
+            if (err) {
+                res.status(500).json({ error: 'Failed to retrieve trip counts.' });
+            } else {
+                const totalTrips = (parseInt(results.closedTrips) + parseInt(results.todaysTrips) + parseInt(results.upcomingTrips));
+                res.status(200).json({ ...results, totalTrips });
+            }
+        });
+    }    
 };
 
 module.exports = bookingController;
