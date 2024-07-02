@@ -1,24 +1,26 @@
+import axios from "axios";
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import filterIcon from '../../assets/filter-icon.svg';
 import Layout from '../Layout/Layout';
-import TopLayer from '../shared/TopLayer';
-import axios from "axios";
 import { BOOKINGS } from '../shared/Api';
-import toast from 'react-hot-toast';
+import TopLayer from '../shared/TopLayer';
 
 const Bookings = () => {
     const [bookingsData, setBookingsData] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedOption, setSelectedOption] = useState('Filter By');
     const options = ['Customer', 'Companies'];
+    const currentPage = 1;
+    const recordsPerPage = 10;
 
     useEffect(() => {
         const fetchBookingsData = async () => {
             try {
-                const response = await axios.get(BOOKINGS);
-                console.log(response.data)
+                const response = await axios.get(`${BOOKINGS}?page=${currentPage}&limit=${recordsPerPage}`);
+                console.log(response.data.data)
                 if (response.status === 200) {
-                    setBookingsData(response.data);
+                    setBookingsData(response.data.data);
                 } else {
                     toast.error("Failed to fetch data");
                 }

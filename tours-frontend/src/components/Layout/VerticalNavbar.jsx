@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { BsPaperclip } from "react-icons/bs";
+import { FaCalendar } from "react-icons/fa";
+import { FaGear, FaPersonCircleQuestion } from "react-icons/fa6";
+import { HiOutlineMenu } from "react-icons/hi";
+import { ImQuotesLeft } from "react-icons/im";
+import { RiDashboardFill } from "react-icons/ri";
+import { TbLogout2 } from "react-icons/tb";
 import { NavLink, useNavigate } from "react-router-dom";
 import bookingsIcon from "../../assets/bookings-icon.svg";
-import burgerMenu from "../../assets/burger-menu-icon.svg";
-import calenderIcon from "../../assets/calender-icon.svg";
-import dashBoardIcon from "../../assets/dashboard-icon.svg";
 import logo from "../../assets/logo-nav.png";
-import logoutIcon from "../../assets/logout-icon.svg";
-import quotesIcon from "../../assets/quotes-icon.svg";
-import settingsIcon from "../../assets/settings-icon.svg";
-import shareLinksIcon from "../../assets/share-links-icon.svg";
-import enquiryIcon from "../../assets/enquiries-icon.svg";
 
 const VerticalNavbar = () => {
   const [submenuOpen, setSubmenuOpen] = useState(
@@ -43,15 +42,14 @@ const VerticalNavbar = () => {
   }, []);
 
   return (
-    <section className="bg-gray-500 md:mr-80 z-10">
+    <section className="bg-gray-500 md:mr-72 z-10">
       {isSmallScreen ? (
-        <img
-          src={burgerMenu}
-          alt="Burger Menu"
-          className={`absolute top-5 left-4 cursor-pointer w-10 h-10 ${
-            isSidebarOpen ? "hidden" : ""
-          }`}
-          onClick={openSidebar}
+        <HiOutlineMenu
+        size={22}
+        className={`absolute top-5 left-4 cursor-pointer w-10 h-10 ${
+          isSidebarOpen ? "hidden" : ""
+        }`}
+        onClick={openSidebar}
         />
       ) : null}
 
@@ -64,11 +62,11 @@ const VerticalNavbar = () => {
           <div className="p-1 mt-1 flex items-center">
             <img src={logo} alt="logo" className="h-16 w-60" />
             {isSmallScreen && (
-              <img
-                src={burgerMenu}
+              <HiOutlineMenu
                 alt="Burger Menu"
                 className="absolute top-5 right-5 cursor-pointer w-10"
                 onClick={openSidebar}
+                size={22}
               />
             )}
           </div>
@@ -82,12 +80,7 @@ const VerticalNavbar = () => {
               : "hover:bg-gray-500"
           }`}
         >
-          <img
-            src={dashBoardIcon}
-            alt="Dashboard"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+          <RiDashboardFill size={22} />
           <span className="ml-4 text-gray-200 font-bold">Dashboard</span>
         </NavLink>
 
@@ -115,13 +108,7 @@ const VerticalNavbar = () => {
               ? "bg-gray-500"
               : "hover:bg-gray-500"
           }`}
-        >
-          <img
-            src={quotesIcon}
-            alt="Quotes"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+          ><ImQuotesLeft size={22} />
           <span className="ml-4 text-gray-200 font-bold">Quotes</span>
         </NavLink>
 
@@ -133,12 +120,7 @@ const VerticalNavbar = () => {
               : "hover:bg-gray-500"
           }`}
         >
-           <img
-            src={enquiryIcon}
-            alt="Quotes"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+           <FaPersonCircleQuestion size={22} />
           <span className="ml-4 text-gray-200 font-bold">Enquiries</span>
         </NavLink>
 
@@ -150,12 +132,7 @@ const VerticalNavbar = () => {
               : "hover:bg-gray-500"
           }`}
         >
-          <img
-            src={calenderIcon}
-            alt="calender"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+          <FaCalendar size={22} />
           <span className="ml-4 text-gray-200 font-bold">calender</span>
         </NavLink>
 
@@ -167,12 +144,7 @@ const VerticalNavbar = () => {
               : "hover:bg-gray-500"
           }`}
         >
-          <img
-            src={shareLinksIcon}
-            alt="Share Links"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+          <BsPaperclip size={22} />
           <span className="ml-4 text-gray-200 font-bold">Share Links</span>
         </NavLink>
 
@@ -181,11 +153,10 @@ const VerticalNavbar = () => {
           className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-500 text-white"
           onClick={dropdown}
         >
-          <img
-            src={settingsIcon}
+          <FaGear
             alt="Settings"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
+            size={22}
+            color="#fde68a"
           />
           <div className="flex justify-between w-full items-center">
             <span className="text-[15px] ml-4 text-gray-200 font-bold">
@@ -220,12 +191,7 @@ const VerticalNavbar = () => {
           activeClassName="text-blue-500"
           className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-gray-500 text-white"
         >
-          <img
-            src={logoutIcon}
-            alt="Logout"
-            className="w-6 h-6"
-            style={{ filter: "invert(100%)" }}
-          />
+          <TbLogout2 size={22} color="#fde68a" />
           <span className="text-[15px] ml-4 text-gray-200 font-bold">
             Logout
           </span>

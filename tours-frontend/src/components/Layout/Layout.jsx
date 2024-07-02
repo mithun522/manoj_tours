@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import LoadingSpinner from "../shared/LoadingSpinner";
 import HorizontalNavbar from "./HorizontalNavbar";
 import VerticalNavbar from "./VerticalNavbar";
-import LoadingSpinner from "../shared/LoadingSpinner";
 
 const Layout = ({ children, loading }) => {
   const location = useLocation();
@@ -18,7 +18,7 @@ const Layout = ({ children, loading }) => {
       <VerticalNavbar />
       <div className="flex flex-col w-full relative">
         <HorizontalNavbar />
-        <p className="pt-16 text-lg text-start font-bold">
+        <p className="pt-5 text-xs text-start font-bold">
           {formattedRoute.substring(2)}
         </p>
         <div

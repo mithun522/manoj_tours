@@ -3,8 +3,12 @@
 const db = require('../config/db');
 
 const Booking = {
-    getAll: (callback) => {
-        const query = 'SELECT * FROM bookings';
+    getAllPaginated: (limit, offset, callback) => {
+        const query = 'SELECT * FROM bookings LIMIT ? OFFSET ?';
+        db.query(query, [limit, offset], callback);
+    },
+    getTotalCount: (callback) => {
+        const query = 'SELECT COUNT(*) as totalCount FROM bookings';
         db.query(query, callback);
     },
     getById: (id, callback) => {

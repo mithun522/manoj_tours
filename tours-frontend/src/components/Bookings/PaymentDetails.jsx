@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PaymentDetails = () => {
   const navigate = useNavigate();
@@ -17,10 +17,6 @@ const PaymentDetails = () => {
     const savedPaymentDetails = localStorage.getItem("paymentDetails");
     return savedPaymentDetails ? JSON.parse(savedPaymentDetails) : initialPaymentDetails;
   });
-
-  useEffect(() => {
-    console.log(customerData, tripDetailsData);
-  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

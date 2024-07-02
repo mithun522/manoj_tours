@@ -1,26 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import locationIcon from "../../assets/location-icon-filled.svg";
 import rightArrowIcon from "../../assets/right-arrow-icon.svg";
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
-import locationIcon from "../../assets/location-icon-filled.svg";
-import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 const TripDetails = () => {
   const [tripDetailsData, setTripDetailsData] = useState(() => {
     // Load trip details data from local storage if available, otherwise initialize with empty values
     const storedData = localStorage.getItem("tripDetailsData");
-    return storedData ? JSON.parse(storedData) : {
-      startDate: "",
-      endDate: "",
-      fleetName: "",
-      fleetNumber: "",
-      pickupLocation: "",
-      dropLocation: "",
-      timing: "",
-      estimatedKms: "",
-      estimatedAmount: "",
-      tripType: "",
-    };
+    return storedData
+      ? JSON.parse(storedData)
+      : {
+          startDate: "",
+          endDate: "",
+          fleetName: "",
+          fleetNumber: "",
+          pickupLocation: "",
+          dropLocation: "",
+          timing: "",
+          estimatedKms: "",
+          estimatedAmount: "",
+          tripType: "",
+        };
   });
   const navigate = useNavigate();
   const location = useLocation();
@@ -44,17 +46,41 @@ const TripDetails = () => {
         [name]: value,
       }));
     }
-  };  
+  };
+
+  const handleStartDateChange = (e) => {
+    const { value } = e.target;
+    setTripDetailsData((prevData) => ({
+      ...prevData,
+      startDate: value,
+    }));
+  };
+
+  const handleEndDateChange = (e) => {
+    const { value } = e.target;
+    setTripDetailsData((prevData) => ({
+      ...prevData,
+      endDate: value,
+    }));
+  };
 
   const handleNext = () => {
-    if (Object.values(tripDetailsData).every((value) => value.trim() !== "")) {
+    if (
+      Object.values(tripDetailsData).every((value) => value.trim() !== "") &&
+      new Date(tripDetailsData.endDate) > new Date(tripDetailsData.startDate)
+    ) {
       navigate("/bookings/new-bookings/payment-details", {
         state: { tripDetailsData: tripDetailsData, customerData: customerData },
       });
     } else {
-      toast.error("Please fill in all fields.");
+      toast.error("Please fill in all fields correctly.");
     }
   };
+
+  // Calculate min date for end date based on start date
+  const minEndDate = tripDetailsData.startDate
+    ? new Date(tripDetailsData.startDate)
+    : null;
 
   return (
     <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x p-4 px-10 relative">
@@ -70,9 +96,8 @@ const TripDetails = () => {
                 style={{ fontSize: "12px" }}
                 name="startDate"
                 value={tripDetailsData.startDate}
-                onChange={handleChange}
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
+                onChange={handleStartDateChange}
+                type="date"
                 placeholder="Start Date"
               />
             </div>
@@ -83,13 +108,13 @@ const TripDetails = () => {
             </span>
             <div className="flex items-center relative">
               <input
-                onFocus={(e) => (e.target.type = "date")}
-                onBlur={(e) => (e.target.type = "text")}
                 className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
                 style={{ fontSize: "12px" }}
                 name="endDate"
                 value={tripDetailsData.endDate}
-                onChange={handleChange}
+                onChange={handleEndDateChange}
+                type="date"
+                min={minEndDate && minEndDate.toISOString().split("T")[0]}
                 placeholder="End Date"
               />
             </div>

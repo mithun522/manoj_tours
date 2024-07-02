@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import Layout from "../Layout/Layout";
-import innovaImage from "../../assets/innova.png";
-import Swal from "sweetalert2";
-import * as htmlToImage from 'html-to-image';
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { BOOKINGS, CUSTOMER } from "../shared/Api";
+import React, { useEffect } from "react";
 import toast from "react-hot-toast";
+import { useLocation, useNavigate } from "react-router-dom";
+import innovaImage from "../../assets/innova.png";
+import Layout from "../Layout/Layout";
+import { BOOKINGS, CUSTOMER } from "../shared/Api";
 
 const NewBookingPreview = () => {
 

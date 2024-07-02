@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import userIcon from "../../assets/user-icon-filled.svg";
-import phoneIcon from "../../assets/phone-icon.svg";
-import carIcon from "../../assets/car-icon.svg";
 import axios from "axios";
-import { ENQUIRY } from "../shared/Api";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { FaPhone, FaUser } from "react-icons/fa6";
+import carIcon from "../../assets/car-icon.svg";
+import { ENQUIRY } from "../shared/Api";
 
 const AddEnquiries = ({ onClose, onAddEnquiry }) => {
   const [customerName, setCustomerName] = useState("");
@@ -60,7 +59,7 @@ const AddEnquiries = ({ onClose, onAddEnquiry }) => {
               Customer Name
             </label>
             <div className="flex items-center border rounded focus:outline-none focus:ring-blue-500 focus:ring-1">
-              <img src={userIcon} alt="" className="h-5 w-5 ml-2 mr-2" />
+              <FaUser className="h-5 w-5 ml-2 mr-2" />
               <input
                 type="text"
                 id="customerName"
@@ -79,7 +78,7 @@ const AddEnquiries = ({ onClose, onAddEnquiry }) => {
               Mobile Number
             </label>
             <div className="flex items-center border rounded focus:outline-none focus:ring-blue-500 focus:ring-1">
-              <img src={phoneIcon} alt="" className="h-5 w-5 ml-2 mr-2" />
+              <FaPhone className="h-5 w-5 ml-2 mr-2" />
               <input
                 type="text"
                 id="mobileNumber"

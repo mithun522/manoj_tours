@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 import rightArrowIcon from "../../assets/right-arrow-icon.svg";
+import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
 
 const EngagedFleets = ({ engagedFleetsData }) => {
-  const [fleetsData, setFleetsData] = useState();
+  const [fleetsData, setFleetsData] = useState(engagedFleetsData);
 
   const handleStatusChange = (id, newStatus) => {
     setFleetsData((prevFleetsData) => {
@@ -72,7 +72,7 @@ const EngagedFleets = ({ engagedFleetsData }) => {
           </tr>
         </thead>
         <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
-          {engagedFleetsData.map((item) => (
+          {fleetsData.map((item) => (
             <tr key={item.id}>
               <td className="p-4 text-gray-900 dark:text-white">
                 {item.fleet}

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import Layout from '../Layout/Layout';
-import TopLayer from '../shared/TopLayer';
-import editIcon from '../../assets/edit-icon.svg';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { DRIVER, SERVER } from '../shared/Api';
-import deleteIcon from '../../assets/delete-icon.svg';
-import noData from "../../assets/no-data.png";
-import DeleteModal from '../shared/DeleteModal';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import deleteIcon from '../../assets/delete-icon.svg';
+import editIcon from '../../assets/edit-icon.svg';
+import noData from "../../assets/no-data.png";
+import Layout from '../Layout/Layout';
+import { DRIVER, SERVER } from '../shared/Api';
+import DeleteModal from '../shared/DeleteModal';
+import TopLayer from '../shared/TopLayer';
 
 const DriversInformation = () => {
     const navigate = useNavigate();
@@ -69,13 +69,13 @@ const DriversInformation = () => {
                         />
                         {driversData.length === 0 && !loading && (
                             <div className="flex flex-col text-center justify-center items-center px-10 md:py-0 py-48">
-                                <img src={noData} alt="" className='flex flex-grow object-cover w-[800px]' />
+                                <img src={noData} alt="" className='flex flex-grow object-cover 2xl:w-[800px] lg:w-[600px] md:w-[250px]' />
                                 <h2 className="font-black text-2xl">No Drivers Found</h2>
                             </div>
                         )}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-4 p-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-4 2xl:grid-cols-4 gap-4 p-4">
                             {driversData.map((driver, index) => (
-                                <div key={index} className="border border-gray-200 rounded-lg p-4 relative max-h-[350px] min-w-[250px] flex flex-col justify-center items-center">
+                                <div key={index} className="border border-gray-200 rounded-lg p-4 relative 2xl:max-h-[350px] lg:max min-w-[250px] flex flex-col justify-center items-center">
                                     <div className='absolute top-2 right-2 flex' >
                                         <button onClick={() => navigate('/settings/edit-driver', { state: { driverId: driver.id } })}>
                                             <img src={editIcon} alt="" className='h-5 w-5 cursor-pointer mr-4' />
