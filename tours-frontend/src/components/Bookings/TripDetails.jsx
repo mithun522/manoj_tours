@@ -1,13 +1,15 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
 import locationIcon from "../../assets/location-icon-filled.svg";
 import rightArrowIcon from "../../assets/right-arrow-icon.svg";
 import rightLeftIcon from "../../assets/right-left-arrow-icon.svg";
+import { FLEET } from "../shared/Api";
+import CustomDropdown from "../shared/CustomDropdown";
 
 const TripDetails = () => {
   const [tripDetailsData, setTripDetailsData] = useState(() => {
-    // Load trip details data from local storage if available, otherwise initialize with empty values
     const storedData = localStorage.getItem("tripDetailsData");
     return storedData
       ? JSON.parse(storedData)
@@ -16,6 +18,7 @@ const TripDetails = () => {
           endDate: "",
           fleetName: "",
           fleetNumber: "",
+          fleetImage: "",
           pickupLocation: "",
           dropLocation: "",
           timing: "",
@@ -24,292 +27,174 @@ const TripDetails = () => {
           tripType: "",
         };
   });
+  const [fleetsData, setFleetsData] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { customerData } = location.state || { customerData: null };
+  const { customerData } = location.state || {};
 
-  // Update local storage whenever tripDetailsData changes
   useEffect(() => {
     localStorage.setItem("tripDetailsData", JSON.stringify(tripDetailsData));
+
+    const fetchFleetsData = async () => {
+      const response = await axios.get(FLEET);
+      setFleetsData(response.data);
+    };
+
+    fetchFleetsData();
   }, [tripDetailsData]);
 
-  const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    if (type === "radio") {
-      setTripDetailsData((prevData) => ({
-        ...prevData,
-        tripType: value,
-      }));
-    } else {
-      setTripDetailsData((prevData) => ({
-        ...prevData,
-        [name]: value,
-      }));
-    }
-  };
-
-  const handleStartDateChange = (e) => {
-    const { value } = e.target;
+  const handleChange = ({ target: { name, value, type } }) => {
     setTripDetailsData((prevData) => ({
       ...prevData,
-      startDate: value,
-    }));
-  };
-
-  const handleEndDateChange = (e) => {
-    const { value } = e.target;
-    setTripDetailsData((prevData) => ({
-      ...prevData,
-      endDate: value,
+      [name]: type === "radio" ? value : value,
     }));
   };
 
   const handleNext = () => {
-    if (
-      Object.values(tripDetailsData).every((value) => value.trim() !== "") &&
-      new Date(tripDetailsData.endDate) > new Date(tripDetailsData.startDate)
-    ) {
+    const { startDate, endDate } = tripDetailsData;
+
+    if (Object.values(tripDetailsData).every((value) => value.trim() !== "") && new Date(endDate) > new Date(startDate)) {
       navigate("/bookings/new-bookings/payment-details", {
-        state: { tripDetailsData: tripDetailsData, customerData: customerData },
+        state: { tripDetailsData, customerData },
       });
     } else {
       toast.error("Please fill in all fields correctly.");
     }
   };
 
-  // Calculate min date for end date based on start date
-  const minEndDate = tripDetailsData.startDate
-    ? new Date(tripDetailsData.startDate)
-    : null;
+  const handleSelectFleet = (fleetNumber) => {
+    const selectedFleet = fleetsData.find((fleet) => fleet.fleetNumber === fleetNumber);
+    setTripDetailsData((prevData) => ({
+      ...prevData,
+      fleetNumber,
+      fleetName: selectedFleet?.fleetName || "",
+      fleetImage: selectedFleet.fleetImage,
+    }));
+  };
+
+  const options = fleetsData.map((fleet) => fleet.fleetNumber);
+  const minEndDate = tripDetailsData.startDate ? new Date(tripDetailsData.startDate).toISOString().split("T")[0] : null;
 
   return (
-    <div className="grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 lg:grid-cols-2 sm:grid-cols-1 divide-x p-4 px-10 relative">
-      <div className="flex flex-col text-start mt-[-10px]">
-        <div className="flex mb-6 flex-1">
-          <div className="flex flex-col mr-12">
-            <span className="mb-1" style={{ fontSize: "14px" }}>
-              Start Date
-            </span>
-            <div className="flex items-center relative">
-              <input
-                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
-                style={{ fontSize: "12px" }}
-                name="startDate"
-                value={tripDetailsData.startDate}
-                onChange={handleStartDateChange}
-                type="date"
-                placeholder="Start Date"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col mr-12">
-            <span className="mb-1" style={{ fontSize: "14px" }}>
-              End Date
-            </span>
-            <div className="flex items-center relative">
-              <input
-                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
-                style={{ fontSize: "12px" }}
-                name="endDate"
-                value={tripDetailsData.endDate}
-                onChange={handleEndDateChange}
-                type="date"
-                min={minEndDate && minEndDate.toISOString().split("T")[0]}
-                placeholder="End Date"
-              />
-            </div>
-          </div>
+    <div className="grid md:grid-cols-2 divide-x p-4 px-10 relative">
+      <div className="flex flex-col mt-[-10px]">
+        <div className="flex items-center" >
+          <DateInput label="Start Date" name="startDate" value={tripDetailsData.startDate} onChange={handleChange} />
+          <DateInput label="End Date" name="endDate" value={tripDetailsData.endDate} min={minEndDate} onChange={handleChange} />
         </div>
 
-        <div className="flex flex-col text-start">
-          <div className="flex mb-3 flex-1">
-            <div className="flex flex-col mr-12">
-              <span className="mb-1" style={{ fontSize: "14px" }}>
-                Pickup Location
-              </span>
-              <div className="flex items-center relative">
-                <input
-                  type="text"
-                  className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
-                  style={{ fontSize: "12px" }}
-                  name="pickupLocation"
-                  value={tripDetailsData.pickupLocation}
-                  onChange={handleChange}
-                  placeholder="Pickup Location"
-                />
-                <img
-                  src={locationIcon}
-                  alt=""
-                  className="w-4 h-4 absolute right-3"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span
-                className="mb-2 whitespace-nowrap"
-                style={{ fontSize: "14px" }}
-              >
-                Drop Location
-              </span>
-              <div className="flex items-center relative">
-                <input
-                  type="text"
-                  className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md relative w-32"
-                  style={{ fontSize: "12px" }}
-                  name="dropLocation"
-                  value={tripDetailsData.dropLocation}
-                  onChange={handleChange}
-                  placeholder="Drop Location"
-                />
-                <img
-                  src={locationIcon}
-                  alt=""
-                  className="h-4 w-4 absolute right-3"
-                />
-              </div>
-            </div>
-          </div>
+        <div className="flex items-center" >
+          <LocationInput label="Pickup Location" name="pickupLocation" value={tripDetailsData.pickupLocation} onChange={handleChange} />
+          <LocationInput label="Drop Location" name="dropLocation" value={tripDetailsData.dropLocation} onChange={handleChange} />
         </div>
 
-        <div className="flex mb-6">
-          <div className="flex flex-col mr-12">
-            <span className="mb-2" style={{ fontSize: "14px" }}>
-              Trip
-            </span>
-            <div className="bg-slate-200 px-2 py-0.5 w-72 flex justify-between mb-1 accent-black">
-              <div>
-                <input
-                  type="radio"
-                  name="tripType"
-                  id="single"
-                  value="single"
-                  onChange={handleChange}
-                />
-                <label className="ml-2" htmlFor="single">
-                  Single
-                </label>
-              </div>
-              <img src={rightArrowIcon} alt="" className="w-4 h-4 mt-1" />
-            </div>
-            <div className="bg-slate-200 px-2 py-0.5 w-72 flex justify-between">
-              <div>
-                <input
-                  type="radio"
-                  name="tripType"
-                  id="rounded"
-                  value="rounded"
-                  onChange={handleChange}
-                />
-                <label className="ml-2" htmlFor="rounded">
-                  Rounded
-                </label>
-              </div>
-              <img src={rightLeftIcon} alt="" className="w-4 h-4 mt-1" />
-            </div>
-          </div>
-        </div>
+        <TripTypeRadio value={tripDetailsData.tripType} onChange={handleChange} />
 
-        <div className="flex mb-6 flex-1">
-          <div className="flex flex-col mr-12">
-            <span className="mb-1" style={{ fontSize: "14px" }}>
-              TOTAL KM LIMIT
-            </span>
-            <div className="flex items-center">
-              <input
-                type="number"
-                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
-                style={{ fontSize: "12px" }}
-                name="estimatedKms"
-                value={tripDetailsData.estimatedKms}
-                onChange={handleChange}
-                placeholder="Total KM Limit"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col">
-            <span style={{ fontSize: "14px" }}>TIME</span>
-            <div className="flex items-center">
-              <input
-                type="time"
-                className="bg-slate-100 px-2 py-2 mr-2 flex rounded-md w-28"
-                style={{ fontSize: "12px" }}
-                name="timing"
-                value={tripDetailsData.timing}
-                onChange={handleChange}
-                placeholder="Time"
-              />
-            </div>
-          </div>
+        <div className="flex items-center" >
+          <Input label="TOTAL KM LIMIT" name="estimatedKms" value={tripDetailsData.estimatedKms} onChange={handleChange} type="number" />
+          <Input label="TIME" name="timing" value={tripDetailsData.timing} onChange={handleChange} type="time" />
         </div>
       </div>
-      <div className="flex-1 p-4 text-start mt-[-25px]">
-        <div className="flex flex-col mr-12 mb-5">
-          <span className="mb-1" style={{ fontSize: "14px" }}>
-            Fleet Name
-          </span>
-          <div className="flex items-center">
-            <input
-              type="text"
-              className="bg-slate-100 px-2 mr-2 flex rounded-md w-96 py-2"
-              style={{ fontSize: "14px" }}
-              name="fleetName"
-              value={tripDetailsData.fleetName}
-              onChange={handleChange}
-              placeholder="Fleet Name"
-            />
-          </div>
+
+      <div className="p-4 mt-[-25px]">
+        <div className="mb-4 w-full" >
+          <CustomDropdown label="Fleet Number" options={options} selectedOption={tripDetailsData.fleetNumber ? tripDetailsData.fleetNumber : 'Select a Fleet'} onSelect={handleSelectFleet} />
         </div>
-        <div className="flex flex-col mr-12 mb-5">
-          <span className="mb-1" style={{ fontSize: "14px" }}>
-            Fleet Number
-          </span>
-          <div className="flex items-center">
-            <input
-              type="text"
-              className="bg-slate-100 px-2 mr-2 flex rounded-md w-96 py-2"
-              style={{ fontSize: "14px" }}
-              name="fleetNumber"
-              value={tripDetailsData.fleetNumber}
-              onChange={handleChange}
-              placeholder="Fleet Number"
-            />
-          </div>
-        </div>
-        <div className="flex flex-col mr-12 mb-5">
-          <span className="mb-1" style={{ fontSize: "14px" }}>
-            Estimated Amount
-          </span>
-          <div className="flex items-center">
-            <input
-              type="number"
-              className="bg-slate-100 px-2 mr-2 flex rounded-md w-96 py-2"
-              style={{ fontSize: "14px" }}
-              name="estimatedAmount"
-              value={tripDetailsData.estimatedAmount}
-              onChange={handleChange}
-              placeholder="Estimated Amount"
-            />
-          </div>
-        </div>
+        <Input label="Fleet Name" name="fleetName" value={tripDetailsData.fleetName} onChange={handleChange} disabled />
+        <Input label="Estimated Amount" name="estimatedAmount" value={tripDetailsData.estimatedAmount} onChange={handleChange} type="number" />
       </div>
-      <div className="flex absolute bottom-8 right-0">
-        <button
-          className="text-white font-bold bg-sky-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-2"
-          aria-current="page"
-          onClick={handleNext}
-        >
-          Next
-        </button>
-        <button
-          className="text-white font-bold bg-gray-400 hover:scale-105 ease-in-out duration-300 rounded-xl px-5 py-2 shadow-lg shadow-slate-900/20 shadow-2 shadow-r-[3px] -shadow-spread-2 mr-8"
-          aria-current="page"
-          onClick={() => navigate("/bookings/new-bookings/personal-info")}
-        >
-          Previous
-        </button>
+
+      <div className="flex absolute bottom-8 right-5">
+        <Button className="mr-5 bg-sky-400" onClick={handleNext}>Next</Button>
+        <Button onClick={() => navigate("/bookings/new-bookings/personal-info")} className="bg-gray-400">Previous</Button>
       </div>
     </div>
   );
 };
+
+const DateInput = ({ label, name, value, onChange, min }) => (
+  <div className="flex mb-6">
+    <div className="flex flex-col mr-12">
+      <span className="mb-1 text-left" style={{ fontSize: "14px" }}>{label}</span>
+      <input
+        className="bg-slate-100 px-2 py-2 mr-2 rounded-md w-32"
+        style={{ fontSize: "12px" }}
+        name={name}
+        value={value}
+        onChange={onChange}
+        type="date"
+        min={min}
+        placeholder={label}
+      />
+    </div>
+  </div>
+);
+
+const LocationInput = ({ label, name, value, onChange }) => (
+  <div className="flex mb-3">
+    <div className="flex flex-col mr-12">
+      <span className="mb-1 text-left" style={{ fontSize: "14px" }}>{label}</span>
+      <div className="flex items-center relative">
+        <input
+          className="bg-slate-100 px-2 py-2 mr-2 rounded-md w-32"
+          style={{ fontSize: "12px" }}
+          name={name}
+          value={value}
+          onChange={onChange}
+          type="text"
+          placeholder={label}
+        />
+        <img src={locationIcon} alt="" className="w-4 h-4 absolute right-3" />
+      </div>
+    </div>
+  </div>
+);
+
+const TripTypeRadio = ({ value, onChange }) => (
+  <div className="flex mb-6">
+    <div className="flex flex-col mr-12">
+      <span className="mb-1 text-left" style={{ fontSize: "14px" }}>Trip</span>
+      <div className="bg-slate-200 px-2 py-0.5 w-72 flex justify-between mb-1 accent-black">
+        <div>
+          <input type="radio" name="tripType" id="single" value="single" checked={value === "single"} onChange={onChange} />
+          <label className="ml-2" htmlFor="single">Single</label>
+        </div>
+        <img src={rightArrowIcon} alt="" className="w-4 h-4 mt-1" />
+      </div>
+      <div className="bg-slate-200 px-2 py-0.5 w-72 flex justify-between">
+        <div>
+          <input type="radio" name="tripType" id="rounded" value="rounded" checked={value === "rounded"} onChange={onChange} />
+          <label className="ml-2" htmlFor="rounded">Rounded</label>
+        </div>
+        <img src={rightLeftIcon} alt="" className="w-4 h-4 mt-1" />
+      </div>
+    </div>
+  </div>
+);
+
+const Input = ({ label, name, value, onChange, type = "text", disabled = false }) => (
+  <div className="flex flex-col mr-12 mb-5">
+    <span className="flex text-left mb-1" style={{ fontSize: "14px" }}>{label}</span>
+    <input
+      className={`bg-slate-100 px-2 py-2 mr-2 rounded-md ${disabled ? 'bg-gray-200' : ''}`}
+      style={{ fontSize: "14px" }}
+      name={name}
+      value={value}
+      onChange={onChange}
+      type={type}
+      placeholder={label}
+      disabled={disabled}
+    />
+  </div>
+);
+
+const Button = ({ children, onClick, className }) => (
+  <button
+    className={`text-white font-bold hover:scale-105 ease-in-out duration-300 rounded-xl px-10 py-2 shadow-lg shadow-slate-900/20 ${className}`}
+    onClick={onClick}
+  >
+    {children}
+  </button>
+);
 
 export default TripDetails;

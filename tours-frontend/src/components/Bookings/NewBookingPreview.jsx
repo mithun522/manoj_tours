@@ -1,20 +1,29 @@
 import axios from "axios";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useLocation, useNavigate } from "react-router-dom";
-import innovaImage from "../../assets/innova.png";
 import Layout from "../Layout/Layout";
-import { BOOKINGS, CUSTOMER } from "../shared/Api";
+import { BOOKINGS } from "../shared/Api";
 
 const NewBookingPreview = () => {
-
   const location = useLocation();
   const navigate = useNavigate();
-  const { customerData, tripDetailsData, paymentDetails } = location.state;
+  const [customerData, setCustomerData] = useState({}); // Initialize as an empty object
+
+  // Destructure tripDetailsData and paymentDetails from location.state
+  const { tripDetailsData, paymentDetails } = location.state;
 
   useEffect(() => {
+    // Fetch customerData from localStorage
+    const storedCustomerData = localStorage.getItem("customerData");
+    if (storedCustomerData) {
+      setCustomerData(JSON.parse(storedCustomerData)); // Parse the JSON string
+    }
+
+    // Log for debugging
     console.log(customerData, tripDetailsData, paymentDetails);
-  }, [customerData, tripDetailsData, paymentDetails]);
+    console.log(tripDetailsData);
+  }, [tripDetailsData, paymentDetails]); // Update when tripDetailsData or paymentDetails change
 
   const handleProceed = async () => {
     const bookingData = {
@@ -27,6 +36,7 @@ const NewBookingPreview = () => {
       endDate: tripDetailsData.endDate,
       timing: tripDetailsData.timing,
       fleetName: tripDetailsData.fleetName,
+      fleetImage: tripDetailsData.fleetImage,
       fleetNumber: tripDetailsData.fleetNumber,
       estimatedKms: tripDetailsData.estimatedKms,
       estimatedAmount: tripDetailsData.estimatedAmount,
@@ -34,17 +44,17 @@ const NewBookingPreview = () => {
       paymentMode: paymentDetails.paymentMode,
       totalAmount: paymentDetails.totalAmount,
       status: 'Pending',
-      tripType: 'Single',
+      tripType: paymentDetails.tripType,
     };
 
-    try {
-      const response = await axios.post(CUSTOMER)
-      if(response.status === 201) {
-        toast.success("A Customer with name " + response.name + " has been added")
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   const response = await axios.post(CUSTOMER)
+    //   if(response.status === 201) {
+    //     toast.success("A Customer with name " + response.name + " has been added")
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
 
     try {
       const response = await axios.post(BOOKINGS, bookingData);
@@ -80,8 +90,8 @@ const NewBookingPreview = () => {
         <div className="max-w-screen mx-auto">
           <div className="flex flex-col">
             <div className="overflow-y-auto shadow-md sm:rounded-lg h-[796px]">
-              <div className="flex justify-between px-10 py-6">
-                <h1 className="text-lg font-bold" style={{ fontSize: "30px" }}>
+              <div className="flex justify-between px-5 py-6">
+                <h1 className="2xl:text-2xl lg:text-xl text-base font-extrabold">
                   New Bookings
                 </h1>
                 <div className="flex">
@@ -94,13 +104,12 @@ const NewBookingPreview = () => {
               <div className="flex justify-center bg-white mt-3 relative">
                 <div
                   id="bill-container"
-                  className="border border-gray-300 rounded-lg p-4 h-96"
-                  style={{ width: "770px" }}
+                  className="border border-gray-300 rounded-lg p-4 lg:w-[776px] md:w-[600px] w-[400px] overflow-y-auto"
                 >
                   <div className="flex flex-col">
                     <div className="flex justify-between px-6 py-4">
                       <div className="flex">
-                        <img src={innovaImage} alt="" className="w-32 h-16" />
+                        <img src={`http://localhost:3001/${tripDetailsData.fleetImage}`} alt="" className="w-40 h-24" />
                         <div className="flex flex-col text-start ml-6">
                           <span className="font-bold text-gray-500">
                             Vehicle

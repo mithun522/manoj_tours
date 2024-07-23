@@ -47,7 +47,7 @@ const bookingController = {
     const newBooking = req.body;
     Booking.create(newBooking, (err, result) => {
       if (err) {
-        res.status(500).json({ error: "Failed to create booking." });
+        res.status(500).json({ error: err.message }); // Send the actual error message
       } else {
         res.status(201).json({
           message: "Booking created successfully.",
@@ -55,7 +55,7 @@ const bookingController = {
         });
       }
     });
-  },
+  },  
   updateBooking: (req, res) => {
     const { id } = req.params;
     const updatedBooking = req.body;

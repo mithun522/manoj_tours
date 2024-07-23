@@ -18,7 +18,6 @@ const Bookings = () => {
         const fetchBookingsData = async () => {
             try {
                 const response = await axios.get(`${BOOKINGS}?page=${currentPage}&limit=${recordsPerPage}`);
-                console.log(response.data.data)
                 if (response.status === 200) {
                     setBookingsData(response.data.data);
                 } else {
@@ -39,10 +38,6 @@ const Bookings = () => {
         return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     };
 
-    const filteredBookings = bookingsData.filter(booking =>
-        booking.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-
     return (
         <Layout>
             <div className="max-w-screen mx-auto flex flex-col h-full p-4 sm:p-8">
@@ -59,23 +54,21 @@ const Bookings = () => {
                         setSearchQuery={setSearchQuery}
                     />
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
-                        {filteredBookings.map((booking, index) => (
+                        {bookingsData.map((booking, index) => (
                             <div key={index} className="border border-gray-300 rounded-lg p-6 bg-white shadow-md hover:shadow-xl transition-shadow duration-300">
                                 <div className='flex justify-between mb-4'>
-                                    <h2 className="font-semibold text-lg text-gray-900">Customer Name: {booking.name}</h2>
-                                    <p className="text-gray-500 font-medium">{booking.customerId}</p>
+                                    <h2 className="font-semibold text-lg text-gray-900">{booking.name}</h2>
+                                    <p className="text-gray-500 font-medium">#b{booking.id}</p>
                                 </div>
-                                <p className="text-gray-700 text-sm mb-2 text-left">
-                                    <span className='font-bold text-black' >Days Of Trip: </span>{new Date(booking.startDate).toLocaleDateString()} to {new Date(booking.endDate).toLocaleDateString()}</p>
-                                <div className='flex flex-col justify-between items-center mb-6 text-left'>
-                                    <div className='flex flex-col'>
-                                        <span className="font-bold text-gray-900">
-                                            <span className="text-black font-bold">Fleet: </span>{booking.fleetName}</span>
-                                        <span className="text-gray-500">
-                                            <span className="text-black font-bold">Fleet Number: </span>{booking.fleetNumber}</span>
-                                    </div>
-                                    <div className='flex flex-col'>
-                                        <span className="text-black font-bold">KM Limit <span className="font-bold text-gray-900">{booking.estimatedKms}</span></span>
+                                <p className="flex text-gray-700 text-sm mb-2">
+                                    <span className='font-bold text-black'>{new Date(booking.startDate).toLocaleDateString()}</span> 
+                                    <span className="px-2">to</span>
+                                    <span className='font-bold text-black'>{new Date(booking.endDate).toLocaleDateString()}</span>
+                                </p>
+                                <div className='flex flex-col md:flex-row justify-between items-center mb-6'>
+                                    <div className='flex flex-col mb-4 md:mb-0'>
+                                        <span className="text-xs text-gray-400">KM Limit</span>
+                                        <span className="text-sm text-gray-900">{booking.estimatedKms} Kms</span>
                                     </div>
                                     <div className='flex flex-col'>
                                         <span className="text-black font-bold">Days <span className="font-bold text-gray-900">{calculateDays(booking.startDate, booking.endDate)}</span></span>

@@ -1,7 +1,8 @@
 import React from 'react';
-import CustomDropdown from './CustomDropdown';
+import { IoMdSearch } from "react-icons/io";
 import { useNavigate } from 'react-router-dom';
 import plusIcon from '../../assets/plus-circle-icon.svg';
+import CustomDropdown from './CustomDropdown';
 
 const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSelectedOption, showButton = true, buttonTitle = "", routeForButton, icon, isAddButton = false, addButtonRoute = '', addButtonText = '', searchQuery, setSearchQuery, onAddButtonClick }) => {
     const navigate = useNavigate();
@@ -11,9 +12,9 @@ const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSele
             <h1 className="text-lg font-bold" style={{ fontSize: '28px' }}>{title}</h1>
             <div className="flex">
                 <div className='max-w-xs mx-auto mr-10'>
-                    <div className="relative flex items-center w-full h-10 rounded-2xl focus-within:shadow-lg overflow-hidden">
+                    <div className="relative flex items-center w-full h-10 rounded-2xl border overflow-hidden">
                         <input
-                            className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 pl-5 bg-gray-100"
+                            className="peer h-full w-full outline-none text-sm text-gray-700 pr-2 pl-5 focus:border border-gray-100"
                             type="text"
                             id="search"
                             placeholder="Search something.."
@@ -21,9 +22,7 @@ const TopLayer = ({ title, showDropdown = true, options, selectedOption, setSele
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                         <div className="grid place-items-center h-full w-12 text-gray-900 bg-gray-100">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
+                            <IoMdSearch size={23} />
                         </div>
                     </div>
                 </div>

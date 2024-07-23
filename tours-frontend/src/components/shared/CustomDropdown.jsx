@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const CustomDropdown = ({ options, selectedOption, onSelect, icon }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,7 +37,7 @@ const CustomDropdown = ({ options, selectedOption, onSelect, icon }) => {
           )}
           <button
             type="button"
-            className="inline-flex justify-center w-48 pl-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-md focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-transparent"
+            className="inline-flex justify-center w-48 pl-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-md"
             onClick={toggleDropdown}
             aria-haspopup="listbox"
             aria-expanded={isOpen}
